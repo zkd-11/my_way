@@ -131,3 +131,19 @@ Body 为显示在页面上的内容
 
 # 9.21 学习进度
 
+1.学习了列表标签 有序和无序  ol ul，中type不同，所显示的序号不同， <lib> 标签，标签中有序和无序的嵌套<img src="html  学习日报.assets/image-20220922013605497.png" alt="image-20220922013605497" style="zoom:33%;" />
+
+
+
+
+
+2.详情标签 dl图片、dd文字
+
+3.table标签   thead、 tbody、 tfoot 标签分化对不同部分好处理 样式 th居中加粗  
+
+​		table中嵌套table/  rowspan 跨行并、 colspan 跨列并、
+
+​			 border所有框线、 cellpading单元格大小   cellspacing 框线间距
+
+tip： 跨行并，跨列并后，需在合并后的下一个单元格填写信息
+

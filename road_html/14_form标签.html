@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        1. form标签包裹的为所上传的表单，所上传的数据范围
+            2. button 不具备上传功能 只是一个简单的按钮
+        3.上传需用 sumit按钮
+        4. form标签内功能 ： action 为所上传的服务器地址 前端内容转到后端
+                method内方法有： get 、 post
+                    
+                    get: 1. 通过地址栏传送
+                         2. 所能上传的信息有限
+                         3. 所传递信息不安全，直接显示于地址栏
+                         4. 地址栏所能传递的信息只能为文本信息
+
+                    post:1. 不直接显示于地址栏
+                         2. 是以整个信息打包上传，无上限
+                         3. 传递虽相对于get安全，但是能于开发者工具中查看
+                         4. 信息不局限于文本信息
+        5.所上传信息需带 name命名 账号、密码..  value 为框内文字，默认存在
+                         
+     -->
+    <form action="https://www.baidu.com" method="post">
+      账号:
+      <input type="text" name="usename" /> <br />
+      密码:
+      <input type="password" name="pwd" /> <br />
+      性别:
+      <input type="radio" name="gender" checked />男
+      <input type="radio" name="gender" />女 <br />
+      爱好:
+      <input type="checkbox" name="hobby" /> 篮球
+      <input type="checkbox" name="hobby" /> 游泳
+      <input type="checkbox" name="hobby" /> 羽毛球
+      <input type="checkbox" name="hobby" /> 健身 <br />
+      请上传你的照片
+      <input type="file" /> <br />
+      个人简介:
+      <textarea style="width: 130px; height: 120px">
+ 请简单介绍下你自己</textarea
+      >
+      <br />
+      籍贯:
+      <select>
+        <option>吉林</option>
+        <option>广东</option>
+        <option>北京</option>
+        <option selected>-请选择省份-</option>
+      </select>
+      <br />
+      <input type="submit" value="信息提交" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    账号:
+    <input type="text" /> <br />
+    密码:
+    <input type="password" /> <br />
+    性别:
+    <input type="radio" name="gender" checked />男
+    <input type="radio" name="gender" />女 <br />
+    爱好:
+    <input type="checkbox" name="hobby" /> 篮球
+    <input type="checkbox" name="hobby" /> 游泳
+    <input type="checkbox" name="hobby" /> 羽毛球
+    <input type="checkbox" name="hobby" /> 健身 <br />
+    请上传你的照片
+    <input type="file" /> <br />
+    个人简介:
+    <textarea style="width: 130px; height: 120px"> 请简单介绍下你自己</textarea>
+    <br />
+    籍贯:
+    <select>
+      <option>吉林</option>
+      <option>广东</option>
+      <option>北京</option>
+      <option selected>-请选择省份-</option>
+    </select>
+    <!-- 
+      在密码中选择password 会自动加密
+          checked 默认选中的状态 在多个选项都设置的状态 默认设置为最后一个
+              radio 命名 为单选状态
+          checkbox 不受影响
+      文本域 自动换行 textarea
+      select multiple 将弹出选择栏 一般不是应用此功能
+      select 内嵌option  option 内加selected 为默认项
+
+     -->
+  </body>
+</html>
