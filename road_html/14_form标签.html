@@ -23,38 +23,39 @@
                          2. 是以整个信息打包上传，无上限
                          3. 传递虽相对于get安全，但是能于开发者工具中查看
                          4. 信息不局限于文本信息
-        5.所上传信息需带 name命名 账号、密码..  value 为框内文字，默认存在
-                         
+        5.所上传信息（输入框）需带 name命名 账号、密码..  value 为框内文字，默认存在
+        6. 输入框内 value默认存在，只需输入于框内即可上传信息，按钮内、选项 需加value                
      -->
-    <form action="https://www.baidu.com" method="post">
+    <form action="https://www.baidu.com" method="get">
       账号:
-      <input type="text" name="usename" /> <br />
+      <input type="text" name="username" /> <br />
       密码:
       <input type="password" name="pwd" /> <br />
       性别:
-      <input type="radio" name="gender" checked />男
-      <input type="radio" name="gender" />女 <br />
+      <input type="radio" name="gender" value="men" checked />男
+      <input type="radio" name="gender" value="women" />女 <br />
       爱好:
-      <input type="checkbox" name="hobby" /> 篮球
-      <input type="checkbox" name="hobby" /> 游泳
-      <input type="checkbox" name="hobby" /> 羽毛球
-      <input type="checkbox" name="hobby" /> 健身 <br />
+      <input type="checkbox" name="hobby" value="basketball" /> 篮球
+      <input type="checkbox" name="hobby" value="swim" /> 游泳
+      <input type="checkbox" name="hobby" value="badminton" /> 羽毛球
+      <input type="checkbox" name="hobby" value="strong" /> 健身 <br />
       请上传你的照片
-      <input type="file" /> <br />
+      <input type="file" name="intro" /> <br />
       个人简介:
       <textarea style="width: 130px; height: 120px">
  请简单介绍下你自己</textarea
       >
       <br />
       籍贯:
-      <select>
-        <option>吉林</option>
-        <option>广东</option>
-        <option>北京</option>
-        <option selected>-请选择省份-</option>
+      <select name="province">
+        <option value="jiLin">吉林</option>
+        <option value="GuangDong">广东</option>
+        <option value="BeiJing">北京</option>
+        <option selected value="Null">-请选择省份-</option>
       </select>
       <br />
       <input type="submit" value="信息提交" />
+      <input type="reset" value="信息重置" />
     </form>
   </body>
 </html>

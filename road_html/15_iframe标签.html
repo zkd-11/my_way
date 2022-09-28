@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- 
+    1. 宽度如果占50%的话无法同时显示，因为框架标签 外框有占一定的像素
+    2. height 无法用比例，因为一个页面可以无限延长
+ -->
+  <body>
+    <iframe src="http://www.taobao.com" width="40%" height="400px"> </iframe>
+    <iframe src="14_form标签.html" width="40%" height="400px" name="ifm">
+    </iframe>
+    <br />
+    <a href="http://www.jd.com" target="ifm">京东网</a>
+    <a href="http://www.taobao.com" target="ifm">淘宝网</a>
+  </body>
+</html>
