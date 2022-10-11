@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+    padding 和 margin 都不会影响实际容量
+    但padding 内边距 会使块增大
+ -->
+    <style>
+      #outerdiv {
+        background-color: aliceblue;
+        border: 1px solid black;
+        height: 300px;
+        width: 300px;
+        margin: auto;
+      }
+      .s1 {
+        background-color: bisque;
+        border: 1px solid aquamarine;
+        height: 150px;
+        width: 150px;
+        display: block;
+        margin: 40px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outerdiv">
+      <span class="s1">2022年10月11日</span>
+    </div>
+  </body>
+</html>

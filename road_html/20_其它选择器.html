@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 
+            分层选择器 语法 递进  p中span
+        */
+      p #s1 {
+        background-color: aqua;
+        color: red;
+      }
+      /* 
+            属性选择器
+             选择class中的部分所要修改的样式 属性
+      */
+      input[type="password"] {
+        color: aqua;
+        width: 200px;
+        height: 200px;
+      }
+
+      /* 分组便签 将所要修改的便签以逗号隔开
+      
+      */
+      h1,
+      .hb,
+      #f {
+        color: bisque;
+        font-size: large;
+      }
+    </style>
+  </head>
+  <body>
+    <p>其他选择器3</p>
+    <span> 今日事今日毕 </span>
+    <p>
+      <span id="s1">
+        其他选择器2
+        <p>其他选择器3</p>
+      </span>
+    </p>
+    <br />
+    <input class="i" type="text" />
+    <input class="i" type="password" />
+    <input class="i" type="password" />
+
+    <h1>分组标签1</h1>
+    <h1 class="hb">分组标签1</h1>
+    <h2 class="hb">分组标签2</h2>
+    <font id="f">分组标签3 </font>
+  </body>
+</html>
