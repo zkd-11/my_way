@@ -1,0 +1,220 @@
+* {
+  /* border: 1px solid red; */
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+/*--------------- 导航栏------------ */
+#outnav {
+  /* border: 1px solid rebeccapurple; */
+  width: 1160px;
+  height: 40px;
+  margin: 0 auto;
+}
+ul .nav_item {
+  width: 145px;
+  height: 40px;
+  background-color: #3b99fc;
+  float: left;
+  line-height: 40px;
+  text-decoration: none;
+  list-style: none;
+  margin: 0 auto;
+  text-align: center;
+}
+ul .nav_item:hover {
+  background-color: #3685ec;
+}
+.nav_item span {
+  font-size: 14px;
+
+  color: white;
+}
+
+/* -----------------服务栏---------- */
+.service  {
+    float: left;
+  }
+  .service dd {
+    width: 170px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+  }
+  .service dt {
+    width: 170px;
+    height: 20px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 20px;
+    color: black;
+  }
+  .service img {
+    width: 50px;
+    height: 40px;
+    margin: 5px 0px;
+  }
+  #u {
+    text-decoration: none;
+  }
+  .outer_service {
+    width: 1190px;
+    height: 70px;
+    /* border: 1px solid red; */
+    margin: 10px auto; 
+
+  }
+/* -----------------广告栏---------- */
+#outer {
+  width: 1190px;
+  height: 345px;
+  margin: auto;
+  /* border: 10px solid aqua; */
+}
+
+#img1,
+#img2,
+#img3,
+#img4 {
+  width: 590px;
+  height: 160px;
+}
+#ad1,
+#ad2,
+#ad3,
+#ad4 {
+  float: left;
+}
+#ad1,
+#ad3 {
+  margin-right: 10px;
+}
+#ad4,
+#ad3 {
+  margin-top: 20px;
+}
+/* -------------旅游栏------------------- */
+#travel_item dd {
+  width: 290px;
+  height: 160px;
+}
+#travel_item dt {
+  width: 290px;
+  height: 70px;
+}
+.travel a {
+  text-decoration: none;
+  /* list-style: none; */
+}
+#travel_item p {
+  font-size: 13px;
+  line-height: 40px;
+  color: black;
+}
+/* 金钱符号缩小 */
+#travel_item span {
+  font-size: 13px;
+  color: #ff8201;
+  margin-left: 8px;
+}
+/*金钱字体  */
+#travel_item font {
+  font-size: 20px;
+  color: #ff8201;
+}
+#travel_item p:hover {
+  color: #00e1ff;
+}
+.travel {
+  width: 290px;
+  height: 230px;
+}
+.outer_travel {
+  width: 1200px;
+  height: 480px;
+  /* border: 1px solid red; */
+  margin: 0px auto;
+}
+.travel {
+  margin: 5px;
+  float: left;
+}
+
+/* -----------------提示栏---------- */
+          #outerdiv {
+            /* border: 1px solid aqua; */
+            width: 50px;
+            height: 315px;
+            position: fixed;
+            right: 0px;
+            top: 200px;
+          }
+          .note_item,
+          .note_item2 {
+            width: 50px;
+          }
+          .note_item {
+            height: 80x;
+            margin-bottom: 5px;
+          }
+          .note_item2 {
+            height: 60px;
+          }
+          #note_image {
+            width: 50px;
+            height: 80px;
+          }
+
+          #note_image2 {
+            width: 50px;
+            height: 60px;
+          }
+  /* -----------------介绍栏---------- */
+  #introduce {
+    width: 335px;
+    height: 250px;
+    border: 1px solid #3b99fc;
+    /* float: left; */
+  }
+  #ha {
+    width: 335px;
+    height: 40px;
+    background-color: #3b99fc;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    /* 漏居中 */
+  }
+  #introduce ul {
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+  #introduce li {
+    list-style: none;
+    list-style-image: url(../image/dot.png);
+  }
+  #introduce a {
+    color: gray;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 35px;
+  }
+  #introduce a:hover {
+    color: black;
+  }
+  /* 设置外框 属性 */
+  #outerintroduce {
+    width: 1051px;
+    height: 250px;
+    margin: auto;
+    /* border: 1px solid blueviolet; */
+  }
+  /* 设置框与框边距 */
+  .introduce_1 {
+    margin-right: 20px;
+  }
+  /* 3个内框漂浮 */
+  .introduce_1,
+  .introduce_2 {
+    float: left;
+  }

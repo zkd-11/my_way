@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #d1 {
+        border: 1px solid blueviolet;
+        background-color: aquamarine;
+        height: 200px;
+        width: 200px;
+        /* 绝对定位 指空出当前位置移动，后续方块用原先所处位置 */
+        /* position: absolute;
+        top: 300px;
+        left: 300px; */
+        /* 相对定位 当前位置固定住，其他方块不可使用*/
+        /* position: relative;
+            top: 300px;
+            left: 300px; */
+        /* 相对浏览器窗口定位、跟随定位，页面滑动 跟随，一直出现在页面 */
+        position: fixed;
+        top: 300px;
+        left: 300px;
+      }
+      #d2 {
+        border: 1px solid aquamarine;
+        background-color: bisque;
+        height: 200px;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d1">这是一方块</div>
+    <div id="d2">这是二方块</div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>
