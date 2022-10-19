@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="js/36_js外部文件.js"></script>
+    <script>
+      alert("我是内部的弹窗语句");
+    </script>
+  </head>
+  <body>
+    <!-- 不建议用于标签中 属于结构与行为耦合 不推荐使用 -->
+    <button onclick="alert('放置在按钮中的script语句')">请点击按钮</button>
+    <br />
+    <a href="javascript:alert('点击之后的弹窗')">放置在超链接中的alert语句</a>
+    <!-- 也可用于其他功能 -->
+    <a href="javascript:)">放置在超链接中的alert语句</a>
+    <!-- 
+        1. js文件 区分大小写
+        2. 每段需要以;结尾， 不加浏览器为默认添加，浪费系统资源，有几率互搓
+        3. js 忽略空格和换行， 便于代码美化
+     -->
+  </body>
+</html>

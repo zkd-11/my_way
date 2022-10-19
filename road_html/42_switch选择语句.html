@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //   用 while 判断用户输入的密码是否为正确
+      while (true) {
+        var score = +prompt("请输入所要填入的分数：（0-100）");
+        if (score >= 0 && score <= 100) break;
+        alert("请输入有效的分数：（0-100）!");
+      }
+
+      //   +转化为number模式
+      //   var score = +prompt("请输入所要填入的分数：（0-100）");
+      //   if (score > 100 || score < 0) {
+      //     var score = +prompt("请重新输入合格的分数：(0-100)");
+      //   }
+
+      // switch 与 if 能相互转换，实现同种功能  switch匹配模式是 全等模式
+      switch (parseInt(score / 10)) {
+        case 9:
+        case 8:
+          alert("中上");
+          break;
+        case 7:
+          alert("一般");
+          break;
+        case 6:
+          alert("合格");
+          break;
+        default:
+          alert("不合格");
+          break;
+      }
+      //  利用true方向 思维
+      switch (true) {
+        case score >= 60:
+          console.log("合格");
+          break;
+        default:
+          console.log("不合格");
+          break;
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

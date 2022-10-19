@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // do while 和 while类似， 但是do while 先执行一次循环体语句
+      var n = 1;
+      while (n < 2) {
+        // "</br>"换行符
+        document.write(n + "</br>");
+        n++;
+      }
+
+      var i = 0,
+        sum = 1000;
+      while (sum < 5000) {
+        parseFloat((sum = sum + sum * 0.05));
+        i++;
+      }
+      document.write(
+        "需要花费" + i + "年" + "<br/>" + "最终收益为" + parseInt(sum - 1000)
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

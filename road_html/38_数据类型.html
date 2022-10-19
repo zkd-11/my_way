@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var Str = '她说：\n "这是一句话" 输出\\';
+      alert(Str);
+      var a = 777 + 888;
+      console.log(a);
+      //   对于整数相加，js的精准程度较高，浮点数有误差，不适用于金钱等计算
+      var b = 0.1 + 0.2;
+      console.log(b);
+      // 最大值和最小值 返回 Infinity
+      var c = Number.MAX_VALUE;
+      document.write(c);
+      document.write("\n这里是分割");
+      var d = Number.MIN_VALUE;
+      document.write(d);
+      document.write("\n");
+
+      //   正无穷，为数值类型
+      var d = c * c;
+      console.log(d);
+      console.log(typeof d);
+
+      // NAN = not a number
+      var k = "abc";
+      var e = a * k;
+      console.log(e);
+
+      // 返回的布尔值
+      var f = true;
+      console.log("\n");
+      console.log(typeof f);
+
+      //返回为 object对象
+      var g = null;
+      console.log("\n");
+      console.log(typeof g);
+
+      /* 数据类型转换: 
+        方法一： 调用转换数据类型的tostring（）方法
+         不会影响原结果，需要将原结果返回重新赋值到变量
+            null 和 undefined 调用会报错
+        方法二： 调用String（）函数，并将转换的数据作为参数传递给函数
+                使用此函数强制转换时，对于number和Boolean实际上就是调用tostring（）方法
+                对于 null 和 undefined 会直接转换为字符串
+    */
+
+      //调用a的tostring（）方法
+      console.log("\n 将数值a转化为字符串");
+      var h = a.toString();
+      console.log(typeof h);
+
+      //将null undefined转换为字符串，调用函数
+      var i;
+      var i = String(i);
+      console.log(typeof i);
+      console.log(i);
+      //   将null值 用string函数 强制转换
+      var j = String(g);
+      console.log(typeof j);
+      console.log(j);
+    </script>
+  </head>
+  <body>
+    <!-- 
+        六种数据类型
+            boolean:布尔值
+            string：字符串
+            number:数值
+            Null: 空值
+            undefined:未定义值
+            object:对象
+        新增类型  Symbol 标记
+        用于 规避ES5 对象属性名的冲突，保证了属性名的独特性
+
+        前五者属于基本数据类型， object属于引用数据类型
+            引号不能嵌套，可单套双 或 双套单， 或是用“ \ ”转义，告诉编辑器为正常符号
+     -->
+  </body>
+</html>

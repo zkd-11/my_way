@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*将字符串转化为number
+            一： 使用number（）函数 只能转化纯数字的字符串
+                    非数字的字符串 显示为NAN
+                空串 或者多个空格 显示为0  true为1  false为0
+            二： 使用parseInt /parseFloat 从第一个数字开始提取
+                    如果第一个字符串非数字，则提取失败
+                    或者所提取的数字尾部跟其他字母连接则不提取该部分 
+                    如177.89b 使用parseFloat 只能提取都 177
+        */
+      var a = "177";
+      a = parseInt(a);
+      console.log(typeof a);
+      console.log(a);
+      // parseInt 、 parseFloat 提取字符串的数字
+      var b = "177.89";
+      b = parseInt(b);
+      console.log(typeof b);
+      console.log(b);
+
+      d = 177.89;
+      d = parseFloat(d);
+      console.log(d);
+      // number函数 讲true转为 数字
+      var c = true;
+      c = Number(c);
+      console.log(c);
+
+      var e = 070;
+      console.log(e);
+      //   告诉浏览器，此数值为16进制，如56是16进制的数字，则显示的为86
+      //  因为e 为8进制，浏览器转化为5能识别8进制，变成56，再8进制变为 46
+      e = parseInt(e, 8);
+      console.log(e);
+
+      /*  Boolean函数 除0、空串和null其余字符外   均转化为 true(包括对象)
+       运算符中：加减乘除 +拼串  字符串＋数字，会将数字转化为字符串然后拼接一起
+      除加法运算，其余是将字符串转化为数字，如100-“1” = 99
+       任何值和nan运算 结果都为 nan
+      */
+      var f = "99" + 11;
+      console.log("f = " + f);
+      var g = 100 - "1";
+      console.log("g = " + g);
+
+      //  逐位 比较，a和a 比较，然后d和c比较，d比c大，所以为true
+      result = "ad" > "ac";
+      console.log("result = " + result);
+      //  a和b 比较，a < b ，所以返回为 false，不比较下一位
+      result = "ad" > "bc";
+      console.log("result = " + result);
+
+      //  b和a比较，b > a，所以直接返回true，不比较下一位
+      result = "bd" > "ae";
+      console.log("result = " + result);
+    </script>
+  </head>
+  <body>
+    <!-- 
+        与或非
+         与运算 是将数值先转为布尔函数
+            ！！可将非布尔值 转化后判断
+        与和或都为短路，
+        与：左假直接不判断右边
+        非：左真也不要判断右边
+        
+        与运算都为true值时返回后边的，有false则返回false值，
+        在哪里false值直接返回，在哪里停止判断返回谁
+    
+        算式运算： 数值与字符串比较时，会统一转化数值进行比较
+            字符比较时，比较的时字符串的unicode码
+            任何值与NAN比较时，都返回false
+      
+            == 比较时，不同类型 会自动转化为相同类型 进行比较
+                null == 0 ; false 
+                defined == null , true 
+                defined为null的衍生值
+            任何值 不能等于 NAN
+
+         isNaN() 判断一个数字是否为NAN
+
+         === 全等符号 !==不全等
+            不会转换字符 判断 返回布尔值
+
+        三目运算符 a? b:c;
+                布尔值判断执行  非布尔值转化为布尔值后判断
+                
+    -->
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // var score = prompt("请输入小明的成绩：（0-100）");
+      // for (; score < 0 || score > 100; )
+      //   {var score = prompt("请输入小明的成绩：（0-100）");
+      //          alert("请输入有效的分数！");}
+      // if (score == 100) alert("一台BRM");
+      // else if (score >= 80) alert("苹果14promax 暗夜紫 1TB");
+      // else if (score >= 60) alert("一份鼓励");
+      // else alert("并没有奖励");
+
+      //  三个数字比大小， 在promt前加个 + 号，将字符串的形式转化为 number
+      var num1 = +prompt("请输入第一个数字：");
+      var num2 = +prompt("请输入第二个数字：");
+      var num3 = +prompt("请输入第三个数字：");
+
+      // sort 语句
+      var arr = [num1, num2, num3];
+      arr.sort((x, y) => {
+        console.log(x + "-" + y + "=" + (x - y));
+        return x - y;
+      });
+      alert(arr);
+    </script>
+  </head>
+  <body></body>
+</html>
