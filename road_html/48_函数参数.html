@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //创建函数的三种 方法，函数也属于对象
+
+      var fun = new Function(
+        document.write("这是利用new方法生成的函数" + "</br>")
+      ); //不建议使用
+
+      fun();
+      //一般使用的生成的函数的方法， 函数声明 函数名（）{}
+      function fun2() {
+        console.log("这是推荐使用的生成函数的方法");
+        document.write("这是推荐使用的生成函数的方法噢~");
+      }
+      fun2();
+
+      //创建变量 将匿名函数赋值到变量内
+      var fun3 = function () {
+        console.log("我是匿名函数封装的代码");
+      };
+      fun3();
+
+      // 括号添加形参，传递实参，对传导的数值进行操作
+      // 实参>形参数量，不会出错，只接收前n（形参数量）个实参
+      //    实参传导的数量 < 形参时，会出错，如传递1个数值，实际需要2个数值作为形参时， 形参未被定义，在两数相加时，得到的结果为NAN
+
+      //函数接受不会检查 实参的类别，实参可以是任意类型，但因为不会函数解析器不会检查
+      //   如果有可能需要对参数进行类型的检查
+      function fun4(a, b) {
+        console.log(a + b);
+      }
+      fun4(3, 7);
+      fun4(4);
+
+      //   利用函数 更多的是返回值，不将值直接透露出来，将值 return，要做如何处理 看使用者的使用用途，更加灵活
+
+      function sum(a, b, c) {
+        var d = a + b + c;
+        return d;
+      }
+      var result = sum(3, 4, 5);
+      console.log("result = " + result);
+    </script>
+  </head>
+  <body></body>
+</html>

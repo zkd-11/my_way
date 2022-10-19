@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var obj = new Object();
+      obj.name = "猪八戒";
+      obj.age = 28;
+      obj.gender = "男";
+      obj.sayName = function () {
+        console.log(obj.name);
+      };
+
+      obj.sayName();
+      //枚举对象中的属性 使用    for in 语句
+      for (var n in obj) {
+        console.log("属性值 " + n);
+        console.log(obj[n]);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var obj = new Object();
+      obj.name = "小明";
+      obj.age = 18;
+      obj["邱炳"] = "你好";
+
+      var obj1 = new Object();
+      obj1.name = "小员";
+      obj.age = 18;
+      obj["11"] = "大家好";
+      var n = "11";
+      //
+      obj.test = obj1;
+      document.write(obj["邱炳"]);
+      obj.name = "小澈";
+      console.log(obj);
+
+      var c = 50;
+      var d = 50;
+
+      var obj2 = {}; //快捷生成对象  使用对象字变量生成对象
+      //   var obj2 = new Object();
+      var obj3 = new Object();
+      obj2.name = "小林";
+      obj3.name = "小林";
+
+      var obj4 = {
+        name: "小沙",
+        age: 25,
+        gender: "男",
+        萧俊: 77, //特殊属性名，需要以""包住，属性名：值  后以逗号隔开
+        test: { name: "小孙" }, //对象赋值给属性
+      };
+
+      // 一般生成变量时，是存储在栈内空间    生成对象是，栈内变量指向堆中空间，存放的为地址
+      //  比较两个基本数据时，比较的是数值    比较引用数据类型 比较的为两个对象的 内存地址
+      console.log(c == d);
+      console.log(obj2.name == obj3.name); //比较的为值，相同
+      console.log(obj2 == obj3);
+      console.log(obj4);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function isOu(num) {
+        return num % 2 == 0;
+      }
+
+      var result = isOu(3);
+      console.log("result = "+ result);
+ 
+      function tp(o) {
+        console.log(
+          "我叫" + o.name,
+          "性别为" + o.gender,
+          "我今年" + o.age,
+          "我住在" + o.address
+        );
+      }
+      var obj = {
+        name: "孙悟空",
+        age: 20,
+        address: "花果山",
+        gender: "男",
+      };
+      //  对象可以作为实参传递到函数
+      tp(obj);
+
+      // 函数可作为实参传递到函数
+      function fun(a) {
+         console.log("a = "+a);
+      };
+      fun (tp);
+      fun(tp(obj));
+
+      //函数可作为返回值 返回
+      function fun3(){
+            function fun4(){
+                alert("我是function4");
+            }
+            return fun4;
+      }
+        a = fun3();
+//    fun3() 相当于是 返回fan4(对象名), fun4() 执行fan4内语句
+        a();
+        fun3()();
+
+//   立即执行函数 ,用括号包住，说明是一个集体，就不会报错
+       ( function(){
+            alert("我是立即执行函数")
+        })
+        // 立即函数执行方式
+        ();
+    </script>
+  </head>
+  <body></body
+</html>

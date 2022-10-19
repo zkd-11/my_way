@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // <!-- 正序递增输入 5星，倒序输入5星 -->
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < i + 1; j++) {
+          document.write("* &nbsp; &nbsp;");
+        }
+        document.write("</br>");
+      }
+
+      document.write("</br>");
+
+      // 双引号内 内容隔开 需要用; , 无引号 需要用, 隔开
+
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5 - i; j++) {
+          document.write("* &nbsp;&nbsp;");
+        }
+
+        document.write("</br>");
+      }
+
+      document.write("</br>");
+      // 九九乘法
+      for (var i = 1; i <= 9; i++) {
+        for (var j = 1; j < i + 1; j++) {
+          document.write("<span>" + j + "*" + i + "=" + i * j + "</span>");
+        }
+        document.write("</br>");
+      }
+    </script>
+    <style>
+      span {
+        display: inline-block;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+            循环： continue 跳出本次循环，继续执行下个语句循环
+                   break终止距离最近的循环
+            可为循环语句起别名
+         a: for(;;;)
+                
+                for(;;;){
+                    if()
+                 break a;
+                }
+    -->
+  </body>
+</html>

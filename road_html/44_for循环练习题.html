@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //   打印出100以内7倍数的数字，并计算结果，从1开始去除0的情况
+      var sum = 0;
+      var count = 0;
+      for (var i = 1; i <= 100; i++) {
+        if (i % 7 == 0) {
+          document.write(i + "</br>");
+          sum += i;
+          count++;
+        }
+      }
+      document.write("100内7倍数的数字和为：" + count);
+      document.write("100内7倍数总和为：" + sum);
+      // 1000以内水仙花数的打印
+      var a, b, c;
+      sum = 0;
+      var d = 117;
+
+      for (var i = 100; i < 1000; i++) {
+        a = i % 10;
+        b = parseInt((i / 10) % 10);
+        c = parseInt(i / 100);
+        sum = Math.pow(a, 3) + Math.pow(b, 3) + Math.pow(c, 3);
+        if (sum == i) console.log(i + "</br>");
+      }
+
+      //   设置开关，默认是质数
+      var flag = true;
+      var num = prompt("请输入一个数字，系统为您判断是否为质数:");
+      for (var i = 2; i < num; i++) {
+        if (i <= 0) {
+          flag = false;
+          alert("该数字不是质数");
+          break;
+        } else if (num % i == 0) {
+          flag = false;
+          alert("该数字不是质数");
+          break;
+        }
+      }
+
+      if (flag) {
+        alert("该数字是质数");
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
