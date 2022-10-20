@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 全局作用域中的 全局对象 window
+      // 在此声明的变量 都属于window窗口的属性 ，函数作为 window 的方法 （浏览器可视窗口）
+      var a = 44;
+      window.b = 30;
+      console.log(a);
+      console.log(window.a);
+      console.log(window.b);
+
+      //   声明提前，所有var定义的变量、function(){} 声明的函数，都会在程序执行之前，提前声明
+      //      赋值不提前，声明提前，相当于c中的预编译
+
+      console.log(c); //c未未被赋值
+      //   console.log(d); // 显示的是 d未被定义
+      var c = 111;
+
+      //   函数提前声明, 因为提前声明，所以调用函数的语句 在声明函数前也能生效
+      //   在所有语句执行之前，被生成，置顶
+      window.fun();
+      function fun() {
+        console.log("我是fun函数");
+      }
+      fun();
+
+      /*函数作用域 类同函数  函数内变量等同于 C中局部变量
+         局部变量 屏蔽全局变量，从内向外寻找 变量
+
+          函数作用域是相互独立的，可访问外部的全局作用域变量
+          在全局作用域中，无法访问到函数作用域
+
+        每次调用函数时 创建新的函数作用域，执行完毕后被销毁
+          函数作用 执行后销毁，每次执行的时候所占空间不等同，是相互独立
+
+       */
+
+      var d = 66;
+      function fun1() {
+        console.log("d = " + d); //函数作用域中，d被创建 提前声明，但是赋值不生效，显示的为undefined
+        var d = 77;
+        console.log("局部屏蔽全局 d = " + d); //局部屏蔽全局
+        function fun2() {
+          console.log("局部往上一级查找 d = " + d); //d = 77, 函数内无定义 此变量，往上一级查找
+        }
+        fun2();
+      }
+      var e = 88;
+      function fun3() {
+        console.log("因fun3函数内部为赋值e，找全局变量 e = " + e); // 显示未 e = 88
+        e = 101;
+        //未使用var声明的话，相当于 定义了一个全局变量，window.d =88,此处为赋值，调用此函数会将值修改
+      }
+
+      var f = 99;
+      function fun4(f) {
+        console.log("f = " + f); // 函数内定义了一个形参，此时语句寻找的为形参的f，未被赋值
+      }
+
+      fun1();
+      fun3();
+      console.log("调用函数后，window.e= 101,数值被修改");
+      fun4();
+    </script>
+  </head>
+  <body></body>
+</html>

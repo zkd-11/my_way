@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //数组也是对象，对象的功能都能具备
+      var arr = new Array();
+      arr[0] = 11;
+      arr[1] = 14;
+      arr[2] = 18;
+      arr[8] = 20;
+      arr[9] = 28;
+      //   中间的 五个元素，未定义为空元素 ×5
+      console.log("数组的长度为： " + arr.length);
+      console.log("数组中第二个元素为： " + arr[1]);
+      console.log(arr);
+
+      var a = [4, 8, 25];
+      console.log("数组的长度为： " + a.length);
+
+      //   使用构造函数创建数组，同时添加元素，元素作为构造函数的参数传递 以 , 隔开
+
+      var a2 = new Array(1, 2, 3);
+      console.log(a2);
+      // 一个数组只有一个元素
+      arr3 = [10];
+      console.log(arr3);
+      // 创建一个长度 为10 的数组, new Array(元素个数)
+      arr4 = new Array(10);
+      console.log(arr4);
+      console.log("arr4数组内的个数为:" + arr4.length);
+
+      // 元素多样化
+      arr4 = [1, 2, "hello", true, null, undefined];
+
+      console.log("arr4数组的长度为(6) :" + arr4.length);
+      var obj = { name: "林修" };
+      arr4[arr4.length] = obj;
+      console.log(arr4);
+      //
+      arr5 = [
+        function () {
+          console.log("我是arr5数组内的函数");
+        },
+      ];
+      //   调用数组内的函数
+      arr5[0]();
+      //   数组嵌套
+      arr6 = [
+        [1, 2, 3],
+        [2, 3, 4],
+      ];
+      console.log(arr6[0]);
+      console.log(typeof arr6[0]);
+      console.log("arr6嵌套数组的元素个数为(2):" + arr6.length);
+    </script>
+  </head>
+  <body></body>
+</html>

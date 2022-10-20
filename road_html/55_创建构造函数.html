@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* 原型的对象也有原型
+        使用对象的属性和方法时，会逐步从内至外找
+    */
+      function MyClass() {}
+      MyClass.prototype.name = "原型中的名字";
+      var mc = new MyClass();
+      console.log(mc.name);
+      console.log("name" in mc);
+      //   使用对象的hasOwnProperty ，hasOwnProperty 检查在此对象中 是否含有某种属性或方法
+      console.log(mc.hasOwnProperty("name"));
+      //  查找hasOwnProperty 是否有在mc中
+      console.log(mc.hasOwnProperty("hasOwnProperty"));
+
+      //查找hasOwnProperty 是否有在mc的原型中
+      //   进入原型的方法： 对象名 .__proto__（下划线为两道）
+      console.log(mc.__proto__.hasOwnProperty("hasOwnProperty"));
+      // hasProperty 在原型（对象）的原型中
+      console.log(mc.__proto__.__proto__.hasOwnProperty("hasOwnProperty"));
+      /*  __proto__. __proto__,为object 原型
+            object 的原型 没有原型
+                object 的原型，为最底层 ，找不到则返回undefined,
+    */
+
+      //  在老版浏览器中，打印对象时，会出现 object object, 显示的是为原型中的toString,
+      //    如需直接显示所要目的内容，要重改原型中 toString方法里的内容
+    </script>
+  </head>
+  <body></body>
+</html>

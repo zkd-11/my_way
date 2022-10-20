@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function crearPerson(name, age, gender) {
+        var obj = new Object();
+        obj.name = name;
+        obj.age = age;
+        obj.gender = gender;
+        return obj;
+      }
+      var obj = crearPerson("小孙", 28, "男");
+      var obj1 = crearPerson("小鲨", 29, "男");
+      var obj2 = crearPerson("小韵", 26, "女");
+      console.log(obj);
+      console.log(obj1);
+      console.log(obj2);
+
+      /*由于以上均显示为object对象，所以需创建一个构造函数，专门用来创建Person对象
+          构造函数是普通的函数，创建方式与普通函数一致
+            构造函数 首字母大写
+
+        构造函数 类似 生成类
+      使用new关键字进行调用 不同于普通函数直接调用
+
+      通过构造函数 创建的对象，称为是类的实例
+      */
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+
+        // this.sayName = fun;
+        //把函数赋值给属性，直接调用外函数所处的那片空间，类的方法
+      }
+      function Pet(name) {
+        this.name = name;
+        // console.log("灵宠" + this.name);
+
+        // this.sayName = fun;
+      }
+
+      // 将原本位于 构造函数中的方法提取出来，静态
+      // 每个对象的生成，使用的方法都指向这片空间，对代码的优化
+
+      // function fun() {
+      //   //此处定义在全局变量中，容易被重写，对全局作用域造成污染
+      //   console.log("我的名字是" + this.name);
+      // }
+
+      Person.prototype.sayName = function fun() {
+        console.log("我的名字是" + this.name);
+      };
+      /* 将方法放入构造函数中的共享域： 原型， 类和对象均有一个 
+            prototype对象，类同指针，都指向同一处空间
+
+             如对象中存在的属性或者方法名 与原型中相同，在使用对象内的属性和方法会屏蔽原型内的
+        类似继承： 原型父类， 子类继承父类， 子类同名表示重写
+            构造函数的显式原型等于实例对象的隐式原型
+      */
+      var p1 = new Person("林修", "1080", "五山峰");
+      var p2 = new Person("萧红眉", "978", "五山峰");
+      var d1 = new Pet("邪鸡凤凰");
+      p1.sayName();
+      p2.sayName();
+      // d1.sayName();
+
+      console.log(p1);
+      console.log(p2);
+      console.log(d1);
+    </script>
+  </head>
+  <body></body>
+</html>

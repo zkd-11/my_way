@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // this 指向 ，谁使用this ，this就指向谁，类同this指针，全局变量和局部变量不起冲突
+      var name = "全局";
+      function fun() {
+        console.log(this.name);
+      }
+      var obj = {
+        name: "小孙",
+        sayName: fun,
+      };
+      var obj1 = {
+        name: "小猪",
+        sayName: fun,
+      };
+      fun();
+      obj.sayName();
+      obj1.sayName();
+    </script>
+  </body>
+</html>
