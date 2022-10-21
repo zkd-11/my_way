@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* call() 和 apply（）为函数对象的方法，需要通过函数对象调用 
+         这两个方法的作用为： 调用函数执行
+         括号内 可以将一个对象指定为一个参数传入
+    此对象会成为该函数执行的this， 不执行此方法，调用函数为 window
+       
+    函数定义多个形参时    
+        call() 方法可以将实参在对象之后依次传递实参
+        apply()方法需要将实参封装在 数组中
+        
+    - this的情况
+        1. 函数调用时，this 永远时window
+        2. 以方法调用时，this为调用方法的对象
+        3. 以构造函数形式调用时， this是新创建的对象
+        4. 使用call、 apply调用， this为用户 所指定 传入的对象
+        */
+      var name = "window";
+      var obj = { name: "林修" };
+      function fun() {
+        console.log("调用该函数的为：" + this.name);
+      }
+      fun();
+      fun.call(obj);
+
+      var obj = new Object();
+      function fun() {
+        console.log(this.name);
+      }
+
+      //   指定对象 更改指定对象的值
+      function fun1(age, name) {
+        this.age = age;
+        this.name = name;
+        console.log("调用该函数的为：" + this.name);
+      }
+      fun1(17, "我是改后的window名咯");
+      var p1 = { age: 18, name: "林修" };
+      fun1.call(p1, 20, "王浩");
+      //   p1.toString(name + age + "岁");
+      console.log(p1);
+      fun1.apply(p1, [18, "林修"]);
+      console.log(p1);
+      console.log(this.name);
+    </script>
+  </head>
+  <body></body>
+</html>

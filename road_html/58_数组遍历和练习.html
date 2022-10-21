@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      var p1 = new Person("林修", 1008);
+      var p2 = new Person("小金乌", 7);
+      var p3 = new Person("玉帝之子", 15);
+      var p4 = new Person("肖韵", 27);
+      var p5 = new Person("晓梅", 18);
+      var arr = [p1, p2, p3, p4, p5];
+
+      //   将满18的元素 筛选放到一个新的数组并输出
+      function getAdult(arr) {
+        var newarr = [];
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i].age >= 18) {
+            newarr.push(arr[i]);
+          } else continue;
+        }
+        return newarr;
+      }
+      var newarr = getAdult(arr);
+      console.log("新数组中满18岁的元素是 ", newarr);
+      console.log("满足的元素个数为：(3) " + newarr.length);
+
+      /*   数组遍历 forEach(), 需要一个函数作为参数  (仅支持内核 IE8以上的浏览器，ie不能运行此方法)
+             遍历的次数 = 元素个数， 这种函数是由系统进行调用， 称为 回调函数
+                第一个参数： 当前正在遍历的元素 
+                第二个参数： 当前正在遍历的元素的索引 
+                第三个元素：正在遍历的数组
+     */
+      //  数组的遍历，当数组的元素为 单一变量时，返回时 为属性名
+      var arr1 = ["林修", "金乌", "九头犬", "萧红眉"];
+      arr1.forEach(function (value, index, obj) {
+        console.log("每个元素的内容： " + value);
+        console.log("元素下标： " + index);
+        console.log("整个对象（数组）：" + obj);
+      });
+
+      console.log("---------这是分割线--------");
+      //  数组的遍历，当数组的元素为 对象时，返回时 为元素类型
+      newarr.forEach(function (value, index, obj) {
+        console.log("每个元素的内容： " + value);
+        console.log("元素下标： " + index);
+        console.log("整个对象（数组）：" + obj);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

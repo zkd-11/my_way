@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var arr = new Array();
+      //push()方法
+      //    想尾部添加，并返回数组新的长度，将元素作为方法的参数传递，自动添加至末尾
+      var result = arr.push("林修", "萧红眉", "火鸡凤凰", "九头犬", "杨天");
+      console.log("push之后数组的元素长度为：(5)" + result);
+      console.log(arr);
+
+      //shift()
+      //   删除数组第一个元素，并将删除的数组元素返回
+      result = arr.shift();
+      console.log("数组用shift方法删除的元素为（林修）：" + result);
+      console.log(arr);
+
+      //pop()
+      //   删除数组最后一个元素，并将删除的数组元素返回
+      result = arr.pop();
+      console.log("用pop被删除的元素为（杨天）：" + result);
+      console.log(arr);
+
+      //  unshift（）
+      //  向数组开头添加一个或多个元素，并返回新的数组长度， 向前插入元素时，后方元素会依次后挪，下标会增加
+      result = arr.unshift("林修", "紫霞仙子");
+      console.log("用unshift在数组开头添加元素个数（2）：");
+      console.log("第三个元素为：（萧红眉）" + arr[2]);
+      console.log(arr);
+
+      //   数组遍历
+      for (i = 0; i < arr.length; i++) {
+        console.log("第" + (i + 1) + "元素的名字为" + arr[i]);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

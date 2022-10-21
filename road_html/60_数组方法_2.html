@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // concat(), 连接数组 作用  对原数组无影响
+      arr = ["林修", "王浩", "白小纯", "萧红媚"];
+      arr1 = ["林动", "萧衍", "萧鼎"];
+      var result = arr1.concat(arr, "无极霆");
+      console.log("连接后的两个数组" + result);
+
+      //reverse(),对原数组进行倒转
+      arr2 = [1, 2, 3, 4, 5, 6];
+      arr2.reverse();
+      console.log("倒转后arr2数组元素是：（6,5，4，3，2，1）" + arr2);
+
+      // join()  将数组转化为字符串， 对原数组无影响
+      //    将转换后的字符串作为结果返回， join（“指定的字符串”） 作为元素的连接符
+      result = arr.join("@_@");
+      console.log(
+        "使用join（）方法将数组转化为字符串，并用指定字符连接：" + result
+      );
+
+      /*sort()  对数组内元素排序，会影响原数组，默认按照Unicode进行排序
+        可在内部添加一个回调函数，指定排序规则
+         回调函数 需要定义两个形参, 浏览器会使用数组中的实参去调用回调函数
+            数组a 一定在 b 前
+        如果返回值 >0, 交换位置， <= 0, 元素位置不变
+      */
+
+      arr2.sort(function (a, b) {
+        return b - a;
+      });
+      console.log(arr2);
+    </script>
+  </head>
+  <body></body>
+</html>
