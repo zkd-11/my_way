@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*  量词：
+            -{x} 量词只对前边一个内容生效，设置一个内容出现的 x 次数
+            - {x, y}  出现 x-y 次
+            - {x, } 出现x及 x以上
+            -  + 至少一个
+            -  * 0个或多个，相当于{0，}
+            - ？ 0个或1个  相当于{0，1}
+            */
+
+      var reg = /b{3}/;
+      console.log("包含连续3个(返回true): " + reg.test("12bbb"));
+      //   ^ 表示开头  $ 表示结尾
+      reg = /^a$/;
+      console.log("只能匹配a,返回为true): " + reg.test("a"));
+
+      // 检测手机号
+      //      - 以1开头  第二 3-9  3-11 数字任意
+      //      ^1  [3-9]  [0-9]{9}$   ^$ 表示开头和结尾 限制只识别数字
+      reg = RegExp("^1[3-9][0-9]{9}$");
+      var a = 17688058148;
+      console.log("检测手机号码(返回true) :" + reg.test(a));
+    </script>
+  </head>
+  <body></body>
+</html>

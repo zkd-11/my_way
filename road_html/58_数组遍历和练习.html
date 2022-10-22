@@ -37,7 +37,7 @@
                 第二个参数： 当前正在遍历的元素的索引 
                 第三个元素：正在遍历的数组
      */
-      //  数组的遍历，当数组的元素为 单一变量时，返回时 为属性名
+      //  数组的遍历，当数组的元素为 单一变量时，返回时 为属性值
       var arr1 = ["林修", "金乌", "九头犬", "萧红眉"];
       arr1.forEach(function (value, index, obj) {
         console.log("每个元素的内容： " + value);
@@ -46,9 +46,11 @@
       });
 
       console.log("---------这是分割线--------");
-      //  数组的遍历，当数组的元素为 对象时，返回时 为元素类型
+      //  数组的遍历，当数组的元素为 对象时，
+      // 语句为 xx+属性名时   返回时 为元素类型 ：（object object）
+      //  去除双引号文本内容后，才是元素信息
       newarr.forEach(function (value, index, obj) {
-        console.log("每个元素的内容： " + value);
+        console.log(value);
         console.log("元素下标： " + index);
         console.log("整个对象（数组）：" + obj);
       });

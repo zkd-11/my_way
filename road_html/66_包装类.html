@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* 基本数据类型 String Number Boolean Undefined 
+            引用数据类型 Object
+            js中提供三个包装类,通过三种包装类将基本数据类型转化为对象
+                - String()  转化为 String 对象
+                - Number()  转化为 Number 对象
+                - Boolean() 转化为 Boolean 对象
+        */
+      // 转化为对象后 具备对象的功能 属性 方法都可定义
+      var a = new Number(7);
+      a.name = "林修";
+      console.log(a);
+      console.log(a.name);
+
+      // 不将其转化为对象时,虽浏览器临时会将其转化,检查类型时也为对象,但定义未成功
+      var b = 7;
+      b = b.toString();
+      b.name = "王浩";
+      console.log(typeof b);
+      console.log(b);
+      console.log(b.name); //未将其转化为对象 所以显示的为 未定义
+
+      // 定义为对象时 比较的为地址,内容相同, 地址不同, 全等 返回为false
+      var c = true;
+      var d = new Boolean(true);
+      console.log(c === d); //
+
+      //   e内容即使为false,因为返回的为对象所以也能运行
+      var e = new Boolean(false);
+      if (e) {
+        console.log("由于d是对象,所以为真,即使内容值为false该语句能运行");
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

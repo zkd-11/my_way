@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documen获得d1的所在日数t</title>
+    <script>
+      var d = new Date(); //无传递字符串时，为当前代码运行的时间
+      console.log(d);
+      //  "月/ 日/ 年/ 时"
+      var d1 = new Date("12/13/2022 12:13:20");
+      console.log(d1);
+
+      //   获得d1的时间 由用户自己定义
+      // 获得 d1的年 月份 日数 周几
+      var d3 = d1.getFullYear();
+      var d4 = d1.getMonth();
+      var d5 = d1.getDate();
+      var d6 = d1.getDay();
+      console.log("获得d1的所在年份" + d3);
+      console.log("获得d1的所在月份" + d4);
+      console.log("获得d1的所在日数" + d5);
+      console.log("获得d1的所在星期的周" + d6);
+
+      /*   getTime()
+            -获取当前日期的时间戳
+            -时间戳 指的是从格林威标准时间1970年 1月1日 0时0分0秒
+                到当前日期所花费的毫秒数 1秒 = 1000毫秒
+            - 计算机底层保存时间使用都为 时间戳
+      */
+      var time = d1.getTime();
+      console.log(time);
+      console.log(1970 + time / 1000 / 60 / 60 / 24 / 365);
+      //   可用时间戳 计算程序的运行的时间， 在语句前定义一个时间戳，语句后定义一句，相减
+    </script>
+  </head>
+  <body></body>
+</html>

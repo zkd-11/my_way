@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 字符串具备的方法 ,lenghth属性 可获取字符的长度, 空格也算一个字符
+      str = "Hello world";
+      console.log("str的字符长度为: " + str.length);
+      //     charAt()
+      //        - 返回指定位置的字符, 根据括号内索引返回
+      var result = str.charAt(0);
+      console.log("返回的字符为:(H) " + result);
+
+      //   charCOdeAt()
+      //         - 返回指定索引字符 的Code 码
+      result = str.charCodeAt(0);
+      console.log("返回H的ASCII码: " + result);
+
+      //   fromCharCode(),
+      //          - 根据字符编码获取字符
+      result = String.fromCharCode(72);
+      console.log("72编码获取到的字符为:" + result);
+
+      //   concat()  - 连接两个或多个字符 ,于+ 作用类同
+      result = str.concat("林修", "王浩");
+      console.log("连接后的字符为" + result);
+
+      /* indexOf() 
+            - 检索一个字符串中是否含有指定内容
+            - 如果含有该内容,返回第一次出现的索引, 如果未出现 返回 -1
+            - 可以指定一个 第二参数, 指定 第几次出现的位置
+    */
+      str1 = "hello world";
+      result = str1.indexOf("h");
+      console.log("h第一次出现的索引" + result);
+      // 指定第二参数
+      result = str1.indexOf("o", 4);
+      console.log("从索引4开始找o: (4) " + result);
+      //   使用方法于 indexOf() 一样,从后往前找
+      result = str1.lastIndexOf("h");
+      console.log("h从后往前找第一次出现的索引 (0): " + result);
+      //      从后往前找字符,参数不能是负数, 包含所指定的索引
+      result = str1.lastIndexOf("o", 4);
+      console.log("倒数第4个字符开始找o " + result);
+
+      //---------------------截取字符--------------------------------
+      //   slice() 可以从字符串中 截取所指定位置的字符,并将字符返回
+      //   单个参数传入时,表示从此位置的索引往后截取
+      //   - (x, y)  x表示开始位置的索引, y表示结束位置的索引 [ )
+      //       - y可为负数, 表示 倒数第x个
+      result = str1.slice(0, 5);
+      console.log("返回的字符为(hello): " + result);
+      //   单个参数传入时,表示从此位置的索引往后截取
+      result = str1.slice(6);
+      console.log("返回的字符为 (helloWorld): " + result);
+
+      /*   substring() 可用来截取字符, slice() 类同
+        -参数
+            - (] 包含开始位置的索引,不包过结束位置的索引,但是 y 不能接受负值作为参数
+            -   当传递了赋值,则默认使用0
+            -   自动调整参数的位置, 会将大的索引置于后一位
+    */
+      result = str1.substring(6, -1);
+      console.log("返回的字符为(hello) :" + result);
+
+      //   substr() -截取字符 （x,y） x:截取开始位置的索引  y: 截取的长度
+      result = str1.substr(0, 5);
+      console.log("(hello)" + result);
+
+      //-toUpperCase() 将字符转化为大写并返回
+      // - toLowerCase() 将字符转化为小写并返回
+      result = str1.toUpperCase();
+      console.log("字符都转化为大写： " + result);
+      result = str.toLowerCase();
+      console.log("字符都转化为小写 " + result);
+
+      // split()
+      //        - 可以将一个字符拆为数组
+      //          -需要一个字符串作为参数,会根据该参数拆分数组
+      str = "ab,cde,fg,hij";
+      result = str.split(",");
+      console.log("返回的数组为以(ab,cde,fg,hij ):");
+      result = str.split("");
+      console.log("当分割的字符串标识为空时,会拆分每一个字符" + result);
+    </script>
+  </head>
+  <body></body>
+</html>

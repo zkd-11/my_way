@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // abs() 计算一个 数的绝对值
+      console.log(Math.abs(-7));
+      //  向上取整 ceil()  向下取整floor()  四舍五入 round()
+      console.log("向上取整" + Math.ceil(1.1));
+      console.log("向下取整" + Math.floor(1.1));
+      console.log("四舍五入(1.1) " + Math.round(1.1));
+      console.log("四舍五入(1.5) " + Math.round(1.5));
+
+      //   random() -生成一个0-1 间的随机数  [0, 1)
+      for (var i = 0; i < 10; i++) {
+        console.log("0-1间的随机数" + Math.random());
+      }
+
+      //   Math.round(Math.random()* (y-x) +x ) 表示 随机生成 x - y 的数
+      for (var i = 0; i < 10; i++) {
+        console.log("1-10间的随机数" + Math.round(Math.random() * 9 + 1));
+      }
+
+      // max() 和 min() 求数值最大和数值最小
+      console.log(Math.max(11, 99, 88));
+      console.log(Math.min(11, 99, 88));
+
+      // Math.pow(x, y) 返回x 的 y次幂
+      console.log(Math.pow(2, 3));
+
+      //   Math.sqrt()  开方计算
+      console.log(Math.sqrt(49));
+    </script>
+  </head>
+  <body></body>
+</html>

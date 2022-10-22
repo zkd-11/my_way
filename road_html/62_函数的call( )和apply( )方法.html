@@ -24,6 +24,7 @@
       var name = "window";
       var obj = { name: "林修" };
       function fun() {
+        console.log(this);
         console.log("调用该函数的为：" + this.name);
       }
       fun();
@@ -40,7 +41,7 @@
         this.name = name;
         console.log("调用该函数的为：" + this.name);
       }
-      fun1(17, "我是改后的window名咯");
+      fun1(17, "我是改后的window名咯"); //window 传入的参数,如不传入,函数中的name未被赋值,传回为undefine
       var p1 = { age: 18, name: "林修" };
       fun1.call(p1, 20, "王浩");
       //   p1.toString(name + age + "岁");

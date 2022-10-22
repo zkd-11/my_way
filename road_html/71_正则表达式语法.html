@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 检查字符串是否含有.  “ .”在语法中表示任意字符
+      //  需检测普通的 .时需要加 \作为转义字符 ， \\表示 “\”
+      var reg = /\./;
+      console.log("返回为false) : " + reg.test("pea"));
+      /*    \W  除了字母、 数字、 _ 、 [^A-z 0-9_]
+          \d  任意的数字 [0-9]
+          \D - 除了数字
+          \s 空格
+          \S 除了空格
+          \b 单词边界
+          \B 除了单词边界
+      */
+      //    检查一个字符是否含有child ，加\b是边界
+      reg = /\bchild\b/;
+      console.log("返回false): " + reg.test("childhodd"));
+
+      //   当用户输入一个字符串时，去除字符串前后的空格
+      //  - 去除开头的空格
+      var str = prompt("请输入字符串（开头中间尾部都有空格）： ");
+      var str1 = str;
+      var str2 = str;
+      str = str.replace(/^\s*/, "");
+      console.log("去除开头空格后的字符串:" + str);
+      //   去除尾部空格
+      str1 = str1.replace(/\s*$/, "");
+      console.log("去除尾部空格后的字符串:" + str1);
+      //   去除开头和尾部的空格
+      str2 = str2.replace(/^\s*|\s*$/, "");
+      console.log("去除头尾部空格后的字符串:" + str2);
+    </script>
+  </head>
+  <body></body>
+</html>
