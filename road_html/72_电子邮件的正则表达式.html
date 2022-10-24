@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*  
+            电子邮件：
+                任意字母数字下划线  . 任意字母数字下划线@ 
+                任意字母数字   【.任意字母数字（2-5）位 .任意字母（2-5位）】
+            \w{3, }  (\.\w+)* @ [A-Z 0-9]+ (\.[A-Z]{2,5}){1,2}
+        */
+      var reg = /^\w{3,}(\.\w+)*@[A-Z 0-9]+(\.[A-Z]{2,5}){1,2}$/i;
+      console.log("检验邮箱是否符合正则表达式： " + reg.test("xslmsu@163.com"));
+    </script>
+  </head>
+  <body>
+    <button id="btn">我是一个按钮</button>
+  </body>
+</html>

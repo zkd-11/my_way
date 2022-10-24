@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      .outer {
+        height: 570px;
+        width: 520px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: aqua;
+        text-align: center;
+      }
+      #info {
+        height: 30px;
+        text-align: center;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var prev = document.getElementById("prev");
+        var next = document.getElementById("next");
+        /* 返回一个数组[0] */
+        var img = document.getElementsByTagName("img")[0];
+        var info = document.getElementById("info");
+        console.log(img.src);
+        var imgarr = [
+          "image/1.png",
+          "image/2.png",
+          "image/3.png",
+          "image/4.png",
+          "image/5.png",
+        ];
+        var index = 0;
+        info.innerHTML =
+          "总共有" +
+          imgarr.length +
+          "张照片" +
+          "," +
+          "这是第" +
+          (index + 1) +
+          "张";
+        prev.onclick = function () {
+          index--;
+          if (index < 0) {
+            index = imgarr.length - 1;
+          }
+          img.src = imgarr[index];
+          info.innerHTML =
+            "总共有" +
+            imgarr.length +
+            "张照片" +
+            "," +
+            "这是第" +
+            (index + 1) +
+            "张";
+        };
+        next.onclick = function () {
+          index++;
+          if (index > imgarr.length - 1) {
+            index = 0;
+          }
+          img.src = imgarr[index];
+          info.innerHTML =
+            "总共有" +
+            imgarr.length +
+            "张照片" +
+            "," +
+            "这是第" +
+            (index + 1) +
+            "张";
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div class="outer">
+      <p id="info"></p>
+      <div>
+        <img src="image/1.png" alt="兔子" />
+        <button id="prev">上一张</button>
+        <button id="next">下一张</button>
+      </div>
+    </div>
+  </body>
+</html>

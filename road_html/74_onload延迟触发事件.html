@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // onload 事件会在整个页面完成之后才触发
+      // 页面加载完之后才执行，确保所有DOM对象已经加载完毕
+      window.onload = function () {
+        var btn = document.getElementById("btn");
+        btn.onclick = function () {
+          alert("这是由按钮单击触发事件： ");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn">我是一个按钮</button>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">我是一个按钮</button>
+    <script>
+      // 获取元素
+      var btn = document.getElementById("btn");
+      // 对元素内容进行修改
+      btn.innerHTML = "I'm buttom";
+
+      // 可为按钮的对应时间绑定处理函数的形式 响应事件
+      btn.onclick = function () {
+        console.log("这是由按钮单击触发事件： ");
+      };
+      btn.ondblclick = function () {
+        console.log("这是由按钮双击触发事件： ");
+      };
+    </script>
+  </body>
+</html>

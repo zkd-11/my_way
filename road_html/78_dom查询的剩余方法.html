@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        // 获取Body 标签
+        var body = document.getElementsByTagName("body")[0];
+        // console.log(body);
+
+        // document 中有 body属性，保存的是对body的引用
+        var body = document.body;
+        console.log(body);
+
+        // document.documentElement 保存的时html根标签
+        var html = document.documentElement;
+        // console.log(html);
+
+        // document.all 代表页面中所有的标签
+        // all = document.getElementsByTagName("*");
+        // var all = document.all;
+        // console.log(all.length);
+        // for (var i = 0; i < all.length; i++) {
+        //   console.log(all[i]);
+        // }
+
+        //  根据元素的class属性值查询一组元素节点对象
+        /*   getElementsByClassName() 可根据class属性值获取一组
+               元素节点对象
+        */
+        var box = document.getElementsByClassName("box");
+        console.log(box.length);
+
+        //   获取class为box中的所有p
+        //  .box p
+        // doument.querySelector() -需要一个选择器的字符串作为参数
+        //      - 可根据一个css选择器来查询一个元素， .box p
+        var box = document.querySelector(".box div");
+        console.log("box中p内容： " + box.innerHTML);
+
+        //   document.querySelectorAll() 和去all一样
+        //    -不同点： 该数组会将符合条件的元素封装到一个数组中返回
+        var box = document.querySelectorAll(".box div");
+        console.log("第一个符合条件的元素： " + box[1].innerHTML);
+        console.log("box中p内容： " + box[0].innerText);
+      };
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <div>林修 一代苟修</div>
+    </div>
+    <div class="box1"></div>
+    <div class="box">
+      <div>孟浩 我命由我不由天</div>
+    </div>
+  </body>
+</html>

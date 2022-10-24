@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #total {
+        width: 400px;
+        height: 600px;
+        background-color: aliceblue;
+        float: left;
+      }
+      #btnList {
+        width: 400px;
+        height: 265px;
+        background-color: aliceblue;
+        float: right;
+        margin-top: 0px;
+      }
+      #btn0 {
+        height: 30px;
+      }
+    </style>
+    <script>
+      function myClick(idstr, fun) {
+        var btn = document.getElementById(idstr);
+        btn.onclick = fun;
+      }
+
+      window.onload = function () {
+        //1. 查找#bj节点
+        btn01.onclick = function () {
+          var li = document.getElementById("bj");
+          console.log(li.innerHTML);
+        };
+
+        //2. 查找所有Li节点
+        btn02.onclick = function () {
+          //getElementsByTagName() 根据标签名获取一组元素节点对象
+          // 会返回一个类数组对象，查询到的元素都会封装到对象中
+          var li = document.getElementsByTagName("li");
+          for (var i = 0; i < li.length; i++) {
+            console.log(li[i].innerHTML);
+          }
+        };
+        //3. 查找name=gender的所有节点
+        btn03.onclick = function () {
+          var a = document.getElementsByName("gender");
+          for (var i = 0; i < a.length; i++) {
+            console.log(a[i].value);
+            // innerHTML不能读取元素节点元素
+            //直接使用 元素.属性名， class属性： 保留字，需要使用className
+            console.log(a[i].className);
+          }
+        };
+
+        //4. 查找#city下所有子节点
+        var btn04 = document.getElementById("btn04");
+        btn04.onclick = function () {
+          var city = document.getElementById("city");
+          var cns = city.childNodes;
+          console.log("city的子节点应该为9,包括5个空白节点： " + cns.length);
+          for (var i = 0; i < cns.length; i++) {
+            console.log("子节点的内容" + cns[i].innerHTML);
+          }
+        };
+
+        //5.返回#city的Li节点
+        var btn05 = document.getElementById("btn05");
+        btn05.onclick = function () {
+          var a = document.getElementById("city");
+          var lis = a.children;
+          console.log("city下的子元素:" + lis.length);
+          for (var i = 0; i < lis.length; i++) {
+            // 五个空白节点 四个文本节点
+            console.log(lis[i].innerHTML);
+          }
+        };
+
+        //6. 返回井phone的第一个子节点
+        var btn06 = document.getElementById("btn06");
+        btn06.onclick = function () {
+          var pe = document.getElementById("phone");
+          var fir = pe.firstChild;
+          // 返回的为空格；
+          console.log("返回为空白节点： " + fir);
+        };
+
+        //7. 返回#bj的父节点
+        myClick("btn07", function () {
+          var bj = document.getElementById("bj");
+          var pn = bj.parentNode;
+          console.log(pn);
+          console.log("bj的父节点html内容为： " + pn.innerHTML);
+          console.log("bj的父节点文本内容为： " + pn.innerText);
+        });
+
+        //8.返回#android的前一个兄弟节点
+        myClick("btn08", function () {
+          var and = document.getElementById("android");
+          var ps = and.previousSibling;
+          console.log("android的前一个兄弟节点： " + ps.innerHTML);
+        });
+
+        //9.读取#username的Value属性值
+        myClick("btn09", function () {
+          var um = document.getElementById("username");
+          console.log("username的Value：" + um.value);
+        });
+
+        //10. 设置#username的value属性值
+        myClick("btn10", function () {
+          var um = document.getElementById("username");
+          um.value = "詹姆斯牛逼";
+        });
+        //11. 返回#bj的文本值
+        myClick("btn11", function () {
+          var bj = document.getElementById("bj");
+          // node value 表示节点的内容
+          console.log("bj的文本值" + bj.firstChild.nodevalue);
+          console.log("bj的文本值" + bj.innerHTML);
+          console.log("bj的文本值" + bj.innerText);
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <div id="total">
+      <div class="inner">
+        <p>你喜欢哪座城市</p>
+        <ul id="city">
+          <li id="bj">北京</li>
+          <li>上海</li>
+          <li>东京</li>
+          <li>首尔</li>
+        </ul>
+        <br />
+        <br />
+        <p>你喜欢哪款单机游戏</p>
+        <ul id="game">
+          <li id="rl">红警</li>
+          <li>飞车</li>
+          <li>LOL</li>
+          <li>魔兽</li>
+        </ul>
+        <br />
+        <br />
+
+        <p>你手机的操作系统是</p>
+
+        <ul id="phone">
+          <li>IOS</li>
+          <li id="android">Android</li>
+          <li>windows phone</li>
+        </ul>
+      </div>
+
+      <!-- 性别框 -->
+      <div class="inner">
+        gender:
+        <input class="inner" type="radio" name="gender" value="male" />
+        Male
+        <input class="inner" type="radio" name="gender" value="female" />
+        female
+        <br />
+        <br />
+        name:
+        <input type="text" name="name" id="username" value="abcde" />
+      </div>
+    </div>
+    <!-- 这是返回操作块 -->
+    <div id="btnList">
+      <div><button id="btn01">查找#bj节点</button></div>
+      <div><button id="btn02">查找所有Li节点</button></div>
+      <div><button id="btn03">查找name=gender节点</button></div>
+      <div><button id="btn04">查找#city下所有子节点</button></div>
+      <div><button id="btn05">返回#city的所有li节点（子元素）</button></div>
+      <div><button id="btn06">返回#phone的第一个子节点</button></div>
+      <div><button id="btn07">返回#bj的父节点</button></div>
+      <div><button id="btn08">返回#Android的前一个子节点</button></div>
+      <div><button id="btn09">返回#username的value属性值</button></div>
+      <div><button id="btn10">设置#usename的value属性值</button></div>
+      <div><button id="btn11">返回#bj的文本值</button></div>
+    </div>
+  </body>
+</html>
