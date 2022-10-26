@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /* 
+                使div跟随鼠标移动
+            */
+
+        var box1 = document.getElementById("box1");
+        //绑定鼠标移动事件
+        document.onmousemove = function (event) {
+          //  clientX 和 clientY 可见窗口的坐标
+
+          //  获取滚动条距离
+          /* var st = document.body.scrollTop 
+           html 中的滚动  ： 谷歌等都兼容此条件
+
+            document.documentElement.scrollTop;          
+        */ var st = document.documentElement.scrollTop;
+          var sl = document.documentElement.scrollLeft;
+          //   pageX 和 pageY 获取鼠标相对页面的坐标
+          //  但是ie中不兼容
+          var left = event.clientX;
+          var top = event.clientY;
+
+          // 设置div的偏移量
+          box1.style.left = left + sl + "px";
+          box1.style.top = top + st + "px";
+        };
+      };
+    </script>
+  </head>
+  <body style="height: 2000px; width: 1900px">
+    <div id="box1"></div>
+  </body>
+</html>

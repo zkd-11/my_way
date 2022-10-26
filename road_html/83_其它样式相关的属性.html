@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: #bfa;
+      }
+      #box2 {
+        width: 200px;
+        padding-left: 10px;
+        height: 200px;
+        background-color: rgb(70, 120, 58);
+      }
+      #box4 {
+        width: 200px;
+        height: 300px;
+        background-color: #bfa;
+        /* 子元素比此元素大时 不会溢出，内嵌形成滚动滑轮 */
+        overflow: auto;
+        float: left;
+      }
+      #box5 {
+        width: 300px;
+        height: 600px;
+        background-color: yellow;
+      }
+      #box2 {
+        float: right;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var box1 = document.getElementById("box1");
+        var btn01 = document.getElementById("btn01");
+
+        btn01.onclick = function () {
+          // clientWith 和 clientHeight获取元素的可见宽度和高度
+          // 不带px 可用于计算
+          console.log(box1.clientWidth + box1.clientHeight);
+          console.log(box1.clientWidth + box1.clientHeight);
+
+          // offersetParent   获取当前元素的定位父元素
+          //        -会获取距离最近的开启了定位的祖先元素： 包含块
+          var op = box1.offsetParent;
+          console.log(op.id);
+
+          /*    offersetLeft - 当前元素相对于父元素的水平偏移量
+                offsetTop  -垂直偏移量
+           */
+          //   与定义了位置属性 包含块的左边距
+          console.log(box1.offsetLeft);
+          console.log(box1.offsetTop);
+
+          // clientHeight clientWidth  可视窗高度 和宽度
+          console.log("可视窗高度" + box4.clientHeight);
+          console.log("可视窗宽度" + box4.clientWidth);
+
+          //   scrollWidth  scollHeight 获得滚动区域的宽度和高度
+          console.log("滚动区域宽度" + box4.scrollHeight);
+          console.log("滚动区域高度" + box4.scrollWidth);
+
+          //   scrollLeft and scrollTop 水平和垂直滚动条的移动距离
+          console.log("水平滚动条滚动的距离" + box4.scrollLeft);
+          console.log("垂直滚动条滚动的距离" + box4.scrollTop);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">按钮</button>
+    <div id="box4" style="position: relative">
+      <div id="box5" style="position: relative"></div>
+    </div>
+    <div id="box2" style="position: relative">
+      <div id="box1"></div>
+    </div>
+  </body>
+</html>

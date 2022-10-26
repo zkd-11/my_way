@@ -9,6 +9,13 @@
   <script>
     function delA() {
       // a为td 字节点， td为tr子节点
+      /*  this 为什么不更改为all[i],因为for循环只是绑定
+            每一个按钮的功能，for先执行绑定
+            this 如果变成 all[i], 
+          会变成 undefined, i执行完毕变为3
+          this 则表示谁调用 就代表谁
+ 
+      */
       var tr = this.parentNode.parentNode;
       //   需找到 table来删除 tr一整行
       var name = tr.children[0].innerHTML;

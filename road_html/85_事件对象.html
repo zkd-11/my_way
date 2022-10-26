@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      window.onload = function () {
+        // 当鼠标在areaDiv移动时，在showMsg显示鼠标的坐标
+        var areaDiv = document.getElementById("areaDiv");
+        var showMsg = document.getElementById("showMsg");
+
+        // onmousemove - 事件鼠标移动触发
+        /* 事件对象
+                - 当事件的响应函数被触发时，浏览器每次都会将一个事件对象作为实参传递进响应函数
+                事件对象中封装了当前事件相关的一切信息，如鼠标的坐标，滚轮滚动方向 键盘的按键被按下 
+        */
+        areaDiv.onmousemove = function (event) {
+          /* 
+            在Ie8中，响应函数被触发时，浏览器不会传递事件对象
+            在Ie8及以下的浏览器中，该事件对象作为window对象的属性保存
+          */
+          // 在showMsg 中显示鼠标的坐标
+          //   之后兼容的版本都储存在函数内，函数内有此event属性
+          if (!event) {
+            event = window.event;
+          }
+          var x = event.clientX;
+          var y = event.clientY;
+          //   在showMsg 显示鼠标的坐标
+          showMsg.innerHTML = "x = " + x + ", y = " + y;
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div
+      id="areaDiv"
+      style="
+        width: 300px;
+        height: 200px;
+        border: 1px solid black;
+        background-color: aliceblue;
+      "
+    ></div>
+    <div
+      id="showMsg"
+      style="width: 300px; height: 70px; border: 1px solid rgb(93, 103, 103)"
+    ></div>
+  </body>
+</html>

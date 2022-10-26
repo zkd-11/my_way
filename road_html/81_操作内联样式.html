@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var box1 = document.getElementById("box1");
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          box1.style.width = "400px";
+          // !important 表示将此行样式定义为最高级，内联也无法覆盖此样式
+          box1.style.height = "400px";
+          //  在js中 -显示不出， 去掉后将首字母 改为大写
+          box1.style.backgroundColor = "aqua";
+        };
+        var btn02 = document.getElementById("btn02");
+        btn02.onclick = function () {
+          alert(box1.style.backgroundColor);
+        };
+      };
+    </script>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px !important;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <button id="btn01">更改内联样式</button>
+    <button id="btn02">获取内联样式</button>
+  </body>
+</html>

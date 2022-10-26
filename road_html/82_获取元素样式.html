@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //   定义一个函数 兼容ie8 及ie8以上版本的浏览器
+      //
+      function getStyle(obj, name) {
+        if (window.getComputedStyle) {
+          return getComputedStyle(obj, null)[name];
+        } else {
+          return boj.currentStyle[name];
+        }
+      }
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          /*  获取元素显示的样式
+                    语法： 元素.currentStyle.样式名
+                    （IE）
+                    如当前没设置该样式，获取默认值
+                    如宽度未设置，返回auto
+
+            其他兼容浏览器： 使用的为window的方法
+                getComputedStyle()
+                    语法：两个参数
+                        第一个：要获取样式的元素
+                        第二个： 传递一个伪元素，一般为null
+                    如当前没设置样式，获取的值为真实值，具体的长度
+        */
+          var box = document.getElementById("box");
+          //  使用函数时 需要传递字符串
+          var a = getComputedStyle(box, null)["width"];
+          alert(a);
+          var a = getStyle(box, "background-color");
+          alert(a);
+        };
+      };
+    </script>
+    <style>
+      #box {
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box" style="width: 300px; background-color: red"></div>
+    <button id="btn01">获取元素样式</button>
+  </body>
+</html>
