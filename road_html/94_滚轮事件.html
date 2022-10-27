@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var box1 = document.getElementById("box1");
+        // 为box1绑定一个鼠标滚轮滚动的事件
+        /*
+              onmousewheel鼠标滚轮滚动的事件，会在滚动时触发
+
+      */
+        box1.onmousewheel = function (event) {
+          {
+            // event.wheelDelta 可获取鼠标滚轮滚动的方向
+            /*      向上滚120  向下滚-120
+                wheelDelta 不看大小 只看正负
+
+                火狐不支持 wheelDelta 
+                    event.detail 获取滚动的方向 
+                    向上滚 -3， 向下滚 3
+
+            判断鼠标滚轮滚动的方向
+        */
+            if (event.wheelDelta > 0 || event.detail < 0) {
+              box1.style.height = box1.clientHeight - 10 + "px";
+            } else {
+              box1.style.height = box1.clientHeight + 10 + "px";
+            }
+          }
+          //   火狐需要使用 event.prebentDefault(), ie8不承认
+
+          //   当页面长时，滚动条跟动，false取消行为
+          return false;
+          // bind(box1, "DOMMouseScroll", function () {
+          // alert("滚了没有啊~~");
+          // });
+
+          // function bind(obj, eventStr, callback) {
+          // if (obj.addEventListener) {
+          //     //大部分函数兼容的方式
+          //     obj.addEventListener(eventStr, callback, false);
+          // } else {
+          //     // ie8及以下
+          //     //  由于ie8下 callback 属于window运行，所以我们需要使用一个隐匿函数
+          //     //   callback.call(obj)
+          //     //   由window指定 btn01运行
+          //     obj.attachEvent("on" + eventStr, function () {
+          //     callback.call(obj);
+          //     });
+          // }
+        };
+      };
+    </script>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        min-height: 50px;
+        background-color: antiquewhite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+  </body>
+</html>

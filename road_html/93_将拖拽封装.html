@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function (event) {
+        drag("box1");
+        drag("box2");
+      };
+
+      function drag(obj) {
+        //推拽 obj元素
+        /*  `   1. 当鼠标在被拖拽元素上按下时，开始拖拽 onmousedown
+                      2.当鼠标移动时，被拖拽元素跟随移动  onmousemove
+                      3. 当鼠标松开时，被拖拽元素固定在当前位置 onmouseup
+                      */
+        // 封装BY ID 需要改为 形参
+        var obj = document.getElementById(obj);
+        obj.onmousedown = function (event) {
+          var ol = event.clientX - obj.offsetLeft;
+          var ot = event.clientY - obj.offsetTop;
+
+          //  设置obj捕获多有鼠标按下的事件
+          // if (obj.setCapture) {
+          //   obj.setCapture();
+          // }
+
+          //  同上  语句优化
+          obj.setCapture && obj.setCapture();
+          document.onmousemove = function (event) {
+            // 当鼠标元素被拖拽 元素跟随鼠标移动
+            // 获取鼠标的坐标
+            var left = event.clientX - ol;
+            var top = event.clientY - ot;
+
+            //修改obj的位置
+
+            obj.style.left = left + "px";
+            obj.style.top = top + "px";
+          };
+          //   c此方法在多个块存在页面时，无法在其他块上松
+          // 不能绑定obj.onmouseup, 绑定的应为documentElement
+          document.onmouseup = function () {
+            // 当鼠标松开时，被拖拽元素固定在当前位置 onmouseup
+            document.onmousemove = null;
+            // 需为鼠标松开 设置null
+            document.onmouseup = null;
+
+            // 鼠标松开时，取消对事件的捕获
+            if (obj.releaseCapture) {
+              obj.releaseCapture();
+            }
+          };
+          //避免按中ctrl 全选，内容搜索， 所以需返回false
+          return false; //取消浏览器本身的搜索功能
+        };
+      }
+    </script>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(16, 115, 115);
+        position: absolute;
+        left: 200px;
+        top: 200px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+  </body>
+</html>

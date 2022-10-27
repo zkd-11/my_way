@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          console.log("这是首个绑定函数");
+        };
+        // onclcik 的方法，后一个会覆盖前一个
+        btn01.onclick = function () {
+          console.log("这是第二个绑定函数");
+        };
+        // // addEventListener()
+        //     - 通过这个方法可为元素绑定函数
+        //     - 参数
+        //         1. 事件的字符串,不要on
+        //         2. 回调函数,当事件触发时函数会被调用
+        //         3. 是否在捕获阶段触发事件，需要一个布尔值，一般传false
+        /*  使用此方法可以同时为一个元素的相同事件绑定多个响应函数
+                这样当事件被触发时，响应函数将会按照函数的绑定顺序执行
+         */
+        //   --------------------分割线------------------------
+        //  此方法不支持ie8以下的浏览器
+        // btn01.addEventListener(
+        // "click",
+        // function () {
+        //     console.log("这是addEventListenner首个绑定函数");
+        // },
+        // false
+        // );
+        // btn01.addEventListener(
+        // "click",
+        // function () {
+        //     console.log("这是第二个绑定函数，按绑定顺序执行");
+        // },
+        // false
+        // );
+
+        //   --------------------分割线------------------------
+        // 兼容 iE8 的 attachEvent
+        // btn01.attachEvent("onclick", function () {
+        //   alert("11");
+        //   console.log("这是attachEent第一个绑定函数");
+        // });
+        // btn01.attachEvent("onclick", function () {
+        //   console.log("这是第二个绑定函数,倒序执行");
+        // });
+        bind(btn01, "click", function () {
+          alert(this);
+          console.log("我是兼容后的版本函数~");
+        });
+      };
+
+      //   定义函数为指定元素绑定响应函数;
+      /*
+        参数： obj要绑定事件的对象
+        eventStr 事件的字符串
+        callback 回调函数
+        */
+
+      function bind(obj, eventStr, callback) {
+        if (obj.addEventListener) {
+          //大部分函数兼容的方式
+          obj.addEventListener(eventStr, callback, false);
+        } else {
+          // ie8及以下
+          //  由于ie8下 callback 属于window运行，所以我们需要使用一个隐匿函数
+          //   callback.call(obj)
+          //   由window指定 btn01运行
+          obj.attachEvent("on" + eventStr, function () {
+            callback.call(obj);
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">绑定事件</button>
+  </body>
+</html>

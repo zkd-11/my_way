@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        var btn02 = document.getElementById("btn02");
+
+        btn01.onclick = function () {
+          console.log("btn01 clicked");
+        };
+        btn02.onclick = function () {
+          console.log("btn02 clicked");
+        };
+        // 设置btn01对鼠标按下相关的事件进行捕获
+        // 当调用一个元素的setCapture（）方法后，这个元素会把下次所有的鼠标按下相关的事件捕获到自身上
+        //  此方法对拖拽 代码 进行优化
+        btn01.setCapture();
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01"></button>
+    <button id="btn02"></button>
+  </body>
+</html>
