@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        // 原本此移动案例，由于移动和方向都是由keydown控制
+        // 所以会在启动瞬间卡顿，所有需要分两个部分控制速度和方向，等同骑自行车，手方向，脚速度
+        var box1 = document.getElementById("box1");
+        var speed = 15;
+        // 开启定时器控制 div移动
+
+        // 创建变量 表示方向：
+        var dir = 0;
+
+        // 绑定按键按下事件
+        document.onkeydown = function (event) {
+          // 37 左 38上 39右 40下
+
+          if (event.ctrlKey) {
+            speed = 100;
+          } else {
+            speed = 10;
+          }
+          dir = event.keyCode;
+          // 按键松开
+          document.onkeyup = function () {
+            dir = 0;
+          };
+        };
+
+        setInterval(function () {
+          // console.log("为什么执行不了啊");
+          console.log(dir);
+          switch (dir) {
+            case 37:
+              box1.style.left = box1.offsetLeft - speed + "px";
+              console.log("dir的值为" + dir);
+              break;
+            case 39:
+              box1.style.left = box1.offsetLeft + speed + "px";
+              console.log(box1.style.left);
+              break;
+            case 38:
+              box1.style.top = box1.offsetTop - speed + "px";
+              console.log(box1.style.top);
+              break;
+            case 40:
+              box1.style.top = box1.offsetTop + speed + "px";
+              console.log(box1.style.top);
+              break;
+          }
+        }, 10);
+      };
+    </script>
+
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 使图片可以自动切换
+      window.onload = function () {
+        var img1 = document.getElementById("img1");
+        var imgArr = [
+          "image/1.png",
+          "image/2.png",
+          "image/3.png",
+          "image/4.png",
+          "image/5.png",
+        ];
+
+        // 开启一个定时器，自动切换图片
+        var index = 0;
+
+        // 在全局中定义一个 timer 定时器，保存定时器的标识
+        var timer;
+
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          /* 
+              目前 每点击一次按钮，就开启一次定时器
+                点击多次开启多个计时器，这就导致速度切换过快
+                 并且每次只能关闭最后一个定时器
+               
+          */
+          //   在开启之前，将之前的定时器关闭
+          clearInterval(timer);
+          timer = setInterval(function () {
+            index++;
+            // if (index == imgArr.length) index = 0;
+            index = index % imgArr.length;
+            img1.src = imgArr[index];
+          }, 1000);
+        };
+
+        var btn02 = document.getElementById("btn02");
+        btn02.onclick = function () {
+          /* 
+              点击按钮后 停止图片自动播放，关闭定时器
+                clearInterval 可以接受任何参数，即使先点停止接收
+                timer  undefined 也能接收 
+          */
+          clearInterval(timer);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <img src="image/1.png" alt="" id="img1" />
+    <button id="btn01">点击开始播放图片</button>
+    <button id="btn02">停止播放</button>
+  </body>
+</html>

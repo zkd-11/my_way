@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        // 绑定按键按下事件
+
+        document.onkeydown = function (event) {
+          // 37 左 38上 39右 40下
+          var speed = 15;
+          if (event.ctrlKey) {
+            speed = 100;
+          }
+          console.log(event.keyCode);
+          switch (event.keyCode) {
+            case 37:
+              box1.style.left = box1.offsetLeft - speed + "px";
+              break;
+            case 39:
+              box1.style.left = box1.offsetLeft + speed + "px";
+              console.log(box1.style.left);
+              break;
+            case 38:
+              box1.style.top = box1.offsetTop - speed + "px";
+              console.log(box1.style.top);
+              break;
+            case 40:
+              box1.style.top = box1.offsetTop + speed + "px";
+              console.log(box1.style.top);
+              break;
+          }
+        };
+      };
+    </script>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+  </body>
+</html>

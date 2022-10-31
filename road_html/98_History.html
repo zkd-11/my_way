@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* History 可以操作浏览器向前或向后操作 */
+      alert(history.length);
+      //   length是一个类数组对象
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          //   history.back();
+          // 后退
+          //   history.forward();
+          //   前进
+          /*
+            go()
+                -可用来跳转到指定页面
+                需要一个整数作为参数
+                    1：向前跳转一个页面forward（）
+                    2.向前 两个页面
+                    -1： 向后跳转一个页面
+                    -2： 向后跳转两个页面
+           */
+          history.go(1);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">请点击</button>
+
+    <h1>History</h1>
+
+    <a href="97_Bom.html">去BOM</a>
+  </body>
+</html>

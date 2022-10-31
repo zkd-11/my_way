@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //   window.onload = function (event) {};
+      //   /*
+      //     键盘事件 onkeydown：
+      //         -按键被松下
+      //         - 对于onkeydown，不松开连续触发
+      //         - 连续触发，第一次和第二次间隔稍微长一点
+      //             这种设计时防止误触
+      //     onkeyup
+      //         - 按键被松开
+
+      //         键盘事件一般都会绑定给一些可以获取到焦点的对象document
+
+      //     shiftKey  altKey ctrlKey
+      //     判断 是否被按下
+
+      //   */
+      //   document.onkeydown = function () {
+      //     if (event.ctrlKey && event.keyCode == 89) {
+      //       console.log("ctrl+y被按下");
+      //     }
+      //     console.log(event.keyCode);
+      //     document.onkeyup = function () {
+      //       console.log("键盘被松开");
+      //     };
+      //   };
+
+      window.onload = function () {
+        var input = document.getElementsByTagName("input")[0];
+        input.onkeydown = function () {
+          console.log("按键被按下");
+          // 在文本框中输入内容，属于onkeydown的默认行为
+          if (event.keyCode >= 48 && event.keyCode <= 57) {
+            return false; //使文本框不能输入数字
+          }
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <input type="text" id="i1" />
+  </body>
+</html>

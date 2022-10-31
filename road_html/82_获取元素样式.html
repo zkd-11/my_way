@@ -12,7 +12,7 @@
         if (window.getComputedStyle) {
           return getComputedStyle(obj, null)[name];
         } else {
-          return boj.currentStyle[name];
+          return obj.currentStyle[name];
         }
       }
       window.onload = function () {
@@ -32,8 +32,9 @@
                     如当前没设置样式，获取的值为真实值，具体的长度
         */
           var box = document.getElementById("box");
+          var span = document.createElement("span");
           //  使用函数时 需要传递字符串
-          var a = getComputedStyle(box, null)["width"];
+          var a = getComputedStyle(box, null)["height"];
           alert(a);
           var a = getStyle(box, "background-color");
           alert(a);
@@ -47,7 +48,9 @@
     </style>
   </head>
   <body>
-    <div id="box" style="width: 300px; background-color: red"></div>
+    <div id="box" style="width: 300px; background-color: red">
+      <span>这里是块中，span元素中文本内容</span>
+    </div>
     <button id="btn01">获取元素样式</button>
   </body>
 </html>

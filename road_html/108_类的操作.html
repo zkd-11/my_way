@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .b1 {
+        height: 100px;
+        width: 100px;
+        background-color: antiquewhite;
+      }
+      .b2 {
+        height: 200px;
+        background-color: aqua;
+        /* b2 处未加宽度，如用多类名添加样式，会添加上一个最近 的 属性样式 */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        var box = document.getElementById("box");
+        btn01.onclick = function () {
+          // 修改box的样式
+          /*
+                    通过style 的属性来修改元素的样式， 每修改一个样式，浏览器就需要重新渲染一次页面
+                    执行性能较差，当我们要修改多样式时，不太方便
+              */
+          //   box.style.width = "200px";
+          //   box.height = "200px";
+
+          //   通过修改元素的class属性 简介修改样式
+          /*
+            修改一次，即可同时修改多个样式
+              浏览器只需要重新渲染页面一次，使表现和行为进一步分离
+            低耦合，高性能
+
+             如需要要同时兼顾多个样式，classneme中间要以空格隔开
+        */
+
+          //   box.className += " b1"; //此处要以空格隔开
+
+          //   addClass(box, "b2");
+          // 去除函数名
+          //   removeClass(box, "b2");
+
+          toggleClass(box, "b2");
+        };
+
+        /*
+            定义一个函数，用来向一个元素添加指定的class属性
+
+            参数： - obj 要添加的属性的元素
+                - cn 要添加的class值
+        */
+        function addClass(obj, cn) {
+          // 检查 obj 中是否含有cn,未含才加，避免重复加
+          //  一开始 以为是检查style里面有无含此 类样式
+          if (!hasClass(obj, cn)) {
+            obj.className += " " + cn;
+          }
+        }
+
+        /*
+            判断一个元素中是否含有指定的class属性值
+            如果有该class 则返回true
+        */
+
+        function hasClass(obj, cn) {
+          // 判断obj中有没有 cn  class
+          // 创建一个正则表达式
+          // var reg = /\bb2\b/;
+          var reg = new RegExp("\\b" + cn + "\\b");
+          return reg.test(obj.className);
+        }
+
+        // 删除一个 obj中 指定的class属性
+        function removeClass(obj, cn) {
+          var reg = new RegExp("\\b " + cn + "\\b"); //此处加了一个空格，匹配时 将b2的空格也一并删除
+
+          // 删除class
+          obj.className = obj.className.replace(reg, "");
+        }
+        // 有则去，无则加
+        function toggleClass(obj, cn) {
+          if (hasClass(obj, cn)) {
+            removeClass(obj, cn);
+          } else {
+            addClass(obj, cn);
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">修改类样式</button>
+    <div id="box" class="b1 b2"></div>
+  </body>
+</html>

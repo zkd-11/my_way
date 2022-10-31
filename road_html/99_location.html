@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* History 可以操作浏览器向前或向后操作 */
+      //   alert(history.length);
+      //   length是一个类数组对象
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          // 如果直接打印location，可获得地址栏的信息（页面的完整路径）
+
+          //   alert(location);
+
+          /* 
+            如果直接将location 属性修改为一个完整的路径 或相对路径
+                页面会自动跳转到该路径，并生成相应的历史记录
+          */
+
+          //   location = "97_Bom.html";
+
+          //     assign()
+          //    - 跳转到指定页面 作用和直接修改location一样
+
+          //   location.assign("http://www.google.com");
+
+          //  reload 重新页面， 括号内 加true 相当于是强制刷新，去除缓存
+          //    不加true 原本已填文本信息会缓存，现在谷歌版本不加true也会清楚
+          location.reload();
+
+          // replace（）
+          //       - 可使用一个新的页面替换当前页面
+          //              调用完毕会跳转页面，不会生成历史记录，不能使用回退按钮回退
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">请点击</button>
+    <input type="text" />
+    <h1>Location</h1>
+
+    <a href="97_Bom.html">去BOM</a>
+  </body>
+</html>

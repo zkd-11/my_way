@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 获取当前元素的属性值
+      function getStyle(obj, name) {
+        if (window.getComputedStyle) {
+          return getComputedStyle(obj, null)[name];
+        } else {
+          return obj.currentStyle[name];
+        }
+      }
+
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        var box1 = document.getElementById("box1");
+        var btn02 = document.getElementById("btn02");
+
+        var timer;
+        // 向左移动
+        btn02.onclick = function () {
+          move(box1, 500, 10);
+        };
+
+        var timer;
+        // 盒子向右移动代码
+        btn01.onclick = function () {
+          move(box1, 400, 20);
+        };
+
+        //    obj 所要传 的对象
+        // target 目标位置值
+        // speed 都取值为正值，由判断去决定速度的正负
+        function move(obj, target, speed) {
+          //   关闭两个计时器
+          clearInterval(timer);
+          //获取元素当前 位置
+          var current = parseInt(getStyle(obj, "left"));
+
+          if (current > target) {
+            speed = -speed;
+          }
+
+          timer = setInterval(function () {
+            var oldValue = parseInt(getStyle(obj, "left"));
+            var newValue = oldValue + speed;
+
+            // 此 if 目的在于防止目标对象  超出目标位置
+            if (
+              (speed < 0 && newValue <= target) ||
+              (speed > 0 && newValue >= target)
+            ) {
+              newValue = target;
+            }
+            obj.style.left = newValue + "px";
+            console.log(newValue);
+
+            if (newValue == target) {
+              clearInterval(timer);
+            }
+          }, 200);
+        }
+      };
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn01">按钮向目标位置移动</button>
+    <button id="btn02">按钮向目标位置移动</button>
+
+    <div id="box1"></div>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script type="text/javascript" src="js/tools.js"></script>
+    <style>
+      #outer {
+        width: 540px;
+        height: 500px;
+        margin: 50px auto;
+        /* text-align: center; */
+
+        background-color: aqua;
+        padding: 40px 0px;
+        /* 开启相对定位 */
+        position: relative;
+        /* 将所要显示的图片隐藏 */
+        overflow: hidden;
+      }
+
+      #imgList {
+        list-style: none;
+        /* width: 2700px; */
+        /* 开启绝对定位 */
+        position: absolute;
+        /* 设置偏移量 */
+        /* left: -540px; */
+      }
+      img {
+        margin: auto;
+        width: 500px;
+        height: 500px;
+      }
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      #imgList li {
+        float: left;
+        padding: 0px 20px;
+      }
+
+      #navDiv {
+        position: absolute;
+        bottom: 30px;
+        /* left: 35%; */
+        /* 设置 left 值
+          outer 长度为 540px, navDiv宽度为35*5 175px
+              (540px - 175) /2 = 182.5px
+        */
+      }
+      #navDiv a {
+        position: relative;
+        /* 设置超链接 行宽 行高 */
+        width: 25px;
+        height: 25px;
+        /* 设置浮动后变为行内块元素 */
+        float: left;
+        background-color: rgb(120, 19, 235);
+        /* 设置左右外边距 */
+        margin: 0px 5px;
+        /* 设置透明度 */
+        opacity: 0.5;
+        /* 兼容IE8透明 */
+        filter: alpha(opacity=50);
+      }
+      /* 设置鼠标移入效果 */
+      #navDiv a:hover {
+        background-color: black;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var imgList = document.getElementById("imgList");
+        var imgArr = document.getElementsByTagName("img");
+        imgList.style.width = 540 * imgArr.length + "px";
+
+        /* 设置导航按钮居中 */
+        // 获取outerdiv
+        var outer = document.getElementById("outer");
+        var navDiv = document.getElementById("navDiv");
+        // 设置navDiv的left值
+        navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+        console.log(navDiv.style.left);
+
+        // 默认显示图像索引
+        var index = 0;
+        var allA = document.getElementsByTagName("a");
+
+        // 设置默认1时，快状黑色显示
+        allA[index].style.backgroundColor = "black";
+
+        // 点击超链接 切换图片
+        // 为所有超链接 绑定单击响应函数
+        for (var i = 0; i < allA.length; i++) {
+          // 为每一个 超链接都添加一个 num属性,贴上身份标识
+          allA[i].num = i;
+          // 为每个标签绑定单击响应函数
+          allA[i].onclick = function () {
+            clearInterval(timer);
+
+            index = this.num;
+            // imgList.style.left = index * -540 + "px";
+            console.log(imgList.style.left);
+            console.log(
+              "这是索引为" + index + "," + "第" + (index + 1) + "张照片"
+            );
+            setA();
+
+            // 使用move函数
+            move(imgList, "left", -540 * index, 50, function () {
+              autochange();
+            });
+          };
+        }
+        // 自动切换图片
+
+        // 定义一个定时器
+        var timer;
+        function autochange() {
+          // 开启一个定时器，用来定时去切换图片
+          timer = setInterval(function () {
+            index++;
+            // index %= imgArr.length;
+            setA();
+            move(imgList, "left", -540 * index, 50, function () {});
+          }, 3000);
+        }
+        autochange();
+        // 判断当前索引是否为0；
+        function setA() {
+          //
+          if (index >= imgArr.length - 1) {
+            index = 0;
+            imgList.style.left = 0 + "px";
+          }
+          for (var i = 0; i < allA.length; i++) {
+            //  '' 表示保留了原样式，
+            allA[i].style.backgroundColor = "";
+          }
+          // 将选中的a 设置为黑色}
+          allA[index].style.backgroundColor = "black";
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id="outer">
+      <ul id="imgList">
+        <li>
+          <img src="image/1.png" alt="" />
+        </li>
+        <li>
+          <img src="image/2.png" alt="" />
+        </li>
+        <li>
+          <img src="image/3.png" alt="" />
+        </li>
+        <li>
+          <img src="image/4.png" alt="" />
+        </li>
+        <li>
+          <img src="image/5.png" alt="" />
+        </li>
+        <!-- 
+  插入一张新的照片，图片跟第一张一样
+  然后在函数切换图片到这一张时，瞬间将像素转化为0  
+
+-->
+        <li>
+          <img src="image/1.png" alt="" />
+        </li>
+      </ul>
+      <div id="navDiv">
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1602,5 +1602,1372 @@ css语句 ，找到名字为name的div，再找其包含的div标签
 
 
 
+###### dom增删查改、
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer {
+        float: left;
+        background-color: rgb(173, 189, 189);
+        width: 300px;
+        height: 300px;
+        /* text-align: center; */
+        list-style: none;
+      }
+      #btnList {
+        float: right;
+        background-color: aliceblue;
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+    <script>
+      function myClick(idstr, fun) {
+        var btn = document.getElementById(idstr);
+        btn.onclick = fun;
+      }
+
+      window.onload = function () {
+        var li = document.createElement("li");
+        var gztext = document.createTextNode("广州");
+        li.appendChild(gztext);
+        // 1. 创建广州节点
+
+        myClick("btn01", function () {
+          // 新建一个li节点
+          var li = document.createElement("li");
+
+          // 新建一个"广州文本节点"
+          var gztext = document.createTextNode("广州");
+
+          li.appendChild(gztext);
+          var city = document.getElementById("city");
+          city.appendChild(li);
+        });
+
+        //2.  将"广州"节点插入到#bj前面
+
+        myClick("btn02", function () {
+          // 新建一个li节点
+          var li = document.createElement("li");
+
+          // 新建一个"广州"节点 插入到Bj 前
+          /*    -可以在指定的子节点前插入新的子节点
+                -语法：    
+                        父节点.insertBefore(新节点，子节点)
+           */
+          var gztext = document.createTextNode("广州");
+          li.appendChild(gztext);
+          var bj = document.getElementById("bj");
+          var city = document.getElementById("city");
+          city.insertBefore(li, bj);
+        });
+
+        // 3. 使用广州节点替换#bj节点
+        //   - 使用语法： 父节点.replaceChild(新节点，旧节点）
+        myClick("btn03", function () {
+          var bj = document.getElementById("bj");
+          var city = document.getElementById("city");
+          city.replaceChild(li, bj);
+        });
+
+        // 4.删除bj 节点
+        // removeChild
+        // 使用语法  父节点.removeChild(子节点);
+        myClick("btn04", function () {
+          var bj = document.getElementById("bj");
+          bj.parentNode.removeChild(bj);
+        });
+
+        // 5. 读取#city 内的html代码
+        myClick("btn05", function () {
+          var city = document.getElementById("city");
+          console.log("city内的html代码" + city.innerHTML);
+        });
+
+        // 6. 设置#bj内的html代码
+        myClick("btn06", function () {
+          var bj = document.getElementById("bj");
+          console.log("bj内的代码" + bj.innerHTML);
+          bj.innerHTML = "林修 一代苟修";
+        });
+
+        // 7. 创建一个广州节点,添加city下
+        myClick("btn07", function () {
+          var city = document.getElementById("city");
+          // 直接以文本内容添加的方法添加
+          //   city.innerHTML += "<li>广州</li>";
+          city.appendChild(li);
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <div id="outer">
+      <p>你喜欢哪座城市</p>
+      <ul id="city">
+        <li id="bj">北京</li>
+        <li>上海</li>
+        <li>东京</li>
+        <li>首尔</li>
+      </ul>
+    </div>
+
+    <div id="btnList">
+      <div><button id="btn01">创建一个"广州"节点，添加到#city下</button></div>
+      <div><button id="btn02">将 "广州"节点插入到#bj前面</button></div>
+      <div><button id="btn03">使用 "广州"节点替换#bj节点</button></div>
+      <div><button id="btn04">删除#bj节点</button></div>
+      <div><button id="btn05">读取#city内的HTML代码</button></div>
+      <div><button id="btn06">设置#bj内的HTML代码</button></div>
+      <div><button id="btn07">创建一个"广州"节点，添加到#city下</button></div>
+    </div>
+  </body>
+</html>
+
+```
+
+
+
+###### 增加删除记录
+
+- 绑定函数时只需要赋值函数名即可，带括号表示返回的是一个由window执行后返回的结果，赋值后会有 this对象自己去执行此函数。
+
+在增加tr一行的例子中，有两种方法，一种为从外至内添加，比较繁琐， 新建行，新建列，新建文本再逐步插入内容，最后再由行插入原本表格，代码量多
+
+ 新建行后，然后直接行内容 innerHTML加入，最后再找到行中原本所在父元素 直接插入
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    function delA() {
+      // a为td 字节点， td为tr子节点
+      /*  this 为什么不更改为all[i],因为for循环只是绑定
+            每一个按钮的功能，for先执行绑定
+            this 如果变成 all[i], 
+          会变成 undefined, i执行完毕变为3
+          this 则表示谁调用 就代表谁
+ 
+      */
+      var tr = this.parentNode.parentNode;
+      //   需找到 table来删除 tr一整行
+      var name = tr.children[0].innerHTML;
+      if (confirm("确定要删除" + name + "该行吗")) {
+        tr.parentNode.removeChild(tr);
+      }
+      //   使页面不进行跳转，或是将 a 中herf转变为 (javascript: ;)
+      return false;
+    }
+
+    window.onload = function () {
+      var allA = document.getElementsByTagName("a");
+      for (var i = 0; i < allA.length; i++) {
+        allA[i].onclick = delA;
+      }
+
+      var adbtn = document.getElementById("addEmpButton");
+      // 添加行 方法 （多重内嵌添加）
+      addEmpButton.onclick = function () {
+        // 普通的方法
+        var name = document.getElementById("empName").value;
+        var email = document.getElementById("email").value;
+        var salary = document.getElementById("salary").value;
+
+        // 新建一个tr行  4个td
+        var trn = document.createElement("tr");
+        trn.innerHTML =
+          "<td>" +
+          name +
+          "</td>" +
+          "<td>" +
+          email +
+          "</td>" +
+          "<td>" +
+          salary +
+          "</td>" +
+          "<td><a href='javascript:;'>Delete</a></td>";
+        // var a = trn.getElementsByTagName("a")[0];
+        var a = trn.getElementsByTagName("a")[0];
+        console.log(a.length);
+        console.log(a);
+
+        a.onclick = delA;
+
+        /*
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    var td3 = document.createElement("td");
+                    var td4 = document.createElement("td");
+
+                    // 创建a 元素
+                    var a = document.createElement("a");
+                    // 创建a中deleate
+                    var nameText = document.createTextNode(name);
+                    var emailText = document.createTextNode(email);
+                    var salaryText = document.createTextNode(salary);
+                    // 此行为写死，为文本值，固定值，其他行都为 变量传导值
+                    var delText = document.createTextNode("Delete");
+
+                    // 将deleate 添加到a 中, 并未a设置 herf属性
+                    a.appendChild(delText);
+                    a.href = "javascript:;";
+
+                    // 将文本条件添加到td中
+                    td1.appendChild(nameText);
+                    td2.appendChild(emailText);
+                    td3.appendChild(salaryText);
+                    td4.appendChild(a);
+
+                    // 将td 添加到tr中
+                    trn.appendChild(td1);
+                    trn.appendChild(td2);
+                    trn.appendChild(td3);
+                    trn.appendChild(td4);
+
+                // a.onclick = delA();
+         // 关于为什么不加括号 因为绑定函数，只需要传递函数名，表示由这个this对象）去执行此函数
+        // 加括号时，是由window执行函数并返回的结果
+                a.onclick = delA;
+            */
+
+        // 获取table
+        var employeeTable = document.getElementById("employeeTable");
+        // 获取employeeTable中的tbody
+        var tbody = employeeTable.getElementsByTagName("tbody")[0];
+        //
+        tbody.appendChild(trn);
+      };
+    };
+  </script>
+  <body>
+    <table
+      border="5px"
+      cellspacing="0px"
+      cellpadding="0px"
+      width="300px"
+      height="170px"
+      align="center"
+      id="employeeTable"
+    >
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>function</th>
+      </tr>
+      <tr>
+        <td>Tom</td>
+        <td>tom@tom.com</td>
+        <td>5000</td>
+        <!-- <td><a href="deleteEmp?id=001">Delete</a></td> -->
+        <!-- href="javascript:;" 也能关闭超链接默认行为 -->
+        <td><a href="javascript:;">Delete</a></td>
+      </tr>
+      <tr>
+        <td>Jerry</td>
+        <td>jerry@sohu.com</td>
+        <td>8000</td>
+        <td><a href="deleteEmp?id=002">Delete</a></td>
+      </tr>
+      <tr>
+        <td>Bob</td>
+        <td>bob@tom.com</td>
+        <td>8000</td>
+        <td><a href="deleteEmp?id=003">Delete</a></td>
+      </tr>
+    </table>
+
+    <br />
+
+    <div id="formDiv">
+      <h4 align="center">添加新员工</h4>
+
+      <table
+        border="5px"
+        width="300px"
+        cellspacing="0px"
+        cellpadding="0px"
+        align="center"
+      >
+        <tr>
+          <td class="word">name:</td>
+          <td class="inp">
+            <input type="text" name="empName" id="empName" />
+          </td>
+        </tr>
+        <tr>
+          <td class="word">email:</td>
+          <td class="inp">
+            <input type="text" name="email" id="email" />
+          </td>
+        </tr>
+        <tr>
+          <td class="word">salary:</td>
+          <td class="inp">
+            <input type="text" name="salary" id="salary" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button id="addEmpButton">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+
+```
+
+
+
+###### 操作内联样式
+
+-  obj.style.width/height/… ，直接改变标签内的style样式
+
+- 内联样式： 为最高级，会屏蔽head中外联样式，除非加！important（表示将此项变为最高级）
+
+  
+
+  ###### 获取元素样式
+
+  - 关于兼容，是由于ie8及以下，大部分方法是由window所拥有，像谷歌等浏览器已经将方法传递给对象。
+  - 且 大部分时候，ie8及以下 不拥有实现某功能的方法，或是与ie8以上的版本函数名不同，使用形式不同
+
+  
+
+  - 伪类： 已经存在的标签，选择器，如**a:hover**,指的是a中便签，会自动生效，选择的标签的内容，**向已存在的的选择器添加效果**
+  - 伪元素： 虚拟元素，可以是任意的存在于标签内部的内容本身。
+  - **div**::first-letter {  color: red; }
+    - 对div 块中出现的第一个元素，添加颜色效果
+
+  
+
+  ###### getComputed(obj,null)["name"]
+
+  ​	null表示不传递伪元素，有内容时会去获取body中某一个元素，name处为所要获取的样式名
+
+  ###### obj.currentStyle["name"]
+
+  ​	此方法为兼容ie8时使用
+
+  ```js
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <script>
+        //   定义一个函数 兼容ie8 及ie8以上版本的浏览器
+        //
+        function getStyle(obj, name) {
+          if (window.getComputedStyle) {
+            return getComputedStyle(obj, null)[name];
+          } else {
+            return obj.currentStyle[name];
+          }
+        }
+        window.onload = function () {
+          var btn01 = document.getElementById("btn01");
+          btn01.onclick = function () {
+            /*  获取元素显示的样式
+                      语法： 元素.currentStyle.样式名
+                      （IE）
+                      如当前没设置该样式，获取默认值
+                      如宽度未设置，返回auto
+  
+              其他兼容浏览器： 使用的为window的方法
+                  getComputedStyle()
+                      语法：两个参数
+                          第一个：要获取样式的元素
+                          第二个： 传递一个伪元素，一般为null
+                      如当前没设置样式，获取的值为真实值，具体的长度
+          */
+            var box = document.getElementById("box");
+            //  使用函数时 需要传递字符串
+            var a = getComputedStyle(box, null)["width"];
+            alert(a);
+            var a = getStyle(box, "background-color");
+            alert(a);
+          };
+        };
+      </script>
+      <style>
+        #box {
+          height: 300px;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="box" style="width: 300px; background-color: red"></div>
+      <button id="btn01">获取元素样式</button>
+    </body>
+  </html>
+  
+  ```
+
+
+
+##### 其他样式相关的属性
+
+在样式中，设置 **overflow:**对一个父元素设置，为其内部设置虚拟空间，如div块中含有另一个子元素块时，子元素块比父元素大，内嵌形成滚动滑轮 不会溢出
+
+###### obj.offersetParent
+
+​	获取当前元素 距离最近开启了定位的 祖先元素
+
+###### obj.clientWidth - obj.clientHeight 
+
+​	 获得可视宽度 （为数值，不带px可用于计算）
+
+​		获取可视高度
+
+###### obj.offsetLeft - obj.offsetTop
+
+​	当前元素相对于父元素的水平偏移量
+
+​		垂直偏移量
+
+###### obj.scrollHeight -  obj.scrollWidth
+
+​	滚动区域高度 和 滚动区域宽度 
+
+​		一般选择的父元素定义了 overflow的那个元素
+
+###### obj.scrollLeft  - obj.scrollTop
+
+​	滚轮 滚动的水平距离 和垂直距离
+
+
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: #bfa;
+      }
+      #box2 {
+        width: 200px;
+        padding-left: 10px;
+        height: 200px;
+        background-color: rgb(70, 120, 58);
+      }
+      #box4 {
+        width: 200px;
+        height: 300px;
+        background-color: #bfa;
+        /* 子元素比此元素大时 不会溢出，内嵌形成滚动滑轮 */
+        overflow: auto;
+        float: left;
+      }
+      #box5 {
+        width: 300px;
+        height: 600px;
+        background-color: yellow;
+      }
+      #box2 {
+        float: right;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var box1 = document.getElementById("box1");
+        var btn01 = document.getElementById("btn01");
+
+        btn01.onclick = function () {
+          // clientWith 和 clientHeight获取元素的可见宽度和高度
+          // 不带px 可用于计算
+          console.log(box1.clientWidth + box1.clientHeight);
+          console.log(box1.clientWidth + box1.clientHeight);
+
+          // offersetParent   获取当前元素的定位父元素
+          //        -会获取距离最近的开启了定位的祖先元素： 包含块
+          var op = box1.offsetParent;
+          console.log(op.id);
+
+          /*    offersetLeft - 当前元素相对于父元素的水平偏移量
+                offsetTop  -垂直偏移量
+           */
+          //   与定义了位置属性 包含块的左边距
+          console.log(box1.offsetLeft);
+          console.log(box1.offsetTop);
+
+          // clientHeight clientWidth  可视窗高度 和宽度
+          console.log("可视窗高度" + box4.clientHeight);
+          console.log("可视窗宽度" + box4.clientWidth);
+
+          //   scrollWidth  scollHeight 获得滚动区域的宽度和高度
+          console.log("滚动区域宽度" + box4.scrollHeight);
+          console.log("滚动区域高度" + box4.scrollWidth);
+
+          //   scrollLeft and scrollTop 水平和垂直滚动条的移动距离
+          console.log("水平滚动条滚动的距离" + box4.scrollLeft);
+          console.log("垂直滚动条滚动的距离" + box4.scrollTop);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">按钮</button>
+    <div id="box4" style="position: relative">
+      <div id="box5" style="position: relative"></div>
+    </div>
+    <div id="box2" style="position: relative">
+      <div id="box1"></div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+#####  滚动滑轮的注册
+
+###### 	.onsroll = function(){ }
+
+​		绑定滚动事件
+
+此案例 主要是使用到 scrollHeight （可滚动高度） - scrollTop（滚动条滚动距离） ==  clientHeight （可视高度）
+
+ **disabled**： 禁用功能 ) 
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        /*
+                垂直滚动条 到底时使表单项可用
+                onscroll
+                 -该事件会元素滚动时触发
+
+            */
+        //    为info滚动条绑定一个滚动的事件
+        //  onscroll 滚动事件
+        info.onscroll = function () {
+          var info = document.getElementById("info");
+          // 获取两个表单项
+          var inputs = document.getElementsByTagName("input");
+          if (info.scrollHeight - info.scrollTop == info.clientHeight) {
+            // disabled 为禁用功能， 将禁用功能取消则不禁用
+            inputs[0].disabled = false;
+            inputs[1].disabled = false;
+          }
+        };
+      };
+    </script>
+    <style>
+      #info {
+        width: 300px;
+        height: 500px;
+        background-color: #bfa;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>欢迎亲爱的用户注册</h3>
+    <p id="info">
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+      亲爱的用户，请仔细阅读以下协议 亲爱的用户，请仔细阅读以下协议
+    </p>
+    <!-- disable 默认禁用 -->
+    <input type="checkbox" disabled="disabled" />我已仔细阅读协议，一定遵守
+    <input type="submit" value="注册" disabled="disabled" />
+  </body>
+</html>
+
+```
+
+
+
+##### 事件对象- event
+
+###### 	obj.onmousemove(event)function(){}
+
+- ​	event事件对象： 在括号内传递此参数时，每次移动鼠标时，浏览器会传入此事件对象，该对象含有当前事件相关的一切信息，如鼠标坐标，键盘输入等
+
+###### 	event.clientX - event.clientY
+
+​		鼠标的横纵坐标
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      window.onload = function () {
+        // 当鼠标在areaDiv移动时，在showMsg显示鼠标的坐标
+        var areaDiv = document.getElementById("areaDiv");
+        var showMsg = document.getElementById("showMsg");
+
+        // onmousemove - 事件鼠标移动触发
+        /* 事件对象
+                - 当事件的响应函数被触发时，浏览器每次都会将一个事件对象作为实参传递进响应函数
+                事件对象中封装了当前事件相关的一切信息，如鼠标的坐标，滚轮滚动方向 键盘的按键被按下 
+        */
+        areaDiv.onmousemove = function (event) {
+          /* 
+            在Ie8中，响应函数被触发时，浏览器不会传递事件对象
+            在Ie8及以下的浏览器中，该事件对象作为window对象的属性保存
+          */
+          // 在showMsg 中显示鼠标的坐标
+          //   之后兼容的版本都储存在函数内，函数内有此event属性
+          if (!event) {
+            event = window.event;
+          }
+          var x = event.clientX;
+          var y = event.clientY;
+          //   在showMsg 显示鼠标的坐标
+          showMsg.innerHTML = "x = " + x + ", y = " + y;
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div
+      id="areaDiv"
+      style="
+        width: 300px;
+        height: 200px;
+        border: 1px solid black;
+        background-color: aliceblue;
+      "
+    ></div>
+    <div
+      id="showMsg"
+      style="width: 300px; height: 70px; border: 1px solid rgb(93, 103, 103)"
+    ></div>
+  </body>
+</html>
+
+```
+
+
+
+##### div跟随鼠标移动
+
+###### document.documentElement.scrollTop -document.documentElement.scrollLeft
+
+​	获取滚轮条的滚动距离
+
+加上鼠标的可视 水平和垂直 距离
+
+ event.X + document.documentElement.scrollLeft
+
+ event.Y + document.documentElement.scrollTop
+
+等于div的偏移量  实现div随鼠标移动
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /* 
+                使div跟随鼠标移动
+            */
+
+        var box1 = document.getElementById("box1");
+        //绑定鼠标移动事件
+        document.onmousemove = function (event) {
+          //  clientX 和 clientY 可见窗口的坐标
+
+          //  获取滚动条距离
+          /* var st = document.body.scrollTop 
+           html 中的滚动  ： 谷歌等都兼容此条件
+
+            document.documentElement.scrollTop;          
+        */ var st = document.documentElement.scrollTop;
+          var sl = document.documentElement.scrollLeft;
+          //   pageX 和 pageY 获取鼠标相对页面的坐标
+          //  但是ie中不兼容
+          var left = event.clientX;
+          var top = event.clientY;
+
+          // 设置div的偏移量
+          box1.style.left = left + sl + "px";
+          box1.style.top = top + st + "px";
+        };
+      };
+    </script>
+  </head>
+  <body style="height: 2000px; width: 1900px">
+    <div id="box1"></div>
+  </body>
+</html>
+
+```
+
+
+
+##### 事件的冒泡
+
+######   （bubble）事件由子元素向外触发
+
+- event.cancelBubble = true;
+  - 在该事件的函数中传递event参数，并添加此条语句
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: yellowgreen;
+      }
+      #s1 {
+        background-color: rgb(84, 89, 76);
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /*
+            事件的冒泡（Bubble）
+             - 所谓的冒泡就是事件的向上传导，当后代元素中的事件被触发时，其祖先元素的相同事件也会被触发
+             - 在开发中大部分情况冒泡都是有用的
+             -   如果不希望发生事件冒泡可以通过事件对象来取消冒泡 
+             */
+        var s1 = document.getElementById("s1");
+        s1.onclick = function (event) {
+          console.log("我是span单击响应函数");
+
+          //   取消冒泡
+          // 可以将事件对象中的cancelBuble设置为true,即可取消冒泡
+          event.cancelBubble = true;
+        };
+        // 为div绑定单击响应函数
+        var box1 = document.getElementById("box1");
+        box1.onclick = function () {
+          console.log("我是box1单击响应函数");
+        };
+        // 为body绑定单击响应函数
+        document.body.onclick = function () {
+          console.log("我是body单击响应函数");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box1">我是box1 <span id="s1">我是span</span></div>
+  </body>
+</html>
+
+```
+
+
+
+##### 事情的委派
+
+​      指将事件统一绑定给元素的共同祖先，当后代元素上的事件触发时，会一直冒泡到祖先元素，从而通过祖先元素的响应函数来处理事件
+
+​      事件委派是利用了**冒泡**，通过委派可以减少事件绑定的次数，提高程序的性能
+
+​	为相同事件统一绑定，即使后添加的事件也能一并绑定
+
+触发时，我们只希望期望对象触发 可用 **target**
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var u1 = document.getElementById("u1");
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          // 创建li
+          var li = document.createElement("li");
+          li.innerHTML = "<a href='javascript:;' class='link'>新建的超链接</a>";
+          u1.appendChild(li);
+        };
+        //为每一个超链接绑定一个单击函数- 获取所有的a
+        var allA = document.getElementsByTagName("a");
+        for (var i = 0; i < allA.length; i++) {
+          allA[i].onclick = function () {
+            console.log("我是a单击函数");
+          };
+        }
+        /* 
+            
+         */
+        // 我们希望 只绑定一次事件，即可应用到多个的元素，即使元素是后添加的
+        /* 
+            我们可以尝试将其绑定给元素的共同的祖先元素
+            事件的委派
+                -指将事件统一绑定给元素的共同祖先，当后代元素上的事件触发时，会一直冒泡到祖先元素
+                    从而通过祖先元素的响应函数来处理事件
+                - 事件委派是利用了冒泡，通过委派可以减少事件绑定的次数，提高程序的性能
+        */
+        u1.onclick = function (event) {
+          // 如果触发事件的对象是我们期望的元素，则执行则不执行
+          // event.target 谁触发事件 target就是谁
+          if (event.target.className == "link")
+            console.log("我是ul单击响应函数");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">添加链接</button>
+    <ul id="u1">
+      <li><a href="javascript:;" class="link">超链接1</a></li>
+      <li><a href="javascript:;" class="link">超链接2</a></li>
+      <li><a href="javascript:;" class="link">超链接3</a></li>
+    </ul>
+  </body>
+</html>
+
+```
+
+
+
+##### 事件的绑定
+
+###### 	obj.addEventListner(eventStr,callback,false)
+
+​		为同一事件绑定多个函数，如用多个.onclic函数绑定后，则后出现的函数会覆盖前面的函数，只有最后定义的函数生效。
+
+​	eventStr 为事件 去on 
+
+​	callback： 回调函数，所要执行的事件
+
+兼容ie8及以下使用的为 :
+
+###### 	obj.attachEvent("on" + eventStr, function(){callback.call(obj)})
+
+​	由于ie8中对象不具备 callback，所以得用一个匿名函数，让window调用后，指定callback.call（obj） obj执行 
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          console.log("这是首个绑定函数");
+        };
+        // onclcik 的方法，后一个会覆盖前一个
+        btn01.onclick = function () {
+          console.log("这是第二个绑定函数");
+        };
+        // // addEventListener()
+        //     - 通过这个方法可为元素绑定函数
+        //     - 参数
+        //         1. 事件的字符串,不要on
+        //         2. 回调函数,当事件触发时函数会被调用
+        //         3. 是否在捕获阶段触发事件，需要一个布尔值，一般传false
+        /*  使用此方法可以同时为一个元素的相同事件绑定多个响应函数
+                这样当事件被触发时，响应函数将会按照函数的绑定顺序执行
+         */
+        //   --------------------分割线------------------------
+        //  此方法不支持ie8以下的浏览器
+        // btn01.addEventListener(
+        // "click",
+        // function () {
+        //     console.log("这是addEventListenner首个绑定函数");
+        // },
+        // false
+        // );
+        // btn01.addEventListener(
+        // "click",
+        // function () {
+        //     console.log("这是第二个绑定函数，按绑定顺序执行");
+        // },
+        // false
+        // );
+
+        //   --------------------分割线------------------------
+        // 兼容 iE8 的 attachEvent
+        // btn01.attachEvent("onclick", function () {
+        //   alert("11");
+        //   console.log("这是attachEent第一个绑定函数");
+        // });
+        // btn01.attachEvent("onclick", function () {
+        //   console.log("这是第二个绑定函数,倒序执行");
+        // });
+        bind(btn01, "click", function () {
+          alert(this);
+          console.log("我是兼容后的版本函数~");
+        });
+      };
+
+      //   定义函数为指定元素绑定响应函数;
+      /*
+        参数： obj要绑定事件的对象
+        eventStr 事件的字符串
+        callback 回调函数
+        */
+
+      function bind(obj, eventStr, callback) {
+        if (obj.addEventListener) {
+          //大部分函数兼容的方式
+          obj.addEventListener(eventStr, callback, false);
+        } else {
+          // ie8及以下
+          //  由于ie8下 callback 属于window运行，所以我们需要使用一个隐匿函数
+          //   callback.call(obj)
+          //   由window指定 btn01运行
+          obj.attachEvent("on" + eventStr, function () {
+            callback.call(obj);
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">绑定事件</button>
+  </body>
+</html>
+
+```
+
+
+
+##### 事件的传播
+
+​	w3c 综合两方  将事件传播分为 三个阶段
+
+1. 捕获阶段
+	- 在捕获阶段时从最外层的祖先元素，向目标元素进行事件的捕获，但是默认此时不会触发事件
+2. 目标阶段
+    -事件捕获到目标元素，捕获结束开始在目标元素上触发事件
+3. 冒泡阶段
+    - 事件从目标元素向他的祖先元素传递，依次触发祖先元素上的事件
+
+   -如果希望在捕获阶段就触发事件，可以将 addEventListener()第三个参数设置为true
+​            
+ -   iE8以下没有捕获阶段
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        var box3 = document.getElementById("box3");
+        /* 事件的传播
+            -关于事件的传播 网景公司 和微软公司 有不同理解 
+            - 微软公司认为事件 由内往外传播
+                    由子元素向祖先元素上传播，事件应该在冒泡阶段执行
+            - 网景公司相反，从外至内 
+            -  （事件的捕获阶段 ）
+        w3c 综合两方  将事件传播分为 三个阶段
+            1. 捕获阶段
+                - 在捕获阶段时从最外层的祖先元素，向目标元素进行事件的捕获，但是默认此时不会触发事件
+            2. 目标阶段
+                -事件捕获到目标元素，捕获结束开始在目标元素上触发事件
+            3. 冒泡阶段
+                - 事件从目标元素向他的祖先元素传递，依次触发祖先元素上的事件
+            
+            -如果希望在捕获阶段就触发事件，可以将 addEventListener()第三个参数设置为true
+            
+                -   iE8以下没有捕获阶段
+            */
+
+        bind(box1, "click", function () {
+          console.log("我是box1的响应函数");
+        });
+        bind(box2, "click", function () {
+          console.log("我是box2的响应函数");
+        });
+        bind(box3, "click", function () {
+          console.log("我是box3的响应函数");
+        });
+      };
+      function bind(obj, eventStr, callback) {
+        if (obj.addEventListener) {
+          //大部分函数兼容的方式
+          obj.addEventListener(eventStr, callback, false);
+        } else {
+          // ie8及以下
+          //  由于ie8下 callback 属于window运行，所以我们需要使用一个隐匿函数
+          //   callback.call(obj)
+          //   由window指定 btn01运行
+          obj.attachEvent("on" + eventStr, function () {
+            callback.call(obj);
+          });
+        }
+      }
+    </script>
+    <style>
+      #box1 {
+        width: 300px;
+        height: 300px;
+        background-color: yellowgreen;
+      }
+      #box2 {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+      }
+      #box3 {
+        width: 150px;
+        height: 150px;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1">
+      <div id="box2">
+        <div id="box3"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+
+
+##### div拖拽
+
+​	共三个按键： 鼠标按下 -  鼠标按住移动 - 鼠标松开
+
+处理按下 方块即为所点位置 移动
+
+###### 拖拽优化补充
+
+​	当按住后 ＋ ctrl A选中页面所有元素移动时，会对我们实际所要的效果产生影响， 如选中文本进行搜索
+
+###### 	setCapture（）
+
+​		将所有相关事件捕获到自身上，
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function (event) {
+        //推拽 box1元素
+        /*  `   1. 当鼠标在被拖拽元素上按下时，开始拖拽 onmousedown
+                2.当鼠标移动时，被拖拽元素跟随移动  onmousemove
+                3. 当鼠标松开时，被拖拽元素固定在当前位置 onmouseup
+                */
+        var box1 = document.getElementById("box1");
+
+        box1.onmousedown = function (event) {
+          var ol = event.clientX - box1.offsetLeft;
+          var ot = event.clientY - box1.offsetTop;
+
+          //  设置box1捕获多有鼠标按下的事件
+          // if (box1.setCapture) {
+          //   box1.setCapture();
+          // }
+
+          //  同上  语句优化
+          box1.setCapture && box1.setCapture();
+
+          document.onmousemove = function (event) {
+            // 当鼠标元素被拖拽 元素跟随鼠标移动
+            // 获取鼠标的坐标
+            var left = event.clientX - ol;
+            var top = event.clientY - ot;
+
+            //修改Box1的位置
+
+            box1.style.left = left + "px";
+            box1.style.top = top + "px";
+          };
+          //   c此方法在多个块存在页面时，无法在其他块上松
+          // 不能绑定box1.onmouseup, 绑定的应为documentElement
+          document.onmouseup = function () {
+            // 当鼠标松开时，被拖拽元素固定在当前位置 onmouseup
+            document.onmousemove = null;
+            // 需为鼠标松开 设置null
+            document.onmouseup = null;
+
+            // 鼠标松开时，取消对事件的捕获
+            if (box1.releaseCapture) {
+              box1.releaseCapture();
+            }
+          };
+          //避免按中ctrl 全选，内容搜索， 所以需返回false
+          return false; //取消浏览器本身的搜索功能
+        };
+      };
+    </script>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(16, 115, 115);
+        position: absolute;
+        left: 200px;
+        top: 200px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+  </body>
+</html>
+
+```
+
+
+
+##### 拖拽封装代码
+
+```js
+   function drag(obj) {
+        //推拽 obj元素
+        /*  `   1. 当鼠标在被拖拽元素上按下时，开始拖拽 onmousedown
+                      2.当鼠标移动时，被拖拽元素跟随移动  onmousemove
+                      3. 当鼠标松开时，被拖拽元素固定在当前位置 onmouseup
+                      */
+        // 封装BY ID 需要改为 形参
+        var obj = document.getElementById(obj);
+        obj.onmousedown = function (event) {
+          var ol = event.clientX - obj.offsetLeft;
+          var ot = event.clientY - obj.offsetTop;
+
+          //  设置obj捕获多有鼠标按下的事件
+          // if (obj.setCapture) {
+          //   obj.setCapture();
+          // }
+
+          //  同上  语句优化
+          obj.setCapture && obj.setCapture();
+          document.onmousemove = function (event) {
+            // 当鼠标元素被拖拽 元素跟随鼠标移动
+            // 获取鼠标的坐标
+            var left = event.clientX - ol;
+            var top = event.clientY - ot;
+
+            //修改obj的位置
+
+            obj.style.left = left + "px";
+            obj.style.top = top + "px";
+          };
+          //   c此方法在多个块存在页面时，无法在其他块上松
+          // 不能绑定obj.onmouseup, 绑定的应为documentElement
+          document.onmouseup = function () {
+            // 当鼠标松开时，被拖拽元素固定在当前位置 onmouseup
+            document.onmousemove = null;
+            // 需为鼠标松开 设置null
+            document.onmouseup = null;
+
+            // 鼠标松开时，取消对事件的捕获
+            if (obj.releaseCapture) {
+              obj.releaseCapture();
+            }
+          };
+          //避免按中ctrl 全选，内容搜索， 所以需返回false
+          return false; //取消浏览器本身的搜索功能
+        };
+      }
+    </script>
+  
+```
+
+
+
+##### 鼠标滚轮事件
+
+**event.wheelDelta** 获取鼠标滚轮滚动的方向
+
+​	向上：120 向下 -120
+
+**wheelDelta** 同上
+
+​	向上 -3 向下 3
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var box1 = document.getElementById("box1");
+        // 为box1绑定一个鼠标滚轮滚动的事件
+        /*
+              onmousewheel鼠标滚轮滚动的事件，会在滚动时触发
+
+      */
+        box1.onmousewheel = function (event) {
+          {
+            // event.wheelDelta 可获取鼠标滚轮滚动的方向
+            /*      向上滚120  向下滚-120
+                wheelDelta 不看大小 只看正负
+
+                火狐不支持 wheelDelta 
+                    event.detail 获取滚动的方向 
+                    向上滚 -3， 向下滚 3
+
+            判断鼠标滚轮滚动的方向
+        */
+            if (event.wheelDelta > 0 || event.detail < 0) {
+              box1.style.height = box1.clientHeight - 10 + "px";
+            } else {
+              box1.style.height = box1.clientHeight + 10 + "px";
+            }
+          }
+          //   火狐需要使用 event.prebentDefault(), ie8不承认
+
+          //   当页面长时，滚动条跟动，false取消行为
+          return false;
+          // bind(box1, "DOMMouseScroll", function () {
+          // alert("滚了没有啊~~");
+          // });
+
+          // function bind(obj, eventStr, callback) {
+          // if (obj.addEventListener) {
+          //     //大部分函数兼容的方式
+          //     obj.addEventListener(eventStr, callback, false);
+          // } else {
+          //     // ie8及以下
+          //     //  由于ie8下 callback 属于window运行，所以我们需要使用一个隐匿函数
+          //     //   callback.call(obj)
+          //     //   由window指定 btn01运行
+          //     obj.attachEvent("on" + eventStr, function () {
+          //     callback.call(obj);
+          //     });
+          // }
+        };
+      };
+    </script>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        min-height: 50px;
+        background-color: antiquewhite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+  </body>
+</html>
+
+```
+
 
 

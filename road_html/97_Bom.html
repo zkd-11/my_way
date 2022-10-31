@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* 
+            BOM 
+                - 浏览器对象模型
+                -可使我们通过JS操作浏览器
+                -在BOM中为我们提供了一组对象，用来完成对浏览器的操作
+            -BOM对象
+                window
+                    -代表的是整个浏览器的窗口，同时window也是网页中的全局对象
+                Navigator   
+                    - 代表的是当前浏览器的信息，通过该对象来识别不同的浏览器
+                    - 由于历史原因，navigator对象中的大部分属性都已经不能帮助我们识别浏览器
+                    - 一般我们只会使用 userAgent 来判断浏览器的信息
+                            userAgent 是一个字符串，含有用来描述浏览器信息的内容
+                             不同的浏览器具备不同的userAgent
+      */
+      var ua = navigator.userAgent;
+      if (/firefox/i.test(ua)) {
+        console.log("火狐哟~");
+      } else if (/chrome/i.test(ua)) {
+        console.log("谷歌哟~");
+      } else if (/mise/i.test(ua)) {
+        console.log("ie哟~");
+      } else if ("ActiveXObject" in window) {
+        console.log("ie哟~");
+      }
+
+      /*           History
+                    - 代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录
+                        由于隐私原因，该对象不能获取到具体的历史记录，只能操作浏览器向前或向后翻页
+                        而且该操作只在当此访问有效
+                Screen
+                    - 代表用户屏幕的信息，通过该对象可以获取到用户的显示器的相关信息
+             
+                这些BOm对象在浏览器中都是作为window对象的属性保存
+                    可以通过window对象来使用，也可以直接使用
+        
+                
+                    */
+
+      window.onload = function () {};
+    </script>
+  </head>
+  <body></body>
+</html>

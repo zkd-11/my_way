@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 获取当前元素的属性值
+      function getStyle(obj, name) {
+        if (window.getComputedStyle) {
+          return getComputedStyle(obj, null)[name];
+        } else {
+          return obj.currentStyle[name];
+        }
+      }
+
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        var box1 = document.getElementById("box1");
+        var timer;
+        btn01.onclick = function () {
+          // 需要传递字符串
+          //   var oldValue = getStyle(box1, "left");
+          var speed = 100;
+
+          clearInterval(timer);
+          timer = setInterval(function () {
+            // 每次定时器 重新获取方块所在左侧位置
+            // var oldValue = getStyle(box1, "left");
+            // console.log(oldValue);
+            // box1.style.left = parseInt(oldValue) + speed + "px";
+            // // 获取box1原本值
+
+            //
+
+            var oldValue = parseInt(getStyle(box1, "left"));
+            var newValue = oldValue + 20;
+
+            // 判断newValue 是否大于 400
+            if (newValue > 400) {
+              newValue = 400;
+            }
+            box1.style.left = newValue + "px";
+            console.log(newValue);
+
+            //   当像素移动到800px时，停止执行动画
+            if (newValue == 400) {
+              clearInterval(timer);
+            }
+          }, 200);
+        };
+      };
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn01">点击按钮box1向右移动</button>
+    <div id="box1"></div>
+  </body>
+</html>

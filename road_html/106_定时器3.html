@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 获取当前元素的属性值
+      function getStyle(obj, name) {
+        if (window.getComputedStyle) {
+          return getComputedStyle(obj, null)[name];
+        } else {
+          return obj.currentStyle[name];
+        }
+      }
+
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        var box1 = document.getElementById("box1");
+        var btn02 = document.getElementById("btn02");
+
+        var box2 = document.getElementById("box2");
+        var btn03 = document.getElementById("btn03");
+
+        // box1 向左移动
+        btn02.onclick = function () {
+          move(box1, "left", 0, 10);
+        };
+
+        // box1 向右移动代码
+        btn01.onclick = function () {
+          move(box1, "left", 400, 30);
+        };
+
+        // box2 向右移动
+        btn03.onclick = function () {
+          move(box2, "left", 400, 10);
+        };
+
+        var btn04 = document.getElementById("btn04");
+        // 测试按钮
+
+        // 无限内嵌
+        btn04.onclick = function () {
+          move(box2, "width", 400, 30, function () {
+            move(box2, "height", 400, 30, function () {
+              move(box2, "top", 0, 30, function () {
+                move(box2, "width", 200, 30, function () {
+                  alert("完成目标！");
+                });
+              });
+            });
+          });
+        };
+
+        //    obj 所要传 的对象
+        // atter: 要执行动画的样式： top left reght bottom
+        // target 目标位置值
+        // speed 都取值为正值，由判断位置与目标值的大小，去决定速度的正负
+        //  callbakc： 回调函数，这个函数会在动画执行完毕后执行
+
+        function move(obj, atter, target, speed, callback) {
+          //   关闭两个计时器
+          clearInterval(obj.timer);
+          //获取元素当前 位置
+          var current = parseInt(getStyle(obj, atter));
+
+          if (current > target) {
+            speed = -speed;
+          }
+          // w向执行对象中 添加对象
+          obj.timer = setInterval(function () {
+            var oldValue = parseInt(getStyle(obj, atter));
+            var newValue = oldValue + speed;
+
+            // 此 if 目的在于防止目标对象  超出目标位置
+            if (
+              (speed < 0 && newValue <= target) ||
+              (speed > 0 && newValue >= target)
+            ) {
+              newValue = target;
+            }
+            //  取变量的方式，由于atter为字符串，所以用中括号的方式
+            obj.style[atter] = newValue + "px";
+            console.log(newValue);
+
+            if (newValue == target) {
+              clearInterval(obj.timer);
+              // 动画执行完毕后，执行回调函数
+              callback && callback();
+            }
+          }, 200);
+        }
+      };
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: absolute;
+      }
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(146, 195, 195);
+        position: absolute;
+        top: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn01">点击后box1右移</button>
+    <button id="btn02">点击后box1左移</button>
+    <button id="btn03">点击后box2右移</button>
+    <button id="btn04">测试按钮</button>
+
+    <div id="box1"></div>
+    <div id="box2"></div>
+  </body>
+</html>
