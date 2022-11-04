@@ -1,0 +1,42 @@
+sdmenu
+
+div.sdmenu {
+    width: 150px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    padding-bottom: 10px;
+    background-color: url(bottom.gif) no-repeat right bottom;
+    color: rgb(80, 236, 229);
+  }
+  
+  div.sdmenu div {
+    background-color: url(title.gif) repeat-x;
+    overflow: hidden;
+  }
+  
+  div.sdmenu div:first-child {
+    background-color: url(toptitle.gif) no-repeat;
+  }
+  
+  div.sdmenu div.collapsed {
+    height: 25px;
+  }
+  div.sdmenu div span {
+    display: block;
+    height: 15px;
+    line-height: 15px;
+    overflow: hidden;
+    padding: 5px 25px;
+    font-weight: bold;
+    color: rgb(110, 56, 56);
+    background-color: url(expanded.gif) no-repeat 10px center;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(241, 133, 194);
+    text-align: center;
+  }
+  
+  #my_menu a {
+    display: block;
+    text-align: center;
+  }

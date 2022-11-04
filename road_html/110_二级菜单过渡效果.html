@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/tools.js"></script>
+
+    <script>
+      window.onload = function () {
+        // 每一个菜单都是一个 div
+        // 具有div具有collapsed这个类时，为折叠状态
+        // 单击菜单
+
+        //   获取所有class为menuespan的元素
+
+        var menuSpan = document.querySelectorAll(".menuSpan");
+
+        // 定义一个变量,保存当前打开的菜单
+        var openDiv = menuSpan[0].parentNode;
+
+        //   为span绑定单击响应函数
+        for (var i = 0; i < menuSpan.length; i++) {
+          menuSpan[i].onclick = function () {
+            // this 代表当前点击的span
+            // 获取当前span的父元素
+            var parentDiv = this.parentNode;
+
+            // 切换菜单的显示状态
+            toggleMenu(parentDiv);
+            // 原先
+            // if (openDiv != parentDiv) addClass(openDiv, "collapsed");
+
+            // 为了兼顾特效,所以用了toggleClass
+            if (openDiv != parentDiv && !hasClass(openDiv, "collapsed")) {
+              //   toggleClass(openDiv, "collapsed");
+              toggleMenu(openDiv);
+            }
+            // 修改openDiv为当前打开的菜单,当下个运行时,关闭的为当前div
+            openDiv = parentDiv;
+          };
+        }
+
+        // 过渡动画 折叠和显示
+        function toggleMenu(obj) {
+          var begin = obj.offsetHeight;
+          console.log("点击前高度" + obj.offsetHeight);
+
+          toggleClass(obj, "collapsed");
+          console.log("点击后高度" + obj.offsetHeight);
+          var end = obj.offsetHeight;
+
+          // 过渡快,从begin - end
+
+          // 将元素高度重置为 begin, 内联高度重置为 begin
+          obj.style.height = begin + "px";
+
+          // 从begin到end过度
+          move(obj, "height", end, 10, function () {
+            // 执行完毕后,内联样式无存在意义
+            obj.style.height = "";
+          });
+        }
+      };
+    </script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+      a,
+      img {
+        border: 0;
+        text-decoration: none;
+      }
+      body {
+        font: 12px/180% Arial, Helvetica, sans-serif, "楷体";
+      }
+    </style>
+    <link rel="stylesheet" href="css/sdmenu.css" />
+  </head>
+  <body>
+    <div id="my_menu" class="sdmenu">
+      <div>
+        <span class="menuSpan">在线工具</span>
+        <a href="#">图像优化</a>
+        <a href="#">收藏夹图标生成器</a>
+        <a href="#">邮件</a>
+        <a href="#">htaccess密码</a>
+        <a href="#">梯度图像</a>
+        <a href="#">按钮生成器</a>
+      </div>
+
+      <div class="collapsed">
+        <span class="menuSpan">支持我们</span>
+        <a href="#">推荐我们</a>
+        <a href="#">联系我们</a>
+        <a href="#">网络资源</a>
+      </div>
+
+      <div class="collapsed">
+        <span class="menuSpan">合作伙伴</span>
+        <a href="#">JavaScript工具包</a>
+        <a href="#">css驱动</a>
+        <a href="#">CodingForums</a>
+        <a href="#">Css例子</a>
+      </div>
+
+      <div class="collapsed">
+        <span class="menuSpan">测试电流</span>
+        <a href="#">冲啊冲啊</a>
+        <a href="#">冲啊冲啊</a>
+        <a href="#">冲啊冲啊</a>
+        <a href="#">冲啊冲啊</a>
+      </div>
+    </div>
+  </body>
+</html>
