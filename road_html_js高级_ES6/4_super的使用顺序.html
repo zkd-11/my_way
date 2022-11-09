@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class F {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+        sum() {
+          console.log(this.x + this.y); //此项的this指向为 父类F
+        }
+      }
+      class S extends F {
+        constructor(x, y) {
+          super(x, y); // 使用顺序需要在子类的this之前使用，先调用父类构造方法后使用子类构造方法
+          this.x = x;
+          this.y = y;
+        }
+        substract() {
+          console.log(this.x - this.y);
+        }
+      }
+      var s = new S(11, 22);
+      s.substract();
+      s.sum();
+    </script>
+  </body>
+</html>

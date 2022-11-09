@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class F {
+        say() {
+          return "韩绝";
+        }
+      }
+      class S extends F {
+        say() {
+          console.log(super.say() + "徒弟杨天"); //调用上一级
+        }
+      }
+      var yt = new S();
+      yt.say();
+      /*
+            1. 继承中的属性或方法查找原则： 就近原则
+            2. 继承中，有择执行子类方法，无则往上一级寻找并执行
+        */
+    </script>
+  </body>
+</html>

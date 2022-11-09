@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击</button>
+    <script>
+      var that;
+
+      class Star {
+        constructor(name, age) {
+          that = this;
+          this.name = name;
+          this.age = age;
+          this.btn = document.querySelector("button");
+
+          this.btn.onclick = this.sing; //this指向button，所以如果this.name显示不出，需更改
+        }
+        sing() {
+          console.log(that); //that为全局变量，已提前进行赋值，that == ldh
+          console.log(that.name + "的成名曲" + "-冰雨");
+        }
+      }
+      var ldh = new Star("刘德华", 45);
+
+      /*
+         1. ES6中，类没有变量提升，需先定义类，再通过类实例化对象
+         2. 类里面的共有属性和方法一定要加this使用
+      */
+    </script>
+  </body>
+</html>

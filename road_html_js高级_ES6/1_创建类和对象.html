@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Star {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        sing(song) {
+          console.log(this.name + "的成名曲" + song);
+        }
+      }
+      var hj = new Star("韩绝", 20);
+      console.log(hj);
+      var lx = new Star();
+      console.log(lx);
+      //   hj.listen = "苟修一代";
+      //   console.log(hj.listen);
+      //   console.log(typeof hj.listen);
+      hj.sing("苟修一代"); //调用方法
+
+      /* 
+        1. 通过class关键字创建类， 类名我们还是习惯性定义首字母大写
+        2. 类里面有constructor 函数，可以接受传递过来的参数，同时返回实例对象
+        3. constructor 函数只要 new生成函数，就会自动调用此函数，即使不写函数，也会自动生成这个函数（但是自动生成的为无形参函数）
+        3. 生成实例 new 不能省略
+        4. 语法规范， 创建类名 后面不要加小括号，生成实例，类名后面加小括号，构造函数不要加function
+      
+      */
+      /* 
+            1. 类里函数 不加function
+            2. 函数之间不需要加分号隔开
+      */
+    </script>
+  </body>
+</html>

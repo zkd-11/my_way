@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>音乐排行榜</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0;
+        list-style: none;
+        outline: none;
+      }
+      .bg {
+        width: 600px;
+        height: 550px;
+        background-image: repeating-radial-gradient(
+          circle at 50% 50%,
+          rgb(0, 0, 0),
+          rgb(30, 25, 25) 1%
+        );
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 50%;
+        padding-top: 50px;
+        border: 10px solid #ccc;
+      }
+      ul {
+        width: 372px;
+        height: 530px;
+        background: #fff;
+        border-radius: 30px;
+        box-shadow: 15px 15px 12px #000;
+        margin: 0 auto;
+      }
+      ul li {
+        width: 372px;
+        height: 55px;
+        background: #504d58 url(../images/音符.png) no-repeat 40px 5px;
+        margin-bottom: 2px;
+        font-size: 18px;
+        color: #d6d6d6;
+        line-height: 55px;
+        text-align: center;
+        font-family: "微软雅黑";
+      }
+      ul .tp {
+        width: 372px;
+        height: 247px;
+        background: #fff;
+        /* background-image: url(../images/排行榜.png); */
+        background-repeat: no-repeat;
+        background-position: 87px 16px, 99px 192px;
+        border-radius: 30px 30px 0 0;
+      }
+      ul .yj {
+        border-radius: 0 0 30px 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <ul>
+        <li class="tp">
+          <img src="../images/排行榜.png" width="372px" height="247px" />
+        </li>
+        <li>兄妹——陈奕迅</li>
+        <li>那么骄傲——金海心</li>
+        <li>在你的身边——盛哲</li>
+        <li>普通朋友——陶喆</li>
+        <li class="yj">你——林依晨</li>
+      </ul>
+    </div>
+  </body>
+</html>

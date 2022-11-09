@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Father {
+        constructor() {}
+        money() {
+          console.log("100");
+        }
+      }
+      class Son extends Father {}
+
+      var son = new Son();
+      son.money();
+      //   类的继承 ， 子类使用父类的方法
+
+      class F {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+        sum(x, y) {
+          console.log(this.x + this.y); //此项的this指向为 父类F
+        }
+      }
+      class S extends F {
+        constructor(x, y) {
+          super(x, y); //super 将参数从子类 S 往 F父类 传导，调用的为父类的构造函数，所以能使用sum的this指向运算
+        }
+      }
+      var s = new S(1, 2);
+      s.sum();
+    </script>
+  </body>
+</html>
