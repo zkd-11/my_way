@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function Star(name, age) {
+        this.name = name;
+        this.age = age;
+        // this.sing = function () {
+        //   console.log("唱歌");};  内存浪费每次创建对象时均需重新开辟空间存储方法
+        // 放于原型中 ->  共享方法
+      }
+      Star.prototype.sing = function () {
+        console.log("唱歌！");
+      };
+
+      Star.prototype = {
+        // 此花括号相当于 将原本prototype，重写 ，失去了原本constructor指向，需要手动指向自身
+        constructor: Star,
+        sing: function () {
+          console.log("唱歌！");
+        }, //方法间 属性隔开
+        movie: function () {
+          console.log("演戏！");
+        },
+      };
+
+      var ldh = new Star("刘德华", 45);
+      /*
+        1. 实例成员就是构造函数内部通过this添加的成员 name age sing就是实例成员
+          实例成员只能通过实例化的对象来访问
+      */
+
+      console.log(ldh.name);
+      //  console.log(Star.age); 不可通过构造函数访问实例成员
+      //  2. 静态成员在构造函数身上添加的成员 为静态成员
+      Star.sex = "男";
+      // 静态成员只能通过构造函数访问
+      console.log(Star.sex);
+      console.log(ldh.sex); // 不能通过对象来访问
+      ldh.sing();
+      //   对象中的 __proto__ 属性（系统自动生成）指向构造函数的原型
+
+      console.log(Star.prototype);
+      console.log(ldh.__proto__);
+      //  原型中的 constructor 指向构造函数本身
+
+      //   原型对象也具备 __proto__,指向为 object.prototypr, object.prototye.__proto__为空，最顶层，原型链
+    </script>
+  </head>
+  <body></body>
+</html>

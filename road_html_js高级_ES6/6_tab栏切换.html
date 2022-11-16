@@ -5,22 +5,90 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      body {
+        width: 1000px;
+      }
+      .tabsbox {
+        border: 1px solid rgba(79, 199, 220, 0.873);
+        height: 400px;
+      }
+      h4 {
+        text-align: center;
+      }
+      ul li {
+        margin: 0px;
+        padding: 0px;
+        text-decoration: none;
+        list-style: none;
+        display: block;
+        float: left;
+        margin-right: 30px;
+        border: 1px solid rgb(62, 134, 139);
+        line-height: 40px;
+        /* width: 60px;
+        height: 40px; */
+        text-align: center;
+      }
+      .tabadd {
+        float: right;
+        width: 25px;
+        height: 23px;
+        border: 5px solid peachpuff;
+        margin-right: 20px;
+      }
+      .tabadd:hover {
+        background-color: rgb(157, 215, 242);
+      }
+      .tabadd span {
+        display: block;
+        float: right;
+        margin-right: 6px;
+        /* border: 5px solid peachpuff; */
+        line-height: 23px;
+      }
+      .tabscon {
+        margin-top: 80px;
+        /* height: 65px; */
+        height: 300px;
+        border: 7px pink solid;
+        overflow: hidden;
+      }
+      .conactive {
+        border: 10px rgb(85, 234, 164) solid;
+        overflow: hidden;
+      }
+      section {
+        border: 10px rgb(189, 115, 238) solid;
+        display: inline-block;
+        margin: 50px;
+      }
+
+      .liactive {
+        background-color: skyblue;
+      }
+
+      .iconfont icon-guanbi {
+        margin-top: 0px;
+        line-height: 0px;
+      }
+    </style>
   </head>
   <body>
     <main>
       <h4>js 面向对象 动态添加标签页</h4>
       <div class="tabsbox" id="tab">
         <!-- tab标签 -->
-        <nav id="firstnav">
+        <nav class="firstnav">
           <ul>
             <li class="liactive">
-              <span>测试1</span><span class="iconfont icon-guanbi"></span>
+              <span>测试1</span><span class="icon-guanbi"> x&nbsp;</span>
             </li>
             <li>
-              <span>测试2</span><span class="iconfont icon-guanbi"></span>
+              <span>测试2</span><span class="icon-guanbi"> x&nbsp; </span>
             </li>
             <li>
-              <span>测试3</span><span class="iconfont icon-guanbi"></span>
+              <span>测试3</span><span class="icon-guanbi"> x&nbsp; </span>
             </li>
           </ul>
           <div class="tabadd">
@@ -30,7 +98,7 @@
 
         <!-- tab 内容 -->
         <div class="tabscon">
-          <section id="conactive">测试1</section>
+          <section class="conactive">测试1</section>
           <section>测试2</section>
           <section>测试3</section>
         </div>
