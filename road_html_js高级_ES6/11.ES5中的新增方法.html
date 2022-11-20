@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // forEach 迭代(遍历) 数组
+      var arr = [1, 2, 3];
+      var sum = 0;
+      arr.forEach(function (value, index, array) {
+        console.log("数组本身" + value);
+        console.log("每个数组元素的索引号" + index);
+        console.log("数组本身" + array);
+        sum += value;
+      });
+      console.log(sum);
+
+      /* filter 筛选数组 , 返回一个新数组 */
+      var arr = [12, 84, 22, 8];
+      var newArr = arr.filter(function (value) {
+        return value % 2 === 0;
+      });
+      console.log(newArr);
+
+      /* 检测数组元素是否满足指定条件 , 返回布尔值 
+            找到第一个即返回
+      */
+      var flag = arr.some(function (value) {
+        return value % 2 === 0;
+      });
+      console.log(flag);
+
+      var arr1 = ["red", "pink", "blue"];
+      var flag1 = arr1.some(function (value) {
+        return value == "pink";
+      });
+
+      console.log(flag1);
+    </script>
+  </head>
+  <body></body>
+</html>

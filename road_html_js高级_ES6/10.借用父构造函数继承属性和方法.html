@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function Father(uname, age) {
+        //晕this指向父构造函数
+        this.uname = uname;
+        this.age = age;
+      }
+      Father.prototype.money = function () {
+        console.log(100000);
+      };
+      // 子构造函数
+      function Son(uname, age, score) {
+        Father.call(this, uname, age);
+        this.score = score;
+      }
+      //   Son.prototype = Father.prototype; 直接赋值有问题，son.prototype指向为父原型，修改父原型发生变化
+      Son.prototype = new Father();
+      // 将父函数 构造一个对象 赋值给 Son的protype属性，通过实例对象的__proto__ 访问父元素的方法
+
+      // 利用对象形式修改原型对象,需要将constructor 指回原本的原型对象
+      Son.prototype = Son;
+      Son.prototype.exam = function () {
+        console.log("修炼十年");
+      };
+      var son = new Son("韩绝", 18, 100);
+      console.log(Father.prototype);
+      console.log(son);
+    </script>
+  </head>
+  <body></body>
+</html>
