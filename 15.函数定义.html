@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn() {
+        var fun = function () {};
+      }
+      var fun = function () {};
+
+      // 利用 new Function("参数1 ", "参数2"，"函数体");
+      var f = new Function("a", "b", "console.log(a+b)");
+      f(1, 2); // 所有函数 都是 Function 的实例
+    </script>
+  </body>
+</html>

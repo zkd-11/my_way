@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 600px;
+        margin: 0px auto;
+        margin-top: 20px;
+      }
+      table {
+        margin: 40px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search">
+      按照价格查询：<input type="text" class="start" /> --
+      <input type="text" class="end" />
+      <button class="search-price">搜索</button>
+      <br />
+      按照商品名词查询：<input type="text" class="product" />
+      <button class="search-pro">查询</button>
+      <br />
+      <button class="reset">重置查询</button>
+    </div>
+
+    <table
+      border="1px"
+      cellspacing="0px"
+      cellpadding="10px"
+      align="center"
+      width="250px"
+    >
+      <thead bgcolor="aqua">
+        <tr>
+          <th>id</th>
+          <th>产品名词</th>
+          <th>价格</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <!-- 利用新增数组方法操作数据 -->
+    <script>
+      var data = [
+        {
+          id: 1,
+          pname: "小米",
+          price: 3999,
+        },
+        {
+          id: 2,
+          pname: "oppo",
+          price: 999,
+        },
+        {
+          id: 3,
+          pname: "荣耀",
+          price: 1299,
+        },
+        {
+          id: 4,
+          pname: "华为",
+          price: 1999,
+        },
+      ];
+
+      //   获取响应的元素
+      var tbody = document.querySelector("tbody");
+      var search_price = document.querySelector(".search-price");
+      var start = document.querySelector(".start");
+      var end = document.querySelector(".end");
+      var reset = document.querySelector(".reset");
+      //    产品名词查询
+      var search_pro = document.querySelector(".search-pro");
+      var product = document.querySelector(".product");
+      //   初始要调用 函数，显示body的内容
+      setData(data);
+
+      function setData(mydata) {
+        mydata.forEach(function (value) {
+          var tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" +
+            value.id +
+            "</td>" +
+            "<td>" +
+            value.pname +
+            "</td>" +
+            "<td>" +
+            value.price +
+            "</td>";
+          tbody.appendChild(tr);
+        });
+      }
+      /*
+           3. 根据价格查询商品
+               当我们点击了按钮，根据价格筛选数组内对象
+         */
+      search_price.addEventListener("click", function () {
+        var newData = data.filter(function (value) {
+          return value.price >= start.value && value.price <= end.value;
+        });
+        tbody.innerHTML = "";
+        setData(newData);
+      });
+      reset.addEventListener("click", function () {
+        tbody.innerHTML = "";
+        setData(data);
+      });
+
+      //   根据商品名找商品
+      //   search_pro.addEventListener("click", function () {
+      //     var newData = data.filter(function (value) {
+      //       return value.pname == product.value;
+      //     });
+      //     tbody.innerHTML = "";
+      //     setData(newData);
+      //   });
+
+      /* 
+        根据商品名称查找商品
+            如果查询数组唯一的元素，用some
+                找到第一个满足答案时，即停止，效率更高 
+    */
+      search_pro.addEventListener("click", function () {
+        var arr = [];
+        data.some(function (value) {
+          if (value.pname === product.value) {
+            arr.push(value);
+            return true; // some 中return true 为返回正确，找到该元素
+            // 如在 foreach filter 写 return true, 不会停止遍历
+          }
+        });
+        tbody.innerHTML = "";
+        setData(arr);
+      });
+    </script>
+  </body>
+</html>

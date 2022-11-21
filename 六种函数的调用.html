@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  1. 普通函数
+      function fn() {
+        console.log("修仙届");
+        console.log(this); // 由window 执行， this 指向window
+      }
+      fn();
+
+      // 2. 对象的方法
+      var o = {
+        sayHi: function () {
+          console.log("修仙届");
+        },
+      };
+      o.sayHi();
+
+      // 3.构造函数
+      function Star() {}
+      new Star();
+      var ldh = new Star(); // ldh 中 this 指向刘德华
+      // 4. 绑定事件
+      //  btn.obclick = function(){} 点击调用  this 指向 btn
+
+      // 5. setInterval(function(){} , 1000); 该定时器自动1秒钟调用一次
+      // 6. 立即执行函数
+      (function () {
+        console.log("韩绝苟修");
+      })();
+      // 立即函数为自动调用  this 指向为window
+    </script>
+  </body>
+</html>

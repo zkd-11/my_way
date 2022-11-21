@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        id: 1,
+        pname: "小米",
+        price: 3999,
+      };
+
+      // 将对象属性 返回为数组
+      Arr = Object.keys(obj);
+      console.log(Arr);
+
+      //   对象名， '属性值' { value: 值}
+      //   defineProperty () 定义新属性或修改原有的属性
+      Object.defineProperty(obj, "num", {
+        value: 1000,
+        // 用此方法 默认定义新属性 默认存在ennumerable 默认为false
+        enumerable: true,
+      });
+
+      Object.defineProperty(obj, "price", {
+        value: 99,
+      });
+
+      Object.defineProperty(obj, "id", {
+        writable: false, // 该值不可被重写 修改无效
+      });
+      console.log(obj);
+
+      Object.defineProperty(obj, "address", {
+        value: "修仙界",
+        writable: false,
+        enumerable: false, // 默认不被遍历
+        configurable: false, //目标属性是否被删除或再次修改特性(指对该属性的 writable enumerable configurable 再次修改 )
+      });
+      console.log(obj);
+      console.log(Object.keys(obj));
+
+      delete obj.address;
+      console.log(obj);
+    </script>
+  </body>
+</html>

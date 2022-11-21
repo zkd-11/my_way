@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <span class="s1"></span>
+    <button>点击发送验证码</button>
+    <script>
+      // 改变js的this指向 js 提供了三种方法： call() applu() bing()
+      function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      var o = { name: "韩绝" };
+      //  call 改变this 指向
+      fn.call(o, 1, 2);
+
+      function Father(uname, age, sex) {
+        this.uname = uname;
+        this.sex = sex;
+        this.age = age;
+      }
+      function Son(uname, age, sex) {
+        Father.call(this, uname, age, sex); // call也可用于继承， 子类继承父类
+      }
+      var son = new Son("韩绝", 18, "男");
+      console.log(son);
+
+      function f() {
+        console.log(this);
+      }
+      f.apply(o);
+      /*
+        1. 调用函数， 第二个改变函数内部的this 指向
+        2. 参数必须是数组（伪数组  ）
+        3. apply 的主要应用 可利用 apply 借助数学内置对象求最大值
+      */
+      var arr = [1, 22, 77, 88];
+      var max = Math.max.apply(Math, arr); //将 arr传递给Math  对象
+      console.log(max);
+      min = Math.min.apply(Math, arr);
+      console.log(min);
+
+      var f = fn.bind(o, 1, 2);
+      f();
+      /*
+        1. 不会调用函数  可以改变原来函数的指向
+        2. 返回的是原函数改变 this之后产生的新函数， 返回拷贝后的原函数
+        3. 如果有的函数不需要立即调用，但是想改变函数的指向用 bind
+
+        4. 按钮，点击之后，禁用此按钮3秒   30s验证码
+        */
+
+      var btn = document.querySelector("button");
+      var s1 = document.querySelector(".s1");
+      btn.onclick = function () {
+        var i = 3;
+        var timer = setInterval(function timego() {
+          btn.innerHTML = i;
+          console.log(i);
+          i--;
+
+          if (i == 0) {
+            btn.innerHTML = "点击发送验证码";
+            clearInterval(timer);
+          }
+        }, 1000);
+        this.disabled = true; //this指向btn
+        // var that = this; 之前改变this指向可 赋值 给that, 再将由window执行的函数中的this改为that指向btn
+        setInterval(
+          function () {
+            this.disabled = false;
+          }.bind(this),
+          3000
+        ); // bind 指向btn
+        console.log(s1);
+      };
+    </script>
+  </body>
+</html>
