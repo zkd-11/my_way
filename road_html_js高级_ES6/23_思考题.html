@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // 案例 1
+      var name = "window";
+      var object = {
+        name: "obj",
+        getNameFunc: function () {
+          return function () {
+            return this.name;
+          };
+        },
+      };
+      console.log(object.getNameFunc()());
+
+      // 相当于返回了 一个 立即执行函数， this指向window
+
+      //   案例2;
+      var name = "window";
+      var object = {
+        name: "obj",
+        getNameFunc: function () {
+          var that = this;
+          return function () {
+            return that.name; //有闭包的存在， 访问了局部变量
+          };
+        },
+      };
+      console.log(object.getNameFunc()());
+    </script>
+  </body>
+</html>

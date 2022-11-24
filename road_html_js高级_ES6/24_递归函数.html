@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!--  递归函数 自己调用自己 -->
+    <script>
+      var num = 1;
+      function fn() {
+        console.log("韩绝苟修111~");
+        if (num == 6) {
+          return; // 加入退出文件
+        }
+        num++;
+        fn();
+      }
+      //   fn();
+
+      //   var n = prompt("请输入一个整数:");
+      //   利用递归函数计算1~n 的阶乘
+      function fn(n) {
+        while (n < 0 || n != Number) {
+          var n = prompt("请重新输入一个整数:");
+        }
+        if (n == 1) {
+          return 1;
+        }
+        return n * fn(n - 1);
+      }
+      //   console.log(fn(n));
+
+      // 斐波那契数列(兔子数列)
+
+      function fb(n) {
+        if (n == 1 || n == 2) {
+          return 1;
+        }
+        return fb(n - 1) + fb(n - 2);
+      }
+      console.log(fb(6));
+    </script>
+  </body>
+</html>

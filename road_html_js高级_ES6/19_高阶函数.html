@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+
+  <!-- 
+        jQuery CDN来源
+        https://www.runoob.com/jquery/jquery-install.html
+        
+        什么是 jQuery ？
+            jQuery 是一个 JavaScript 函数库。
+            jQuery 是一个轻量级的"写的少，做的多"的 JavaScript 库。
+            jQuery 库包含以下功能：
+            HTML 元素选取
+            HTML 元素操作
+            CSS 操作
+            HTML 事件函数
+            JavaScript 特效和动画
+            HTML DOM 遍历和修改
+            AJAX
+            Utilities
+            提示： 除此之外，jQuery 还提供了大量的插件。
+     -->
+
+  <body>
+    <div></div>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      // 高阶函数： 对其他函数进行操作， 将接受函数作为参数或 将函数作为返回值输出，典型如 回调函数
+      setTimeout(function () {
+        $("div").animate(
+          {
+            left: 500,
+          },
+          function () {
+            $("div").css("backgroundColor", "skyblue");
+            $("div").css("width", "50");
+            $("div").css("height", "50");
+          }
+        );
+      }, 3000);
+    </script>
+  </body>
+</html>

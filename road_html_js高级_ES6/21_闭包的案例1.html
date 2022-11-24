@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <ul class="nav">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+    <script>
+      // 闭包应用： 点击 Li输出当前li的序列号
+      // 1. 动态添加属性的方式
+      var lis = document.querySelector(".nav").querySelectorAll("li");
+      //   for (var i = 0; i < lis.length; i++) {
+      //     lis[i].index = i;
+      //     for (var i = 0; i < lis.length; i++) {
+      //       lis[i].onlick = function () {
+      //         console.log(this.index);
+      //       };
+      //     }
+      //   }
+
+      //   闭包使用
+      for (var i = 0; i < lis.length; i++) {
+        //   利用for循环 创建4个 立即执行函数
+        (function (i) {
+          // onclick 绑定的函数 使用的 i参数 为 外部所传进来的 i值
+          lis[i].onclick = function () {
+            console.log(i); // i 参数使用的为另一个函数所使用的 i值
+          };
+        })(i);
+      }
+
+      //   闭包使用后 打印所有 Li元素的内容
+      for (var i = 0; i < lis.length; i++) {
+        //   利用for循环 创建4个 立即执行函数
+        (function (i) {
+          setTimeout(function () {
+            console.log(lis[i].innerHTML);
+          }, 3000);
+        })(i);
+      }
+    </script>
+  </body>
+</html>

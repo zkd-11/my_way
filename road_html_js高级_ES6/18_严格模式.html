@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--  IE 10以上 -->
+    <!-- 严格模式 处理js一些不严谨的地方 -->
+    <script>
+      "use strict";
+    </script>
+
+    <script>
+      (function () {
+        "use strict";
+      })(); //匿名执行函数， 执行严格模式
+    </script>
+
+    <script>
+      function fn() {
+        "use strict";
+      }
+
+      function fun() {
+        // 未写 strict 按照普通模式执行
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 浅拷贝 相当于 拷贝地址， 修改拷贝后的值会改变原本值
+
+      var obj = {
+        id: 1,
+        name: "andy",
+        msg: { age: 18 },
+      };
+      var o = {};
+      // for (var k in obj) {
+      //     // k 为属性名 obj[k] 属性值
+      //     o[k] = obj[k]; //  浅拷贝
+      // }
+      // 等价于下面
+      //   Object.assign(o, obj); //将 obj 浅拷贝为 o
+
+      //   console.log(o);
+      //   o.msg.age = 20;
+      //   console.log(obj);
+
+      //   封装函数
+      function deepCopy(newobj, oldobj) {
+        for (var k in oldobj) {
+          // 1.获取属性值
+          var item = oldobj[k];
+          //   判断是否属于数组，开辟空间 重新赋值
+          if (item instanceof Array) {
+            newobj[k] = [];
+            deepCopy(newobj[k], item);
+          }
+          //   判断是否属于 对象
+          else if (item instanceof Object) {
+            newobj[k] = {};
+            deepCopy(newobj[k], item);
+          }
+          //   简单属性 直接赋值
+          else {
+            newobj[k] = item;
+          }
+        }
+      }
+      deepCopy(o, obj);
+      console.log(o);
+      o.msg.age = 22;
+      console.log(obj);
+    </script>
+  </body>
+</html>
