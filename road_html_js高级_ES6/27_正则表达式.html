@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .right {
+        color: rgb(36, 255, 2);
+      }
+
+      .false {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" class="uname" /><span>请输入用户名</span>
+    <script>
+      // 两种创建正则表达式的方法
+      // 1. RegExp 对象创建
+      var regexp = new RegExp(/123/);
+      // 2.使用字面量创建
+      var reg = /123/;
+      flag = reg.test("abc");
+      console.log(flag);
+
+      //   正则表达式内的不需要加引号
+
+      // 边界符： ^ 整个正则表达式，表示开头， 结尾也表示整个正则表达式
+      //   如 /^abc$/  表示以 abc开头， abc结尾  精确匹配
+      a = "abc"; // 为满足条件
+      a = "abcabc"; //不满足
+
+      /* 
+            字符类： [] , 一系列的字符可供选择，只需匹配当中一项即可
+            /[abc]/  只要包含三者之一返回true
+            /[^abc$]/  只能有三者之一 返回true
+            字符内： [^a] 表示取反  
+      */
+
+      /* 
+            量词符  
+                * 0-n次
+                +  >= 1次
+                ？ 0 或 1 
+                {n}  只能出现n次
+                {n,}  大于等于n次
+                {n,m}  出现 n-m 次
+                */
+
+      var uname = document.querySelector(".uname");
+      var span = document.querySelector("span");
+      // 用户账户限制
+      reg1 = /^[a-zA-Z0-9_-]{3,9}$/; //量词中间不能含有空格
+      //   console.log(reg1.test("abc12312_"));
+      uname.onblur = function () {
+        if (reg1.test(this.value)) {
+          span.className = "right";
+          span.innerHTML = "用户输入正确";
+        } else {
+          span.className = "false";
+          span.innerHTML = "请输入正确的用户名";
+        }
+      };
+      /* 
+            括号总结
+             {} 量词符  [] 字符集合 小括号 表示优先级
+      */
+      /* 
+        预定义符
+            \d  1-9
+            \D 非 1-9
+            \w  匹配 字母 0-9_
+            \W 非\w
+            
+     */
+
+      /* 
+        座机号码验证： 全国座机  010-12345678 0100-1234567
+            前3 - 后 8  前3 - 后 7
+          | 或者 用单竖线 
+    
+            */
+
+      var reg = /^\d{3}-\d{8}|\d{4}-\d{7}$ /;
+      var reg = /^\d{3,4}-\d{7,8}$/;
+    </script>
+  </body>
+</html>
