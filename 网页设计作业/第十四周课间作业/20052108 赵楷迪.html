@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<form action="">
+  账号:
+  <input type="text" name="username" pattern="^[a-zA-Z][a-zAZ0-9_-]{4,15}" />
+  (以字母开头，允许5-16字节，允许字母数字下划线)
+  <br />
+  密码:<input type="text” name= "pwd" pattern="^[a-zA-Z][a-zAZ0-9_-]{5,17}"
+  >(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)
+  <br />
+  身份证号:<input type="text”name="username"
+  pattern="^[1-9]\d{13}[1-9X]|[1-9]\d{16}[1-9X]$">(15位、18位数字)<br />
+
+  <input type="submit" />
+</form>
