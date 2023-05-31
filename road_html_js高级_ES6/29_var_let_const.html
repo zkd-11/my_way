@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [];
+      var i;
+      for (let i = 0; i < 10; i++) {
+        arr[i] = function () {
+          return i;
+        };
+      }
+      console.log(i);
+      console.log(arr[5]());
+
+      class People {
+        name;
+        age;
+      }
+      //   const 可修改对象的内部属性， 其指向的定制无法被修改,
+      const p = new People();
+      p.age = 20;
+      p.name = "John";
+      console.log(p);
+
+      const q = new People();
+      p = q; //指向无法被改变
+      console.log(p);
+      
+    </script>
+  </body>
+</html>
