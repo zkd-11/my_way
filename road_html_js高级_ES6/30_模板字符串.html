@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模板字符串</title>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script>
+      //使用方式： 使用反引号 + 变量时使用 ${变量名}
+      const oBox = document.querySelector(".box");
+      const id = 1;
+      const name = "韩绝";
+      let htmlStr = ` 
+      <ul>
+      <li>
+        <p id = ${id} > ${name} </p>
+      </li>
+        </ul>`;
+      oBox.innerHTML = htmlStr;
+    </script>
+  </body>
+</html>

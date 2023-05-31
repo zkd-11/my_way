@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // es5
+      function add(a, b) {
+        a = a || 10;
+        b = b || 20;
+        return a + b;
+      }
+      console.log(add()); // 未赋值时， 有默认值
+
+      //   es6， 形参赋值时代表默认值
+      function add6(a = 10, b = 22) {
+        return a + b;
+      }
+      console.log(add6(12));
+      //  按顺序分配值， 此时a已被重新赋值，但b未被赋值，结果为 34
+
+      //   默认的表达式可以为一个函数
+      function addh(a = 11, b = getVal(5)) {
+        return a + b;
+      }
+      function getVal(val) {
+        return val + 5;
+      }
+      console.log(addh(1)); //返回值为16
+
+      //   剩余参数 es5
+
+      let book = {
+        title: "es教学",
+        author: "韩绝",
+        year: 2000,
+      };
+
+      function pick(obj) {
+        let result = Object.create(null);
+        // 获得对象所具有的所有实参， arguments
+        console.log(obj);
+        for (var i = 1; i < arguments.length; i++) {
+          result[arguments[i]] = obj[arguments[i]];
+        }
+        return result;
+      }
+      // 要获取书除了名字的其它属性,es5 为类似手动的形式，获取对象
+      // 再按照实际需求去进行遍历所得，有局限性， 传参无效性，所得与所获容易出错性
+      let bookData = pick(book, "author", "year");
+      console.log(bookData);
+
+      //剩余参数， 与所传参数有关, ...定义参数名, 参数名不能与argumments起冲突，会导致内部语句赋值出错
+
+      //   当仅有一个参数时，剩余参数表示所有未传递的参数
+      function pickSy(obj, ...keys) {
+        let result = Object.create(null);
+        console.log(obj);
+        console.log(keys);
+        for (var i = 0; i < keys.length; i++) {
+          result[keys[i]] = obj[keys[i]];
+        }
+        return result;
+      }
+
+      let bookData1 = pickSy(book, "author", "year");
+      console.log(bookData1);
+    </script>
+  </body>
+</html>

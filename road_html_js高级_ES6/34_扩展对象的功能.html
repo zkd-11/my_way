@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const name = "韩绝";
+      age = "20";
+      const person = {
+        name, // 等价于 name:name,直接将外部的name赋值进内部
+        age,
+        sayName() {
+          console.log(this.name);
+        },
+      };
+      person.sayName;
+
+      function fn(x, y) {
+        return { x, y };
+      } //返回一个对象
+      console.log(fn("这是属性", 20));
+
+      let cart = {
+        wheel: 4,
+        set(newVal) {
+          if (newVal < this.wheel) {
+            throw new Error("轮子数量不足");
+          } else {
+            console.log("轮子数量充足");
+          }
+        },
+        get() {
+          return this.wheel;
+        },
+      };
+
+      console.log(cart.set(4));
+      console.log(cart.get());
+
+      const obj = {};
+      obj.isSHow = true;
+      const oname = "a";
+      obj[oname + "bc"] = 111; //属性名拼接 等价于 obj.abc = 111
+      obj.fbc = () => {
+        console.log(this); //返回的为windonw
+      };
+      console.log(obj.fbc());
+      console.log(obj.abc);
+      console.log(obj);
+
+      /* 
+        等价于
+        console obj{
+            isShow = true,
+            oname = "a",
+            abc = 111,
+            fbc = ()=>{ console.log(this);}
+        }
+      */
+
+      // 对象的方法
+      // is() 用此方法比较 两个NAN是否相等， 会考虑其特殊性放回true,可理解为类型相等，性质相等的两个数
+      // 严格相等  ===
+      console.log(NaN === NaN); //返回false
+      console.log(Object.is(NaN, NaN));
+
+      //对象的合并 assign(target, obj1, obj2, ...) 将参数中目标对象 后全部对象合并到目标对象
+      //返回对象类型取决为合并时指向的目标对象
+      let newobj = Object.assign({}, { a: "属性" }, { b: 11, c: "a" });
+      console.log(newobj);
+    </script>
+  </body>
+</html>

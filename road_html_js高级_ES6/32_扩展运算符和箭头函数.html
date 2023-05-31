@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [1, 2, 3, 4, 50, 20];
+      console.log(Math.max.apply(null, arr));
+
+      // es6 扩展运算法更方便
+      console.log(Math.max(...arr));
+
+      //es5写法
+      let add = function (a, b) {
+        return a + b;
+      };
+
+      // 箭头函数 （）=> {}
+      let addJt = (a, b) => {
+        return a + b;
+      };
+      console.log(addJt(22, 18));
+      /* 当仅有一个参数时 */
+      let addJt1 = (a) => a + 5;
+      console.log(addJt1(22));
+      // 一个参数返回值为单个时
+      let addJt2 = (a) => a - 1;
+      console.log(addJt2(22));
+      //   无参数要保留括号
+
+      let getObj = (id) => {
+        return {
+          id: id,
+          name: "韩绝",
+        };
+      };
+      let obj = getObj(1);
+      console.log(obj);
+
+      //   闭包函数, 自执行函数， 返回一个内部的匿名函数，并将该函数赋值给变量fn
+      let fn = (function () {
+        return function () {
+          console.log("hello");
+        };
+      })();
+      fn();
+      //   箭头函数
+
+      let fn1 = (() => () => {
+        console.log("hello");
+      })();
+      fn1();
+
+      //   箭头函数处理this指向
+      let PageHandle = {
+        id: 123,
+        init: function () {
+          document.addEventListener(
+            "click",
+            function (event) {
+              console.log(this);
+              this.dosomeThings(event.type);
+            }.bind(this),
+            false
+          );
+          // bind在此刻作用绑定为PageHandlezhege
+          // 如不加则绑定为 document,没有dosomething这个方法
+        },
+        dosomeThings: function (type) {
+          console.log(`事件类型:${type},当前id:${this.id}`);
+        },
+      };
+      PageHandle.init();
+
+      // 箭头函数没有this指向， 箭头函数内部this值只能通过查找作用域来确定
+      // 一旦使用箭头函数，this指向就是上一层指向而非上下文对象指向
+      PageHandle = {
+        id: 123,
+        init: function () {
+          document.addEventListener(
+            "click",
+            (event) => {
+              console.log(this);
+              this.dosomeThings(event.type);
+            },
+            false
+          );
+          // bind在此刻作用绑定为PageHandlezhege
+          // 如不加则绑定为 document,没有dosomething这个方法
+        },
+        dosomeThings: function (type) {
+          console.log(`事件类型:${type},当前id:${this.id}`);
+        },
+      };
+      PageHandle.init();
+    </script>
+  </body>
+</html>

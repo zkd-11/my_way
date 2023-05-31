@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let node = {
+        type: "iden",
+        name: "f",
+      };
+      // es5
+      // let type = node.type;
+      // let name = node.name;
+
+      // es6解构
+      let { type, name } = node;
+      console.log(type, name);
+
+      let obj = {
+        a: { name: "韩绝" },
+        b: [],
+        c: "hello",
+      };
+      // 不完全解构 需要对应
+      var { a, c } = obj;
+      console.log(a, c);
+
+      // 剩余运算符
+      var { a, ...r } = obj;
+      console.log(r);
+
+      // 对数组解构, 将分割元素
+      let arr = [1, 2, 3];
+      var [a, b, c] = arr;
+      //   var [ ...ar ] = arr;
+      //   console.log(ar);
+      console.log(a, b, c);
+
+      // 嵌套
+      var [a, b, c] = [1, [2], 3];
+      console.log(a, b, c);
+    </script>
+  </body>
+</html>
