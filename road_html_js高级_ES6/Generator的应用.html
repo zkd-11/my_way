@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>generator生成器的应用</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <script>
+
+    </script>
+
+    <script>
+      /*
+          generator 部署ajax操作，让异步代码同步化
+      */
+      function loadUI() {
+        console.log("加载loading..页面");
+      }
+      function showData() {
+        setTimeout(function () {
+          console.log("数据加载完成");
+          itload.next();
+        }, 1000); //定时器，调用该函数后1秒后执行代码
+      }
+      function hideUi() {
+        console.log("隐藏hiding..页面");
+      }
+      // 通过生成器的方式将异步代码同步化，下面生成器模拟实际请求应用
+      function* load() {
+        loadUI();
+        yield showData();
+        hideUi();
+      }
+
+      let itload = load();
+      itload.next();
+    </script>
+  </body>
+</html>
