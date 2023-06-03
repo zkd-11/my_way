@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const name = Symbol("name");
+      const name1 = Symbol("name");
+      console.log(name == name1);
+      //返回不相等， 因为比对的为name是否一致，由于symbol定义后两者处于不同的空间，独一无二
+      // 返回false;
+      let s1 = Symbol("s1");
+      let obj = {
+        [s1]: "韩绝", // 使用symbol后，该属性值变为obj私有属性，外界无法访问或修改
+      };
+
+      console.log(obj[s1]); //访问时需要使用到[]， 访问不出，不被外界访问
+      //使用以下方法后，返回为1个数组
+      let ss1 = Object.getOwnPropertySymbols(obj);
+      console.log(ss1);
+      let ss2 = Reflect.ownKeys(obj);
+      console.log(ss2);
+    </script>
+  </body>
+</html>

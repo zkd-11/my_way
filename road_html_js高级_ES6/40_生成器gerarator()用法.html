@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生成器Generator</title>
+  </head>
+  <body>
+    <script>
+      /*
+        generator函数， 可通过yield关键字，将函数挂起
+            为了改变执行流提供了可能，同时为了做异步编程提供了方法
+        与普通函数的区别：
+            1. function 后面 函数名前 有 *
+            2. 只能在函数内部使用 yield表达式， 让函数挂起
+                yield x 为函数断点位置
+     */
+
+      function* func() {
+        console.log("start");
+        yield 22; //此值作为返回对象的value值
+        console.log("one");
+        yield 2;
+        console.log("two");
+        yield 3;
+        console.log("end"); //当next调用至此步时， done返回true表示遍历完成
+      }
+      // 返回一个遍历器对象， 可以调用next()
+      let fn = func();
+      console.log(fn.next());
+      console.log(fn.next());
+      console.log(fn.next());
+      console.log(fn.next());
+
+      //总结： generator  函数为分段执行， yield语句为暂停执行，断点位置，next()恢复执行到下一个yield语句
+
+      console.log("------------");
+      function* add() {
+        console.log("start");
+        let x = yield "2";
+        // 这句表示yield的返回值为2， 但并不将此值赋值，赋值应为下一次调用时所传入的参数
+        console.log("one: " + x);
+        let y = yield "3";
+        console.log("two: " + y);
+        console.log("total:  " + (x + y));
+        return x + y;
+      }
+      const fnA = add();
+      console.log(fnA.next());
+      console.log(fnA.next(11));
+      console.log(fnA.next(22)); //true
+
+      console.log("---------");
+      /*
+      给对象添加迭代器， 对元素进行遍历输出 
+        为不具备Interator 接口的对象提供了遍历操作
+      */
+      function* objectEntries(obj) {
+        //获取对象的所有key 保存到数组 [name,age]
+        const propKeys = Object.keys(obj);
+        //将可枚举数组元素返回为一个数组
+        for (const propkey of propKeys) {
+          yield [propkey, obj[propkey]];
+          //因为yield的存在 每次遍历只输出一对键值对
+        }
+      }
+
+      const obj = {
+        name: "John",
+        age: 20,
+      };
+      console.log(obj);
+
+      obj[Symbol.iterator] = objectEntries;
+      console.log(obj);
+
+      //这段代码使用 for...of 循环遍历一个迭代器 entriesIterator
+      //  并将每次迭代得到的 [key, value] 对的内容分别赋值给变量 key 和 value，
+      for (let [key, value] of objectEntries(obj)) {
+        console.log(`${key}:"${value}"`);
+      }
+    </script>
+  </body>
+</html>

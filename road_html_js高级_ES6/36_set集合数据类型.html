@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // set 集合： 表示无重复值的有序列列表
+      let set = new Set();
+      // 添加元素
+      set.add(2);
+      set.add("3");
+      set.add("3");
+      set.add("1");
+
+      // 删除元素
+      set.delete(2); //删除为排序后的数据，为2
+      // 检验某个元素是否在集合内
+      console.log(set.has("3"));
+      console.log(set.size);
+      console.log(set);
+
+      //   z在set集合中， 键值和属性值相等，为同一个数据
+      set.forEach((val, key) => {
+        console.log(val), console.log(key);
+      });
+
+      //   set中对象的引用无法释放， 强引用（标记）
+      let set2 = new Set();
+      console.log(set2);
+
+      let obj = { test: "1" };
+      console.log(set2.size);
+
+      set2.add(obj);
+
+      console.log("----------释放前分割线---------");
+      // 将obj释放后，obj被set添加进集合时，强引用会阻止释放
+      //   obj = null; // 由于被释放，set将其视为两个不同对象
+      console.log(set2);
+      console.log(set2.size);
+
+      //   weakSet
+      /* 
+      1. 不能传入非对象类型的参数
+      2. 不可迭代
+      3. 没有forEach()
+      4. 没有size属性
+    */
+      let set3 = new WeakSet(),
+        obj1 = {};
+      set2.add(obj1);
+      // 将obj1释放后，被Weakset添加进集合时，弱引用不会阻止释放
+      obj1 = null;
+      console.log(set3);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>from和of</title>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+    <script>
+      /*
+            数组方法 1. from()  2.  of(), from将数组转化成真正的数组
+            es5转化
+            let arr = [].slic.call(arguments);
+            console.log(arr);
+         */
+      function add() {
+        let arr = Array.from(arguments);
+        console.log(arr);
+      }
+
+      // 将传递的参数 arguments， 伪数组转化为 数组， es5的方式
+
+      add(1, 2, 3);
+      let lis = document.querySelectorAll("li");
+      console.log([...lis]); // 通过 剩余参数 遍历元素
+      //数组遍历
+      let liContents = Array.from(lis, (ele) => ele.textContent);
+      console.log(liContents);
+
+      //of 方法转化数组
+      let lio = Array.of(3, 11, (2)[(1, 2, 3)], "冲");
+      console.log(lio);
+
+      //3. copywithin() 数组内不将指定的元素复制到其他位置，并返回数组
+      //将元素索引3开始 从7到尾部， 7，8，9 三元素覆盖至0索引位置往后x个元素（与截取元素个数一致）
+      //最终显示结果为： 7，8，9， 7，8，9
+      console.log([1, 2, 3, 7, 8, 9].copyWithin(0, 3));
+
+      //4. find方法  找出条件符合的第一个元素及下标
+      let num = [1, 2, 3, -5, -6].find((n) => n < 0);
+      console.log(num);
+
+      let numIndex = [1, 2, 3, -5, 6].findIndex((n) => n < 0);
+      console.log(numIndex);
+
+      console.log("-------分割线------");
+
+      //5.  entries() keys() values() 返回一个遍历器， 可以使用 for of循环进行遍历
+
+      let arrT = ["a", "b", "c"];
+      for (let index of arrT.keys()) {
+        console.log(index);
+      }
+      for (let ele of arrT.values()) {
+        console.log(ele);
+      }
+      for (let [index, ele] of arrT.entries()) {
+        console.log([index, ele]);
+      }
+
+      let at = arrT.entries();
+      console.log(at.next().value);
+      console.log(at.next().value);
+      console.log(at.next().value);
+      console.log(at.next().value); //返回未定义
+
+      //6. includes() 返回一个布尔值， 表示某个数组是否包含给定值
+      console.log(arrT.includes("a"));
+      console.log(arrT.includes(1));
+
+      //indexof()
+      console.log(arrT.indexOf("1")); //返回-1， 因为数组不存在下标为字符1的元素
+    </script>
+  </body>
+</html>

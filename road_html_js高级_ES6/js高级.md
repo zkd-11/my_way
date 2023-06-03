@@ -314,4 +314,470 @@ greetPerson(); // 输出 "Hello, Bob!"
 
 
 
- 
+#  6.2 凌晨12点45
+
+## Smbol
+
+Symbol定义的类型为独一无二的值， 用来定义对象的私有变量，不可被其它对象定义或改值
+
+![image-20230602004542390](js高级.assets/image-20230602004542390.png)
+
+使用时需要加上[ ] ， 如图， 该属性在外界访问为隐形属性
+
+需用使用两个方法进行访问：
+
+-  Object.getownPropertySymbols(obj), 返回obj特有的属性
+-  Reflect.ownKeys(obj)
+
+
+
+## set和weakSet
+
+Set适用于需要存储任何类型的值，需要迭代器支持，并且不需要动态添加或删除元素的场景。而WeakSet适用于需要存储对象类型的值，需要动态添加或删除元素，并且不需要迭代器支持的场景
+
+
+
+>
+>
+>Set 和 WeakSet 都是 JavaScript 中的集合类型，用于存储唯一的值。它们的主要区别在于对值的引用和存储方式的不同。
+>
+>Set：
+>- Set 是一个可迭代的对象，它存储唯一的值，并按照插入顺序维护这些值。
+>- Set 中的值可以是任何类型，包括原始类型和对象引用。
+>- Set 中的值是唯一的，重复的值只会被存储一次。
+>- Set 提供了一系列的方法来操作和遍历集合，如 `add()`、`delete()`、`has()` 和 `forEach()`。
+>
+>以下是一个使用 Set 的示例：
+>
+>```javascript
+>const set = new Set();
+>set.add(1);
+>set.add(2);
+>set.add(3);
+>set.add(2); // 重复的值，不会被存储
+>
+>console.log(set.size); // 输出 3
+>
+>console.log(set.has(2)); // 输出 true
+>
+>set.forEach(value => {
+>  console.log(value);
+>});
+>```
+>
+>WeakSet：
+>- WeakSet 是一种特殊的集合类型，它只能存储对象引用。
+>- WeakSet 中的对象引用是弱引用，不会阻止被引用对象的垃圾回收。
+>- WeakSet 中的对象是唯一的，重复的对象引用不会被存储。
+>- WeakSet 不可迭代，没有提供类似 `forEach()` 的遍历方法。
+>
+>以下是一个使用 WeakSet 的示例：
+>
+>```javascript
+>const weakSet = new WeakSet();
+>const obj1 = {};
+>const obj2 = {};
+>const obj3 = {};
+>
+>weakSet.add(obj1);
+>weakSet.add(obj2);
+>weakSet.add(obj3);
+>weakSet.add(obj2); // 重复的对象引用，不会被存储
+>
+>console.log(weakSet.has(obj2)); // 输出 true
+>
+>weakSet.delete(obj1);
+>
+>console.log(weakSet.has(obj1)); // 输出 false
+>```
+>
+>需要注意的是，WeakSet 中的对象引用是弱引用，意味着如果没有其他地方引用该对象，它可能会被垃圾回收。因此，WeakSet 通常用于存储临时的、瞬时的对象引用，例如在特定上下文中临时跟踪对象，而不会阻止这些对象被垃圾回收。
+>
+>
+
+
+
+## `Object.getOwnPropertySymbols()` 方法和 `Reflect.ownKeys()` 方法
+
+>
+>
+>`Object.getOwnPropertySymbols()` 方法和 `Reflect.ownKeys()` 方法都是用于获取对象的属性信息，包括符号属性（Symbol）。
+>
+>1. `Object.getOwnPropertySymbols()` 方法：
+>   - `Object.getOwnPropertySymbols()` 方法返回一个数组，包含了指定对象自身的所有符号属性（Symbol）的属性键。
+>   - 这个方法只返回对象自身的符号属性，不包括继承的属性。
+>   - 使用示例：
+>     ```javascript
+>     const obj = {
+>       [Symbol("foo")]: "fooValue",
+>       [Symbol("bar")]: "barValue",
+>     };
+>         
+>     const symbols = Object.getOwnPropertySymbols(obj);
+>     console.log(symbols); // [Symbol(foo), Symbol(bar)]
+>     ```
+>
+>2. `Reflect.ownKeys()` 方法：
+>   - `Reflect.ownKeys()` 方法返回一个由目标对象自身的属性键组成的数组，包括字符串属性和符号属性（Symbol）。
+>   - 这个方法返回的是目标对象自身的所有属性键，不区分属性的类型。
+>   - 使用示例：
+>     ```javascript
+>     const obj = {
+>       [Symbol("foo")]: "fooValue",
+>       [Symbol("bar")]: "barValue",
+>       strProp: "stringValue",
+>     };
+>         
+>     const keys = Reflect.ownKeys(obj);
+>     console.log(keys); // [Symbol(foo), Symbol(bar), 'strProp']
+>     ```
+>
+>总结：
+>- `Object.getOwnPropertySymbols()` 方法返回对象自身的所有符号属性（Symbol）的属性键的数组。
+>- `Reflect.ownKeys()` 方法返回对象自身的所有属性键的数组，包括字符串属性和符号属性（Symbol）。
+>
+>需要注意的是，这两个方法都不会返回继承的属性，只返回对象自身的属性。如果需要获取继承的属性，可以使用 `for...in` 循环或 `Object.keys()` 方法。
+
+
+
+
+
+## for each(val, kye)
+
+>
+>
+>代码片段展示了对 Set 数据结构中的元素进行遍历并输出值和键的过程。`Set.forEach()` 方法用于遍历 Set 中的每个元素，并为每个元素执行回调函数。
+>
+>在你提供的代码中，`set` 是一个 Set 对象，然后使用 `set.forEach()` 方法进行遍历。回调函数接受两个参数 `val` 和 `key`，分别表示当前元素的值和键。在回调函数内部，通过 `console.log()` 分别输出 `val` 和 `key`。
+>
+>以下是代码的解析和示例：
+>
+>```javascript
+>set.forEach((val, key) => {
+>  console.log(val); // 输出当前元素的值
+>  console.log(key); // 输出当前元素的键
+>});
+>```
+>
+>在这个示例中，假设 `set` 是一个 Set 对象，包含多个元素。通过调用 `set.forEach()` 方法，遍历每个元素并执行回调函数。在回调函数内部，`val` 表示当前元素的值，`key` 表示当前元素的键（在 Set 中，值和键相等）。
+>
+>请注意，Set 对象是一种集合，它不像数组那样具有索引，因此遍历元素时没有确定的顺序。在使用 `set.forEach()` 方法时，元素的顺序是根据 Set 内部的实现决定的，并不能保证顺序一致。如果需要有序的遍历，可以将 Set 转换为数组，然后使用数组的遍历方法，例如 `Array.from(set).forEach()` 或 `Array.from(set).forEach()`。
+
+
+
+## set.size
+
+>
+>
+>Set 的 `size` 属性是 Set 对象的一个只读属性，用于返回 Set 中存储的唯一值的数量。
+>
+>以下是关于 Set 的 `size` 属性的一些特点：
+>
+>- `size` 属性返回的是一个数字，表示 Set 中的唯一值的数量。
+>- 当往 Set 中添加新的唯一值时，`size` 属性会自动更新。
+>- `size` 属性是只读的，无法通过赋值来修改。
+>
+>以下是一个使用 Set 的 `size` 属性的示例：
+>
+>```javascript
+>const set = new Set();
+>
+>set.add(1);
+>set.add(2);
+>set.add(3);
+>
+>console.log(set.size); // 输出 3
+>
+>set.add(4);
+>
+>console.log(set.size); // 输出 4
+>
+>set.delete(2);
+>
+>console.log(set.size); // 输出 3
+>```
+>
+>在上述示例中，我们首先创建一个空的 Set 对象 `set`。然后，使用 `add()` 方法向 Set 中添加了一些唯一的值。通过访问 `set.size` 属性，我们可以获取 Set 中存储的唯一值的数量。在添加或删除元素后，`size` 属性会相应地更新。
+>
+>需要注意的是，Set 中存储的是唯一的值，重复的值只会被存储一次。因此，Set 的 `size` 属性返回的是去重后的值的数量。
+
+
+
+## 强引用和弱引用，资源回收
+
+>
+>
+>在你的示例中，虽然将 `obj` 设置为 `null`，但是由于 `set2` 中仍然保持对 `obj` 的引用，因此 `obj` 不会被垃圾回收。
+>
+>在 JavaScript 中，垃圾回收器通过检查对象是否存在引用来确定是否将其回收。即使你在代码中将一个对象设置为 `null`，只要其他地方仍然有对该对象的引用，它就不会被回收。
+>
+>在你的代码中，当执行 `set2.add(obj)` 将 `obj` 添加到 `set2` 中时，`set2` 会保持对 `obj` 的引用。即使在后续将 `obj` 设置为 `null`，`set2` 仍然保留了对原始对象的引用。
+>
+>因此，当你打印 `set2` 时，它仍然会显示集合中包含了原始的对象。`set2.size` 属性也会返回集合中的元素数量，因为 `obj` 仍然存在于集合中。
+>
+>如果你想要释放对象并从集合中删除它，可以使用 `set2.delete(obj)` 方法手动删除它，或者等待垃圾回收器自动回收无引用的对象。
+
+
+
+## set中添加字符串数字和数字行为等价
+
+在 Set 中，每个元素都是按照其严格相等性进行存储和比较的。当你向 Set 添加 `'1'` 时，它会被视为字符串类型的值，而不是字符
+
+>
+>
+>在 Set 中，当你向 Set 添加元素时，它会根据元素的值的严格相等性进行判断，而不会根据类型进行区分。因此，添加 `1` 和 `'1'` 到 Set 中会被视为相同的元素。
+>
+>示例代码：
+>
+>```javascript
+>const set = new Set();
+>set.add(1);
+>set.add('1');
+>
+>console.log(set.size); // 输出结果为 1，因为只有一个元素
+>
+>console.log(set.has(1)); // 输出结果为 true，元素 1 存在于 Set 中
+>console.log(set.has('1')); // 输出结果为 true，元素 '1' 存在于 Set 中
+>```
+>
+>在上述示例中，向 Set 中添加 `1` 和 `'1'`，它们的值都是相同的，都是数字1。因此，它们会被视为相同的元素，并且 Set 中只会保留一个唯一的元素。
+>
+>需要注意的是，尽管它们的类型不同（一个是数字，一个是字符串），但在 Set 中的严格相等性比较中，它们会被视为相等的元素。
+>
+>所以，添加 `1` 和 `'1'` 到 Set 中都会被识别为相同的元素，并且 Set 中只会保留一个唯一的元素。
+
+
+
+### set集中的entries
+
+>
+>
+>如果你向 Set 集合中添加了一个对象，并且在控制台中打印集合时看到了两个 `[[Entries]]`，可能是由于控制台的输出格式导致的误解。
+>
+>在控制台中，`[[Entries]]` 并不表示实际的元素，而是表示 Set 集合的迭代器对象。`[[Entries]]` 是迭代器对象的内部属性，用于支持集合的迭代操作。
+>
+>当你在控制台中打印 Set 集合时，控制台可能会以不同的方式显示集合的属性和值，具体取决于控制台的实现。有些控制台可能会显示 `[[Entries]]` 或类似的标识符，以指示该对象具有迭代器功能。
+>
+>下面是一个示例：
+>
+>```javascript
+>const set = new Set();
+>set.add({ name: "John" });
+>
+>console.log(set);
+>```
+>
+>在某些控制台中，上述示例可能会显示类似以下的结果：
+>
+>```
+>Set(1) { { name: "John" } }
+>  [[Entries]]: Array(1)
+>    0: Object
+>      name: "John"
+>      [[Prototype]]: Object
+>```
+>
+>在这个输出中，`[[Entries]]` 只是迭代器对象的内部属性，并不表示实际的元素。实际的元素是在 `[[Entries]]` 数组中的索引位置上，以对象的形式存在。
+>
+>请注意，具体的控制台输出可能因不同的环境和控制台实现而有所不同。不同的控制台可能使用不同的方式来显示 Set 集合及其属性。
+>
+>总结起来，**`[[Entries]]` 只是迭代器对象的内部属性，并不表示实际的元素**。你添加的对象只有一个，所以实际元素的数量是正确的。输出中显示的 `[[Entries]]` 不会影响实际的 Set 集合元素数量。
+
+
+
+## textContent 和 innerHtml的异同
+
+`textContent` 和 `innerHTML` 在功能上有相似之处，都用于获取和设置元素的内容。然而，它们之间存在一些重要的区别。
+
+1. 内容类型：
+   - `textContent` 返回元素及其子节点的纯文本内容，不包括任何 HTML 标签。它只返回文本内容，并忽略任何 HTML 结构。
+   - `innerHTML` 返回元素及其子节点的完整 HTML 内容，包括所有的 HTML 标签和文本内容。它返回的是一个字符串，包含元素的 HTML 结构。
+
+2. HTML 解析和处理：
+   - `textContent` 不会解析和处理 HTML，它将所有内容都视为纯文本。即使文本中包含 HTML 标签，它们也会被当作普通文本显示。
+   - `innerHTML` 会解析和处理 HTML，它将传递给它的字符串作为 HTML 解析，并在元素中生成相应的 DOM 结构。它可以用于插入 HTML 片段、创建新的元素等。
+
+3. 安全性：
+   - `textContent` 是安全的，因为它不会执行任何脚本或解析任何 HTML。它只返回纯文本内容，不涉及脚本执行的风险。
+   - `innerHTML` 的使用需要谨慎，因为它可以执行传递给它的 HTML 代码，包括其中的脚本。如果直接将用户提供的内容赋值给 `innerHTML`，可能会导致跨站脚本攻击（XSS）的风险。
+
+综上所述，虽然 `textContent` 和 `innerHTML` 在功能上类似，都用于处理元素的内容，但它们的处理方式和返回的内容类型不同。你应根据需要选择适合的属性来操作元素的内容，并注意在使用 `innerHTML` 时避免安全风险。
+
+
+
+### [].slice.call(arguments) 语句解析
+
+
+
+语句解析：
+
+>
+>
+>`[].slice.call(arguments)` 是一种常用的将类数组对象转换为真正数组的方法，它使用了 `Array` 原型上的 `slice` 方法。
+>
+>解析该语句的步骤如下：
+>
+>1. `[]` 创建了一个空数组字面量。这是因为 `slice` 方法是 `Array` 原型上的方法，我们需要通过一个数组来访问它。
+>2. `slice` 是 `Array` 原型上的方法，它用于提取数组的一部分，返回一个新的数组。但是，我们这里并没有一个真正的数组，而是一个类数组对象 `arguments`。
+>3. `call()` 是 `Function` 原型上的方法，它允许我们将一个函数作为指定的上下文对象进行调用。在这里，我们通过 `call()` 方法将 `slice` 方法的上下文设置为 `arguments`，以便在类数组对象上调用它。
+>4. `arguments` 是一个特殊的对象，它包含了函数调用时传递的所有参数。在函数内部，我们可以使用 `arguments` 访问这些参数。但是，`arguments` 并不是一个真正的数组，它没有 `slice` 方法。通过使用 `call()` 方法，我们可以将 `slice` 方法借用到 `arguments` 对象上，使其可以像数组一样使用。
+>5. 最终，`[].slice.call(arguments)` 将 `slice` 方法应用于 `arguments` 对象，并返回一个真正的数组，其中包含了 `arguments` 对象的元素。
+>
+>总结来说，`[].slice.call(arguments)` 的目的是将 `arguments` 对象转换为一个真正的数组。它使用了 `slice` 方法并设置了 `arguments` 作为上下文，以便在类数组对象上调用该方法。这样，我们就可以使用数组的方式来操作 `arguments` 中的参数。
+
+
+
+slice为数组的方法， 指生成一个新的数组，通过调用Array方法，slice指定arguments（类数组的元素）， 相当于类数组对象借用数组对象方法 slice， 生成了一个数组
+
+
+
+---
+
+
+
+## from 和 of 方法
+
+from 将类数组转化为数组
+
+ of为接受任意参数(数组，数组，对象…)，并这些参数作为新数组的元素生成一个数组
+
+>
+>
+>`Array.from()` 和 `Array.of()` 是 JavaScript 中用于处理数组的方法。
+>
+>1. `Array.from()` 方法将类数组对象或可迭代对象转换为一个新的真正的数组。它接受一个类数组对象或可迭代对象作为第一个参数，并可选地接受一个映射函数和一个上下文对象作为参数。它会返回一个新的数组，其中包含从输入对象中提取的元素。
+>
+>示例代码：
+>```javascript
+>const arrayLike = { 0: 'a', 1: 'b', 2: 'c', length: 3 };
+>const newArray = Array.from(arrayLike);
+>console.log(newArray); // 输出结果为 ['a', 'b', 'c']
+>```
+>
+>在上述示例中，我们将一个类数组对象 `arrayLike` 传递给 `Array.from()` 方法，它会将该对象转换为一个新的数组 `newArray`。转换结果是一个包含类数组对象的元素的真正的数组。
+>
+>2. `Array.of()` 方法创建一个新的数组，并将传递给它的参数作为数组的元素。它会接受任意数量的参数，并将它们作为数组的元素组合在一起。
+>
+>示例代码：
+>```javascript
+>const newArray = Array.of('a', 'b', 'c');
+>console.log(newArray); // 输出结果为 ['a', 'b', 'c']
+>```
+>
+>在上述示例中，我们将三个字符串作为参数传递给 `Array.of()` 方法，它会将这些字符串组合成一个新的数组 `newArray`。
+>
+>关于 `[].slice.call(arguments)` 的解释：
+>
+>这是一个经典的 ES5 转换类数组对象为真正数组的方法。`arguments` 对象是一个类数组对象，它包含了函数调用时传递的所有参数。由于 `arguments` 不是一个真正的数组，我们无法直接使用数组方法。通过使用 `Array.prototype.slice.call(arguments)`，我们可以借用 `Array` 原型上的 `slice()` 方法，并将 `arguments` 视为 `this` 对象进行调用。这将返回一个真正的数组，其中包含了 `arguments` 的元素。
+>
+>示例代码：
+>```javascript
+>function example() {
+>  const arr = [].slice.call(arguments);
+>  console.log(arr);
+>}
+>
+>example('a', 'b', 'c'); // 输出结果为 ['a', 'b', 'c']
+>```
+>
+>在上述示例中，我们使用 `[].slice.call(arguments)` 将 `arguments` 对象转换为一个真正的数组，并将其赋值给变量 `arr`。然后，我们打印输出了这个数组，结果为 `['a', 'b', 'c']`。这种方法允许我们在类数组对象上使用数组方法。
+
+
+
+## 数组方法见 39 -40文件
+
+
+
+## yield 与生成器搭配使用
+
+>
+>
+>`yield` 是 JavaScript 中的一个关键字，用于定义生成器函数（Generator Function）中的一个暂停点。生成器函数是一种特殊的函数，可以通过多次迭代的方式产生一系列的值。
+>
+>当生成器函数执行到 `yield` 语句时，函数的执行会暂停，并将 `yield` 后面的值作为生成器的下一个值返回。生成器函数可以被多次调用，并且每次调用都会从上一个暂停点继续执行，产生下一个值。
+>
+>下面是一个简单的示例来说明 `yield` 的用法：
+>
+>```javascript
+>function* generateNumbers() {
+>  yield 1;
+>  yield 2;
+>  yield 3;
+>}
+>
+>const generator = generateNumbers();
+>
+>console.log(generator.next().value); // 输出结果为 1
+>console.log(generator.next().value); // 输出结果为 2
+>console.log(generator.next().value); // 输出结果为 3
+>console.log(generator.next().value); // 输出结果为 undefined
+>```
+>
+>在上面的示例中，我们定义了一个生成器函数 `generateNumbers()`，它通过 `yield` 语句依次产生了数值 1、2 和 3。我们通过调用 `generateNumbers()` 返回一个生成器对象 `generator`，然后使用 `generator.next()` 来逐个获取生成器产生的值。
+>
+>每次调用 `generator.next()`，生成器函数会执行到下一个 `yield` 语句，并将 `yield` 后面的值作为结果返回。当生成器函数执行完所有的 `yield` 语句后，再次调用 `generator.next()` 会返回一个 `undefined` 值，表示生成器函数的执行已经结束。
+>
+>通过使用 `yield` 和生成器函数，我们可以实现一种更灵活和可控的迭代器，可以逐步产生值，而不是一次性返回所有的值。这在处理大型数据集或需要逐步处理的场景中非常有用。
+
+
+
+### yield  传参
+
+![image-20230602145356872](js高级.assets/image-20230602145356872.png)
+
+**传入的实参作为上一个yield的返回值**
+
+-  此举会导致第一次传入实参与yield相关的计算操作无效,不会对一个进行赋值
+
+next的传参每次**只传给上一个yield值**，所以第一个next如果传参 则x不会被赋值 
+
+因为yield 在yield = '2' 时中止, 所以当继续执行时,才能将赋值返回 x
+
+第二次的传入参数 20是给了上一个yield，所以x等于20
+
+
+
+## object.keys作用
+
+>
+>
+>`Object.keys()` 是 JavaScript 中的一个静态方法，用于返回一个给定对象自身可枚举属性的数组。
+>
+>它接受一个对象作为参数，并返回该对象自身可枚举属性的键名（属性名）组成的数组。返回的数组中的键名按照对象中出现的顺序排列。
+>
+>下面是一个简单的示例来说明 `Object.keys()` 的用法：
+>
+>```javascript
+>const obj = {
+>  name: 'John',
+>  age: 30,
+>  city: 'New York'
+>};
+>
+>const keys = Object.keys(obj);
+>
+>console.log(keys); // 输出结果为 ['name', 'age', 'city']
+>```
+>
+>在上面的示例中，我们有一个名为 `obj` 的对象，它包含了三个属性：`name`、`age` 和 `city`。我们调用 `Object.keys(obj)` 来获取 `obj` 对象的属性名组成的数组。最后，我们将该数组打印到控制台，得到 `['name', 'age', 'city']`。
+>
+>需要注意的是，`Object.keys()` 只返回对象自身的可枚举属性，不包括继承的属性。如果需要获取所有的键名，包括继承的属性，可以使用 `for...in` 循环或 `Object.getOwnPropertyNames()` 方法。
+>
+>总结来说，`Object.keys()` 方法用于返回一个对象自身可枚举属性的键名组成的数组。它在处理对象属性时非常有用，可以帮助我们快速获取对象的属性列表。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

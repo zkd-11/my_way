@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>迭代器</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            Iterator 是一种新的遍历机制，两个核心
+            1. 迭代器是一个接口，能快捷的访问数据，
+                 通过Symbol.iterator来创建迭代器，该方法为私密属性，符号属性，需要用[ ]进行访问
+            2. 迭代器用于遍历数据结构的指针（类同数据库游标）
+
+            //使用迭代
+        */
+      const items = ["o", "t", "th"];
+      // 创建新的迭代器
+      const ite = items[Symbol.iterator]();
+      console.log(ite.next());
+      // 第一次调用时，指向第一个元素，value为值，done为遍历是否完成标志
+      // done: false 表示遍历未完成可继续， true 表示遍历结束，此时value值为null
+      console.log(ite.next());
+      console.log(ite.next());
+      console.log(ite.next());
+
+
+    </script>
+  </body>
+</html>

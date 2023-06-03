@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let map = new Map();
+      map.set("name", "韩绝");
+      console.log(map.get("name"));
+      console.log(map);
+
+      // 前key, 后value， 类同字典
+      map.has("name");
+      console.log(map);
+      map.clear(); //清除内部属性
+
+      //   添加多个元素的方式
+      let m = new Map([
+        ["a", 1],
+        ["c", 2],
+      ]);
+
+      m.set(["a", [1, 2, 3]], "键值任写后值表示");
+
+      console.log(m);
+    </script>
+  </body>
+</html>
