@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise的基本使用</title>
+  </head>
+  <body>
+    <script>
+      /*
+              promise 承诺
+              相当于一个容器，储存未来会结束的事件（异步操作）的一个结果
+              各种异步操作都可以用同样的方法进行处理 axios
+
+              特点：
+              1. 对象的状态不受外界影响
+                  处理异步操作  -》 三个状态: 进行中：pending 成功：fulfilled 失败：rejected
+                      promise内置方法：
+                       resolve 将状态设置为 fulfilled 并使用 .then方法
+                       reject  将状态设置为 rejected 并使用 .catch方法
+               2.
+          */
+
+      let pro = new Promise(function (resolve, reject) {
+        let res = {
+          //   code: 200,
+          code: 201,
+          data: { name: "韩绝" },
+          error: "失败",
+        };
+        setTimeout(() => {
+          if (res.code === 200) {
+            resolve(res.data);
+          } else {
+            reject(res.error);
+          }
+        }, 1000);
+      });
+      console.log(pro);
+      pro.then(
+        (val) => {
+          console.log(val);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+
+      console.log("-----------");
+
+      //自定义加载时间，定时器时间，并通过返回的Promise对象，隐式 链式调用then
+      function timeOut(ms) {
+        return new Promise((resolved, rejected) => {
+          setTimeout(() => {
+            resolved("promise sucess!");
+          }, ms);
+        });
+      }
+      timeOut(1000).then((val) => {
+        console.log(val);
+      });
+    </script>
+  </body>
+</html>
