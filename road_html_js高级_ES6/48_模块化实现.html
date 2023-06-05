@@ -10,14 +10,12 @@
     <script type="module">
       // 可默认导入所有文件, 并且可以重命名
 
-      import * as ijs from "./modules/index.js";
+      // import * as ijs from "./modules/index.js";
 
-      console.log(ijs.age);
-      //   console.log(ijs);
-      //   console.log(ijs.age);
-      //   console.log(age);
-      //   console.log(`${age} ${name}`);
-      //   sayName();
+      // console.log(ijs.age);
+      import a, { age, name, sayName } from "./modules/index.js";
+      console.log(`${age} ${name} ${sayName()}`);
+      console.log(a);
     </script>
   </body>
 </html>

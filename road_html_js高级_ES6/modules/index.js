@@ -13,7 +13,7 @@
 const name = 'john';
 const age =18;
 function sayName(){
-    console.log("这是模块导出的模块名!");
+    return "这是模块导出的模块名!";
 }
 export {name, age, sayName}
 
@@ -22,5 +22,5 @@ const obj = {
     foo: 'f11'
 }
 
-export default Object;
+export default obj;
 
