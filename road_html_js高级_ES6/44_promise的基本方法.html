@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise的基本方法</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      //resolve() reject() all() rece()  done() finally()
+
+      /*
+             then() 方法， 返回第一个参数是resove回调函数， 第二个函数可选 是reject状态回调函数
+             then() 返回新的promise实例， 采用链式编程
+
+                */
+      let p = Promise.resolve("foo");
+      console.log(p);
+
+      //等价
+      //resolve() 能将现有的任何对象转化为promise对象
+      let p1 = new Promise((resolve) => resolve("foo"));
+      console.log(p1);
+      p1.then((data) => {
+        console.log(data);
+      });
+
+      //应用场景： 异步并行， 游戏类的素材加载，等待图片，falsh，静态资源文件都加载完成进行页面初始化
+      let promise1 = new Promise((resolve, reject) => {});
+      let promise2 = new Promise((resolve, reject) => {});
+      let promise3 = new Promise((resolve, reject) => {});
+      //异步事件绑定执行化
+      let p4 = Promise.all([promise1, promise2, promise3]);
+      p4.then(() => {
+        //三个成功 成功
+      }).catch((error) => {
+        //返回第一个失败
+      });
+
+      console.log("---------");
+      //race()方法 可多个异步请求同时竞争，执行速度最快则执行then/catch操作
+      /*
+      Promise.race() 方法用于将多个 Promise 对象包装成一个新的 Promise 对象，并返回最先解决或拒绝的 Promise 的结果或原因。
+           换句话而言： 该集成的promise对象也应该视为一个promise，只会返回一个状态选择成功执行或者异常捕获
+             返回 第一个最先出状态的promise对象
+      */
+      function requestIMG(imgSrc) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = function () {
+            resolve(img);
+          };
+          img.src = imgSrc;
+        });
+      }
+
+      function timeout() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject(new Error("图片请求超时"));
+          }, 3000);
+        });
+      }
+
+      var div = document.querySelector("div");
+      div.style.transform = "scale(0.8)";
+      Promise.race([
+        requestIMG("https://static.runoob.com/images/demo/demo2.jpg"),
+        timeout(),
+      ])
+        .then((data) => {
+          console.log(data);
+          div.appendChild(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      /* 
+         server.listen(3000).then((data)=> {
+          console.log(data);
+         }).finally(() => {})
+         ，最后都会执行 finally 方法中的回调函数，并打印出 "Cleanup"。
+         这样可以确保无论 Promise 结果如何，都可以执行一些必要的清理操作，比如关闭数据库连接、释放资源等。
+        */
+    </script>
+  </body>
+</html>

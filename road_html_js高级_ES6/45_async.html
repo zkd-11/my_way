@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>async关键字声明异步函数</title>
+  </head>
+  <body>
+    <script>
+      /* 使得异步操作更加方便 */
+      /* 
+            基本操作 async会返回一个promise对象 then catch
+            async为Generator的语法糖
+        */
+      async function f() {
+        let s = await "hello";
+        let data = await s.split("");
+        return data;
+      }
+
+      /* 如果async函数有多个await, 那么then函数会等待所有的await指令运行完成 */
+      //为什么能使用.then，因为会自动隐式转化,函数返回时自动将其包装为 promise对象
+
+      console.log(f());
+      f()
+        .then((v) => {
+          console.log(v);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      async function f1() {
+        // throw Error("出错了");
+        // async特点： 当有一个await后面promise为reject时，不再执行后续await语句
+
+        // await Promise.reject("出错了");
+        // await Promise.resolve("成功");
+
+        //解决措施 使用 try catch语句， 当场解决异常
+        try {
+          await Promise.reject("出错了");
+        } catch (error) {}
+        return Promise.resolve("成功");
+      }
+      f1()
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      //获取和风天气 现在now的数据
+      const getJSON = function (url) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", url);
+          xhr.onreadystatechange = handler;
+          xhr.responseType = "json";
+          xhr.setRequestHeader("Accept", "application/json");
+
+          xhr.send(); //使用get需要使用send进行发送
+          function handler() {
+            console.log(this.readyState);
+            if (this.readyState === 4) {
+              if (this.status === 200) {
+                resolve(this.response.daily);
+              } else {
+                reject(new Error(this.statusText));
+              }
+            }
+          }
+        });
+      };
+
+      async function getNowWeather(url) {
+        let res = await getJSON(url);
+        return res;
+      }
+      getNowWeather(
+        "https://devapi.qweather.com/v7/weather/3d?location=101010100&key=0991f49bbcd94dce994306cec65f58d2"
+      )
+        .then((res) => {
+          console.log(res[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>

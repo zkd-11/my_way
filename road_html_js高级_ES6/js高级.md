@@ -1244,21 +1244,608 @@ XMLHttpRequest 对象具有以下常用的内置方法：
 
 
 
+## axios
+
+>
+>
+>Axios 是一个基于 Promise 的现代化 HTTP 客户端，用于浏览器和 Node.js 环境。它可以用于发送 HTTP 请求并处理响应，提供了简单且强大的 API。
+>
+>Axios 的特点和功能包括：
+>
+>1. 支持多种浏览器和 Node.js 环境：Axios 可以在浏览器和 Node.js 环境中使用，因此适用于前端和后端开发。
+>2. 提供简洁和一致的 API：Axios 提供了一组简洁且一致的方法来发送各种类型的 HTTP 请求，包括 GET、POST、PUT、DELETE 等。
+>3. 支持 Promise：Axios 使用 Promise 进行异步操作处理，可以使用 `then` 和 `catch` 方法处理成功和失败的回调。
+>4. 提供请求和响应拦截器：可以在请求发送和响应接收的过程中添加拦截器，对请求和响应进行处理、修改或拦截。
+>5. 自动转换数据格式：Axios 可以自动将请求和响应的数据格式进行转换，支持 JSON、XML、FormData 等多种格式。
+>6. 提供取消请求的功能：Axios 允许取消正在进行的请求，防止不必要的网络流量。
+>7. 支持并发请求：Axios 提供了并发请求的功能，可以同时发送多个请求并处理它们的响应。
+>
+>使用 Axios 可以简化 HTTP 请求的操作，并提供了许多方便的功能来处理请求和响应。它是一个流行的 HTTP 客户端库，被广泛应用于前后端开发中。
+>
+>
+
+
+
+#### 拓展知识： api优缺点
+
+>
+>
+>是的，API 接口提供了很大的灵活性和便利性，可以让开发者无需从头开发整个应用，而是通过调用 API 接口获取所需的数据或功能。这可以节省开发成本和时间，并快速实现功能。
+>
+>然而，API 接口也有一些潜在的危险性和缺点需要注意：
+>
+>1. 安全风险：暴露 API 接口可能会带来安全风险，例如未经授权的访问、数据泄露等。因此，在设计和使用 API 接口时，要考虑安全性并采取相应的安全措施，例如身份验证、授权机制等。
+>
+>2. 可靠性和稳定性：依赖外部的 API 接口意味着你的应用的可靠性和稳定性受到第三方的影响。如果 API 接口出现故障、升级或不稳定，可能会导致你的应用无法正常工作。
+>
+>3. 数据一致性和更新频率：使用 API 接口获取数据可能会面临数据一致性和更新频率的问题。如果 API 提供商的数据更新不及时或不一致，可能会影响你的应用的准确性和可靠性。
+>
+>4. 限制和费用：一些 API 接口可能会有访问限制、请求限制或收费规定。你需要了解并遵守 API 提供商的使用规则，以避免违规使用或超出限制。
+>
+>综上所述，使用 API 接口可以带来很多好处，但也需要注意相关的安全、稳定性和数据质量问题，并遵守 API 提供商的规定和限制。
+
+### 使用场景
+
+导入 API 接口在项目开发中可以起到很大的作用，特别是在需要使用外部服务或数据的情况下。以下是导入 API 接口的一些主要好处：
+
+1. 获取外部数据：通过导入 API 接口，可以从外部服务或数据源获取实时数据，例如天气数据、地理位置信息、金融数据等。这使得项目可以获得最新的、准确的数据来支持其功能和需求。
+
+2. 扩展功能：通过导入 API 接口，可以利用外部服务的功能来扩展项目的功能。例如，可以导入支付接口以实现在线支付功能，导入社交媒体接口以实现社交分享功能等。
+
+3. 提高效率：导入 API 接口可以节省开发时间和资源。相对于自己开发相同功能的模块，直接使用 API 接口可以减少重复劳动，提高开发效率。
+
+4. 保持更新和稳定性：使用 API 接口意味着项目可以依赖外部服务来处理特定的任务，而不需要自己处理这些复杂的逻辑。这样可以确保功能的稳定性和持续更新，而无需自己负责维护和更新相关代码。
+
+总而言之，导入 API 接口是项目开发中常见且重要的操作，它可以帮助项目获得外部数据、扩展功能、提高效率并保持更新和稳定性。在选择和使用 API 接口时，需要考虑其适用性、可靠性、安全性和文档支持等因素，以确保项目的成功和可持续发展。
+
+
+
+#### 拓展知识： vpn包装隧道
+
+VPN（Virtual Private Network）可以给原始 IP 地址包装，提供网络流量的加密和隧道功能。当你连接到 VPN 服务器时，你的网络流量会通过 VPN 服务器进行传输，使得外界无法直接识别你的真实 IP 地址。相反，外界只能看到 VPN 服务器的 IP 地址。
+
+通过使用 VPN，你可以隐藏你的真实 IP 地址，增加网络安全性和隐私保护。VPN 会将你的网络流量加密，并通过建立安全的隧道将流量传输到目标服务器，这样可以防止第三方监听和窃取你的数据。
+
+此外，VPN 还可以提供访问地理限制内容的功能。例如，如果某些网站或服务在你所在的地区不可用，你可以通过连接到位于允许访问的地区的 VPN 服务器来绕过这些限制，获取访问权限。
+
+总之，VPN 提供了一种安全的方式来保护你的网络通信，并提供了匿名性和访问限制内容的能力。
+
+
+
+# 6.5	 10：30
+
+
+
+#### 扩展知识 原生java
+
+自己实现功能
+
+>
+>
+>原生 JavaScript 指的是使用纯粹的 JavaScript 语言和浏览器提供的原生功能，而不依赖于任何第三方库或框架。它是 JavaScript 语言的标准实现，由浏览器厂商提供和支持。
+>
+>原生 JavaScript 具有以下特点：
+>
+>1. 标准化：原生 JavaScript 遵循 ECMAScript 标准，这是一种定义了 JavaScript 语言规范的国际标准。
+>
+>2. 跨平台：原生 JavaScript 可以在不同的浏览器和操作系统上运行，因为它是浏览器的内置语言。
+>
+>3. 原生功能：原生 JavaScript 提供了许多内置的功能和对象，如 DOM 操作、事件处理、AJAX 请求、定时器、字符串处理、数组操作等。
+>
+>4. 性能优化：原生 JavaScript 的执行速度通常比使用第三方库或框架更快，因为它不需要加载额外的代码和资源。
+>
+>5. 学习曲线：学习原生 JavaScript 可以更好地理解和掌握 JavaScript 语言的核心概念和特性，为进一步学习和使用其他框架或库打下坚实的基础。
+>
+>尽管有许多流行的 JavaScript 框架和库（如 jQuery、React、Vue.js 等），但原生 JavaScript 仍然是开发者进行前端开发的基础。使用原生 JavaScript 可以实现灵活、高效和可维护的代码，并具有更好的跨平台兼容性。
+
+
+
+>
+>
+>原生 JavaScript 指的是在不依赖第三方库或框架的情况下，使用纯粹的 JavaScript 语言来实现所需功能的过程。这意味着您自己编写代码来处理各种任务，例如操作 DOM 元素、处理用户输入、发送网络请求、执行动画效果等。
+>
+>**原生 JavaScript 开发涉及以下方面：**
+>
+>1. 操作 DOM：使用原生 JavaScript 可以选择、修改、添加或删除 HTML 元素，并响应用户交互。
+>
+>2. 事件处理：使用原生 JavaScript 可以监听和处理各种事件，如点击、鼠标移动、键盘输入等。
+>
+>3. 数据处理：使用原生 JavaScript 可以创建和操作数据结构，如数组、对象、字符串，执行各种操作，如排序、过滤、映射等。
+>
+>4. 网络请求：使用原生 JavaScript 可以发送 HTTP 请求，获取数据并处理响应。
+>
+>5. 动画效果：使用原生 JavaScript 可以通过操作 CSS 样式和定时器来创建动画效果。
+>
+>6. 表单验证：使用原生 JavaScript 可以验证用户输入的表单数据，并提供反馈和错误处理。
+>
+>使用原生 JavaScript 开发可以让您更好地理解语言的核心概念和特性，并具有更大的灵活性和自定义能力。同时，原生 JavaScript 开发也有助于优化性能，减少依赖性，并提供更好的跨平台兼容性。
+>
+>当然，如果您发现在特定情况下使用现有的第三方库或框架可以更好地满足需求，您也可以选择使用它们。但了解和掌握原生 JavaScript 仍然是一个重要的基础。
 
 
 
 
 
+## promise对象的race()方法及作用
+
+
+
+>Promise.race() 方法用于将多个 Promise 对象包装成一个新的 Promise 对象，并返回最先解决或拒绝的 Promise 的结果或原因。
+>
+>该方法接受一个可迭代的参数，通常是一个包含多个 Promise 对象的数组或类似数组的对象。它会遍历这些 Promise 对象，并返回一个新的 Promise 对象，该 Promise 对象的状态和值将取决于最先解决或拒绝的 Promise 对象。
+>
+>具体而言，Promise.race() 方法的参数表示一组竞争的 Promise 对象。它们可以是任意数量的 Promise 对象，它们之间并不一定需要相同的类型或含义。
+>
+>当其中任何一个 Promise 对象解决（即状态变为 fulfilled）时，返回的 Promise 对象也会解决，并携带解决的值。如果其中任何一个 Promise 对象被拒绝（即状态变为 rejected），返回的 Promise 对象也会被拒绝，并携带拒绝的原因。
+>
+>换句话说，Promise.race() 方法将多个 Promise 对象竞争执行，一旦有一个 Promise 对象完成（解决或拒绝），返回的 Promise 对象就会立即采用该 Promise 对象的状态和结果。
+>
+>示例用法：
+>```javascript
+>const promise1 = new Promise((resolve, reject) => {
+>  setTimeout(() => resolve('Promise 1 resolved'), 1000);
+>});
+>
+>const promise2 = new Promise((resolve, reject) => {
+>  setTimeout(() => resolve('Promise 2 resolved'), 2000);
+>});
+>
+>const promise3 = new Promise((resolve, reject) => {
+>  setTimeout(() => reject(new Error('Promise 3 rejected')), 1500);
+>});
+>
+>Promise.race([promise1, promise2, promise3])
+>  .then(result => console.log(result)) // 输出: Promise 1 resolved
+>  .catch(error => console.error(error)); // 捕获 Promise 3 rejected 的错误
+>```
+>
+>在上面的示例中，Promise.race() 方法接收一个包含三个 Promise 对象的数组。由于 promise1 的解决速度最快，因此返回的 Promise 对象将会解决，并携带着 promise1 的解决值 "Promise 1 resolved"。promise2 和 promise3 的状态和结果将会被忽略，因为它们的解决和拒绝速度较慢。
+>
+>
+
+
+
+## promise对象的finally方法
+
+>
+>
+>`finally` 方法是 Promise 对象原型上的一个方法，它接受一个回调函数作为参数，并在 Promise 结束时（无论是 resolve 还是 reject）都会执行该回调函数。`finally` 方法的主要作用是在 Promise 完成后执行一些清理操作或必要的收尾工作。
+>
+>`finally` 方法的语法如下：
+>```javascript
+>promise.finally(onFinally);
+>```
+>其中，`promise` 是一个 Promise 对象，`onFinally` 是一个回调函数。
+>
+>无论 Promise 是被解决（resolved）还是被拒绝（rejected），`onFinally` 都会被调用。它没有任何参数，也不会影响 Promise 链的执行流程。如果在 `finally` 方法中返回一个新的 Promise 对象，它会在 `finally` 方法执行完后替换之前的 Promise 对象，并传递相同的解决（resolve）或拒绝（reject）状态。
+>
+>以下是一个使用 `finally` 方法的示例：
+>```javascript
+>function fetchData() {
+>  return new Promise((resolve, reject) => {
+>    // 模拟异步操作
+>    setTimeout(() => {
+>      const randomNumber = Math.random();
+>      if (randomNumber < 0.5) {
+>        resolve('Data retrieved successfully');
+>      } else {
+>        reject('Error retrieving data');
+>      }
+>    }, 1000);
+>  });
+>}
+>
+>fetchData()
+>  .then((data) => {
+>    console.log(data);
+>  })
+>  .catch((error) => {
+>    console.error(error);
+>  })
+>  .finally(() => {
+>    console.log('Cleanup');
+>  });
+>```
+>
+>在上面的例子中，不管 Promise 是成功还是失败，最后都会执行 `finally` 方法中的回调函数，并打印出 "Cleanup"。这样可以确保无论 Promise 结果如何，都可以执行一些必要的清理操作，比如关闭数据库连接、释放资源等。
+>
+>需要注意的是，`finally` 方法返回的是一个新的 Promise 对象，并且该对象的状态和值将取决于前面的 Promise 对象的状态和值。
 
 
 
 
 
+## async关键字
+
+用于声明一个函数为： 异步函数
+
+>
+>
+>`async` 是 JavaScript 中的一个关键字，用于声明一个函数是异步函数。异步函数返回一个 Promise 对象，可以使用 `await` 关键字来等待 Promise 对象的解决，并暂停函数的执行，直到 Promise 对象解决或拒绝。
+>
+>异步函数的语法如下：
+>```javascript
+>async function functionName() {
+>  // 异步操作
+>  // 使用 await 等待 Promise 对象的解决或拒绝
+>  // 其他操作
+>  // 返回一个值或 Promise 对象
+>}
+>```
+>
+>异步函数可以包含多个 `await` 表达式，每个 `await` 表达式后面通常是一个返回 Promise 对象的异步操作，例如异步请求、读取文件等。当遇到 `await` 表达式时，函数的执行会暂停，直到该 `await` 表达式后面的 Promise 对象解决或拒绝，然后获取到解决的值并继续执行。
+>
+>以下是一个使用异步函数的示例：
+>```javascript
+>function fetchData() {
+>  return new Promise((resolve, reject) => {
+>    // 模拟异步操作
+>    setTimeout(() => {
+>      const randomNumber = Math.random();
+>      if (randomNumber < 0.5) {
+>        resolve('Data retrieved successfully');
+>      } else {
+>        reject('Error retrieving data');
+>      }
+>    }, 1000);
+>  });
+>}
+>
+>async function getData() {
+>  try {
+>    const data = await fetchData();
+>    console.log(data);
+>    return 'Success';
+>  } catch (error) {
+>    console.error(error);
+>    throw new Error('Failed');
+>  }
+>}
+>
+>getData()
+>  .then((result) => {
+>    console.log(result);
+>  })
+>  .catch((error) => {
+>    console.error(error);
+>  });
+>```
+>
+>在上面的例子中，`getData` 函数是一个异步函数，使用 `await` 等待 `fetchData` 函数返回的 Promise 对象解决或拒绝。当 Promise 解决时，获取到解决的值并打印出来。如果 Promise 拒绝，则抛出一个新的错误。
+>
+>异步函数使得处理异步操作变得更加直观和简单，通过 `await` 关键字可以以同步的方式编写异步代码。它可以帮助解决回调地狱和 Promise 链的问题，提供了更加优雅和可读性强的代码编写方式。
+
+
+
+#### 拓展知识：语法糖
+
+语法糖（Syntactic sugar）是指在编程语言中提供的一种便捷的语法形式，它并不改变语言的功能或特性，只是提供了一种更简洁、易读或符合直觉的写法。语法糖的存在使得代码的编写和阅读更加方便和舒适，减少了冗余的代码或复杂的语法结构。
+
+语法糖通常是在编译或解释阶段被转换成语言本身的基本语法结构，实际执行的是等价的基本语法结构。它们的目的是提高开发效率和代码可读性，而不是引入新的功能。
+
+一些常见的语法糖包括：
+
+1. 箭头函数：箭头函数是一种更简洁的函数定义语法，可以减少函数声明的冗余代码。
+2. 模板字面量：模板字面量（Template literals）提供了一种更方便的方式来拼接字符串和插入变量。
+3. 解构赋值：解构赋值语法允许从数组或对象中提取值并赋给变量，减少了对每个属性进行单独赋值的冗余代码。
+4. 简化的对象字面量：简化的对象字面量语法使得定义对象更加简洁，不再需要显式地写出属性和方法的键和值。
+5. 迭代器和生成器：迭代器和生成器提供了一种更直观和可控的方式来遍历数据结构，减少了手动迭代的复杂性。
+6. async/await：async/await 是用于处理异步操作的语法糖，提供了更直观和类似同步代码的方式来处理异步任务。
+
+语法糖在语言设计中起到了简化和优化代码的作用，让开发人员能够更快速地编写出高效、易读的代码。它们不是必需的，但可以提升开发效率和代码质量。
+
+
+
+### async关键字 - 异步函数内部使用await语句
+
+在函数内部，`s` 的确是一个数组对象，而不是 Promise 对象。`await` 表达式会等待一个 Promise 对象的解析结果，并将其返回值赋给变量。在这种情况下，`await` 表达式等待的是一个被自动包装成 Promise 对象的字符串，所以它的返回值是字符串 "hello" 的数组形式。
+
+在函数执行过程中，`await` 关键字会暂停函数的执行，等待 Promise 对象解析完成。这意味着函数会暂时停止，并等待 `await` 后面的表达式完成。当 `await` 后面的表达式完成后，函数会继续执行。
+
+在这个例子中，当执行到 `let data = await s.split("");` 时，代码会等待 `s`（字符串 "hello" 的数组形式）的解析结果。一旦解析完成，结果就会赋值给 `data`，然后函数继续执行。
+
+最终，函数 `f()` 返回一个 Promise 对象，其中的解析值是 `data`，也就是一个包含字符 "h", "e", "l", "l", "o" 的数组。这个 Promise 对象会被自动创建并返回，使得我们可以使用 `.then()` 方法来处理解析结果。
+
+
+
+### async特点： 当有一个await后面promise为reject时，不再执行后续await语句
+
+>
+>
+>在 `async` 函数中，`await` 关键字用于等待一个 Promise 的解析结果。如果 `await` 后面的 Promise 被拒绝（rejected），那么 `async` 函数的执行会暂停，并且后续的 `await` 语句不会执行。相当于发生了异常。
+>
+>这种特性可以让我们在处理异步操作时更加灵活地控制流程。当某个异步操作失败时，我们可以使用 `try/catch` 块来捕获异常并进行相应的处理。
+>
+>以下是一个示例：
+>
+>```javascript
+>async function fetchData() {
+>  try {
+>    const result1 = await asyncOperation1(); // 第一个异步操作
+>    const result2 = await asyncOperation2(); // 第二个异步操作
+>    const result3 = await asyncOperation3(); // 第三个异步操作
+>    // 执行成功
+>  } catch (error) {
+>    // 处理错误
+>  }
+>}
+>```
+>
+>在上述示例中，如果任何一个异步操作发生错误并被拒绝，那么后续的异步操作将不会执行，而是跳转到 `catch` 块进行错误处理。
+>
+>
 
 
 
 
 
+### 异步函数内部的try catch
+
+   try {
+
+​     await Promise.reject("出错了");
+
+​    } catch (error) {}
+
+​    return 
+
+   }
+
+当我们执行了内部try语句，即使内部有异常，当我们内部的catch语句为空代码块时，表示为**忽略该异常**
+
+则返回为 return Promise.resolve("成功"); 语句
+
+在外界只需要使用.then语句即可
+
+当内部try中有多个await语句时，当执行异步函数异常时，会被catch，如果在catch选择将该异常抛出，那么该异常会被外界 .catch语句捕捉到，并对之处理
+
+
+
+### 在async关键函数中去掉await
+
+ console.log("开始执行");  
+
+const result = await someAsyncOperation();  
+
+console.log("异步操作完成，结果为:", result); 
+
+ return "函数执行完毕";  
+
+如果将await去掉会导致结果不同吗
+
+会导致结果出错， 当去掉时，执行该语句时，不会等操作结果结束再执行下一句语句，当此异步操作所需时间比较长时，执行打印时，result为 undefined，导致实际所需结果与结果不一致出错。
+
+>
+>
+>是的，将 `await` 去掉会导致结果不同。`await` 关键字用于暂停异步函数的执行，等待 Promise 对象的解析结果。如果将 `await` 去掉，代码将不会等待异步操作完成，而是直接执行下一行代码。
+>
+>在你提供的代码示例中：
+>
+>```javascript
+>console.log("开始执行");
+>const result = await someAsyncOperation();
+>console.log("异步操作完成，结果为:", result);
+>return "函数执行完毕";
+>```
+>
+>如果你去掉 `await` 关键字，代码会立即执行 `someAsyncOperation()`，但不会等待它的结果。然后，代码会继续执行下一行，即 `console.log("异步操作完成，结果为:", result);` 和 `return "函数执行完毕";`。这可能导致结果的输出顺序不同，并且函数的返回值可能会受到未解析的 Promise 对象的影响。
+>
+>因此，`await` 关键字在异步函数中起着关键的作用，确保代码按照预期的顺序执行，并正确处理异步操作的结果。
+
+
+
+## javaScript和java中类的异同
+
+>JavaScript和Java中的类有一些相似之处，但也存在许多不同之处。以下是它们之间的主要异同点：
+>
+>相似之处：
+>1. 类的定义：两者都使用类来定义对象的属性和行为，并通过类来创建对象的实例。
+>2. 封装性：类可以用于实现封装，将属性和方法封装在类的内部，并提供公开的接口供外部访问。
+>3. 继承：类可以通过继承机制创建子类，并继承父类的属性和方法。
+>4. 多态性：类支持多态性，允许子类重写父类的方法，并根据对象的实际类型调用相应的方法。
+>
+>不同之处：
+>1. 语言类型：JavaScript是一种动态类型的脚本语言，而Java是一种静态类型的编译型语言。
+>2. 类型系统：JavaScript是基于原型的语言，而Java是基于类的语言。在JavaScript中，类是基于原型链的，而在Java中，类是通过定义和实例化来创建对象的。
+>3. 类的成员访问：Java中的类可以使用访问修饰符（public、private、protected）来限制成员的访问权限，而JavaScript中的类中的属性和方法默认是公开的。
+>4. 类的定义方式：JavaScript中的类定义比较灵活，可以使用类声明和类表达式两种方式，而Java中的类定义必须使用类声明。
+>5. 静态成员：Java中的类可以定义静态成员（静态属性和方法），而JavaScript中的类不支持静态成员。
+>
+>总体上说，尽管JavaScript和Java中的类有一些相似之处，但由于它们是不同类型的语言，因此在语法、类型系统和语言特性等方面存在许多区别。了解这些差异可以帮助开发人员更好地理解和利用两种语言中的类的概念。
+
+
+
+## Object.assign方法
+
+`Object.assign()` 是 JavaScript 中的一个**静态方法**，用于将一个或多个源对象的属性复制到目标对象中。它的语法如下：
+
+```javascript
+Object.assign(target, ...sources)
+```
+
+其中，`target` 是目标对象，`sources` 是一个或多个源对象。`Object.assign()` 方法会将源对象的可枚举属性复制到目标对象中，并返回目标对象。
+
+以下是一些 `Object.assign()` 的特点和用法：
+
+1. `Object.assign()` 执行的是浅拷贝，即只复制对象的属性值，而不是复制对象的引用。
+2. 如果目标对象中已经有相同属性名的属性，源对象中的属性值会覆盖目标对象中的属性值。
+3. 如果传入的源对象为 `null` 或 `undefined`，`Object.assign()` 会跳过该源对象。
+4. 如果传入的目标对象为基本类型（如字符串、数字等），`Object.assign()` 会将目标对象转换为包装对象，并复制源对象的属性到包装对象中。
+5. `Object.assign()` 是浅拷贝，如果源对象的属性值是引用类型（如对象或数组），则复制的是引用，修改源对象中的属性会影响目标对象中对应的属性。
+
+以下是一个简单的示例，展示了 `Object.assign()` 的使用：
+
+```javascript
+const target = { a: 1, b: 2 };
+const source = { b: 3, c: 4 };
+
+const result = Object.assign(target, source);
+
+console.log(result); // 输出: { a: 1, b: 3, c: 4 }
+console.log(target); // 输出: { a: 1, b: 3, c: 4 }
+```
+
+在上面的例子中，`Object.assign()` 将 `source` 对象的属性复制到 `target` 对象中，并返回复制后的 `target` 对象。由于 `target` 对象中已经有一个名为 `b` 的属性，所以源对象中的 `b` 属性值将覆盖目标对象中的属性值。
+
+需要注意的是，`Object.assign()` 只会复制源对象的可枚举属性，并且不会复制原型链上的属性。如果需要深拷贝对象或复制原型链上的属性，需要使用其他方法或工具库。
+
+
+
+### 类内外部所定义的属性
+
+
+
+类的属性也会被放置在原型链上。类的构造函数内部定义的属性会成为实例的自身属性，而在类外部定义的属性会成为原型链上的属性。
+
+
+
+为类定义的属性会被放置于原型链中，而在constructor初始化所定义的属性，为实例的自身属性： 指每个实例都可以有自己一个副本，在生成时所定义的值,原型链中的属性，每个实例化对象都可以通过原型链获取值
+
+>
+>
+>在 JavaScript 中，类的属性也会被放置在原型链上。类的构造函数内部定义的属性会成为实例的自身属性，而在类外部定义的属性会成为原型链上的属性。
+>
+>让我们通过一个例子来理解这句话：
+>
+>```javascript
+>class MyClass {
+>  constructor() {
+>    this.instanceProperty = 'This is an instance property';
+>  }
+>
+>  static staticProperty = 'This is a static property';
+>}
+>
+>const myInstance = new MyClass();
+>
+>console.log(myInstance.instanceProperty); // 输出: This is an instance property
+>console.log(MyClass.staticProperty); // 输出: This is a static property
+>```
+>
+>在上面的例子中，我们定义了一个名为 `MyClass` 的类，并在构造函数内部定义了一个实例属性 `instanceProperty`。这个属性会成为实例对象自身的属性，每个实例都会拥有自己的副本。
+>
+>同时，我们使用静态属性的新语法将 `staticProperty` 定义为类的静态属性。静态属性是属于类本身的属性，而不是属于实例的。在类外部通过类名访问静态属性时，它会从原型链上获取该属性的值。
+>
+>所以，`instanceProperty` 是实例的自身属性，每个实例都有自己的副本；而 `staticProperty` 是属于类的属性，所有实例共享相同的值。
+>
+>需要注意的是，如果你在类外部直接定义一个属性，并将其赋值给类，这个属性会成为类的原型链上的属性：
+>
+>```javascript
+>class MyClass {}
+>
+>MyClass.prototype.prototypeProperty = 'This is a prototype property';
+>
+>const myInstance = new MyClass();
+>
+>console.log(myInstance.prototypeProperty); // 输出: This is a prototype property
+>```
+>
+>在上面的例子中，我们在类外部通过 `MyClass.prototype` 直接定义了一个属性 `prototypeProperty`，并将其赋值为 `'This is a prototype property'`。这个属性会成为类的原型链上的属性，可以被类的实例访问到。
+>
+>总结起来，类的属性也会被放置在原型链上。构造函数内部定义的属性是实例的自身属性，每个实例都有自己的副本；而在类外部定义的属性是原型链上的属性，被所有实例共享。
+>
+>
+
+
+
+
+
+## 接口和模块的异同点
+
+>
+>
+>异同点：
+>- 相同点：
+>  - 模块和接口都用于组织和封装代码，提供了一种抽象和分组的方式。
+>  - 它们都可以定义方法和属性，并且可以被其他代码引用和实现。
+>
+>- 不同点：
+>  - 语言环境：模块是在 JavaScript 环境中使用的概念，用于组织和管理代码文件；而接口是 Java 中的一种语言特性，用于定义类的行为和契约。
+>  - 实现方式：模块通常是通过导出和导入语句来定义和使用的，可以在不同的文件中定义和引用；而接口是在类中使用 `implements` 关键字实现的，一个类可以实现多个接口。
+>  - 范围和访问控制：模块可以定义公开（export）和私有（不导出）的成员，可以控制对外部代码的可见性；接口定义的方法和属性默认是公开的，并且可以在实现类中进行重写和实现。
+>
+>总体而言，模块和接口在某些方面有相似之处，但在语言环境、实现方式和范围控制等方面存在差异。它们各自在不同的语言中有着特定的用途和作用。
+
+
+
+### 模块的导入和导出须在模块的顶层上下文
+
+>
+>
+>确切地说，导入和导出语句需要在模块的顶层上下文中使用，而不是全局上下文。模块的顶层上下文是指模块文件的最外层，而不是整个应用程序的全局作用域。
+>
+>在模块的顶层上下文中，你可以使用导入语句来引入其他模块提供的功能，并使用导出语句将当前模块的功能暴露给其他模块使用。
+>
+>举个例子，假设我们有两个模块 `moduleA.js` 和 `moduleB.js`：
+>
+>moduleA.js:
+>```javascript
+>export const name = "Alice";
+>```
+>
+>moduleB.js:
+>```javascript
+>import { name } from './moduleA';
+>console.log(name); // 输出 "Alice"
+>```
+>
+>在这个例子中，我们在 `moduleB.js` 的顶层上下文中使用了 `import` 语句来导入 `moduleA.js` 中导出的 `name` 变量。这个导入语句必须位于模块的顶层上下文中，而不是在函数或其他内部作用域中。
+>
+>所以，要正确使用模块化语法，你需要确保在模块的顶层上下文中编写导入和导出语句，这样才能正确加载和使用模块的功能。
+
+
+
+
+
+## 导入默认模块时可以自定名字
+
+因为文件导出时，只能导出一次默认对象。
+
+默认导出是一种特殊的导出方式，表示模块的默认输出，它可以是一个对象、函数、类或其他任意值。
+
+所以在导入时，不需要加{}, 且名字可以自定义，因为导出唯一性，故导入也具有唯一性，不需要指定
+
+
+
+是的，可以在另一个文件中导入默认导出的模块。
+
+假设我们有一个文件 `moduleA.js`，其中有一个默认导出的对象：
+
+```javascript
+// moduleA.js
+export default {
+  name: 'John',
+  age: 30,
+};
+```
+
+然后在另一个文件 `moduleB.js` 中，我们可以导入 `moduleA.js` 的默认导出：
+
+```javascript
+// moduleB.js
+import myDefault from './moduleA.js';
+
+console.log(myDefault.name); // 输出 'John'
+console.log(myDefault.age); // 输出 30
+```
+
+在导入默认导出时，可以使用任意名称来接收导出的值（上述例子中的 `myDefault`）。这意味着导入的名称不必与导出时的名称相同。
+
+需要注意的是，在导入默认导出时，不需要使用花括号 `{}`，因为默认导出只能有一个，而不需要指定导出的名称。
+
+
+
+
+
+## 在浏览器无法导入本地模块的js文件
+
+这个错误是由于浏览器的同源策略导致的，而不是浏览器的兼容性问题。同源策略是一种安全机制，旨在防止恶意脚本通过跨域请求获取用户的敏感信息。
+
+同源策略要求脚本只能从相同的协议、域名和端口加载资源。因此，当你尝试从本地文件系统加载脚本文件时，浏览器会阻止这个操作，因为本地文件系统的协议是`file://`，与常用的http或https协议不同。
+
+解决这个问题的常见方法是将你的代码和脚本部署到一个支持http或https协议的服务器上，并通过访问服务器的URL来加载脚本文件。这样就符合同源策略的要求，浏览器就不会阻止加载操作了。
+
+需要注意的是，这个问题只在浏览器中出现，而在实际部署到服务器上时通常不会遇到这个问题。所以在开发阶段，可以使用本地服务器或其他工具来模拟一个服务器环境，以便测试和调试你的代码。
 
 
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>类的继承</title>
+  </head>
+
+  <body>
+    <script>
+      class Animal {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        sayName() {
+          console.log(this.name);
+        }
+        sayAge() {
+          console.log(this.age);
+        }
+      }
+      class Dog extends Animal {
+        constructor(name, age, color) {
+          //Animal.call(this, name, age) 等价于
+          super(name, age);
+          this.color = color;
+        }
+        sayName() {
+          console.log(`${this.name} ${this.age} ${this.color}`);
+        }
+      }
+      let dog = new Dog("小白", 10, "white");
+      dog.sayName();
+      console.log(dog);
+    </script>
+  </body>
+</html>

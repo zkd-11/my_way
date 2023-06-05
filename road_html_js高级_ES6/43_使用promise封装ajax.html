@@ -8,8 +8,60 @@
   </head>
   <body>
     <script>
-    
-    
+      const getJSON = function (url) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", url);
+          xhr.onreadystatechange = handler;
+          xhr.responseType = "json";
+          xhr.setRequestHeader("Accept", "application/json");
+
+          xhr.send(); //使用get需要使用send进行发送
+          function handler() {
+            console.log(this.readyState);
+            if (this.readyState === 4) {
+              if (this.status === 200) {
+                resolve(this.response.daily);
+              } else {
+                reject(new Error(this.statusText));
+              }
+            }
+          }
+        });
+      };
+      //   getJSON(
+      //     "https://devapi.qweather.com/v7/weather/3d?location=101010100&key=0991f49bbcd94dce994306cec65f58d2"
+      //   ).then(
+      //     (data) => {
+      //       console.log(data);
+      //     },
+      //     (error) => {
+      //       console.log(error);
+      //     }
+
+      /* 
+        .then返回的为一个promise对象，所以可以再使用.then将参数设置为null,error
+        第一个null表示resove为null，失败直接执行err后函数
+    */
+      getJSON(
+        "https://devapi.qweather.com/v7/weather/3d?location=101010100&key=0991f49bbcd94dce994306cec65f58d2"
+      )
+        .then((data) => {
+          console.log(data[0]);
+        })
+        .then(null, (err) => {
+          console.log(err);
+        });
+      // 等价于, 。then捕获成功， .catch 捕获异常
+      getJSON(
+        "https://devapi.qweather.com/v7/weather/3d?location=101010100&key=0991f49bbcd94dce994306cec65f58d2"
+      )
+        .then((data) => {
+          console.log(data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     </script>
   </body>
 </html>
